@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+branch_name=$(git branch --show-current)
+
+# check branch naming
+pattern="^(feat|fix|docs|refactor|test|style|chore)\/.+$"
+
+if ! echo "$branch_name" | grep -Eq "$pattern"; then
+    echo "🚨 브랜치 이름이 규칙에 맞지 않습니다."
+    echo "수정 예시: feat/login_cookie, chore/ESLint,prettier 등"
+    exit 1
+fi
+
+# check ESlint&prettier before commit 
+npx lint-staged

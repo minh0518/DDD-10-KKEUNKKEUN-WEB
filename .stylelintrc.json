@@ -8,7 +8,6 @@
     }
   ],
   "rules": {
-    "prettier/prettier": [true, { "printWidth": 100 }],
     "media-feature-range-notation": "prefix",
     "order/properties-order": [
       "display",
