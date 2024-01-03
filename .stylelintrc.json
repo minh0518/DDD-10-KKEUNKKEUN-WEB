@@ -1,0 +1,60 @@
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "plugins": ["stylelint-order", "stylelint-prettier"],
+  "overrides": [
+    {
+      "files": ["**/*.scss"],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "rules": {
+    "prettier/prettier": [true, { "printWidth": 100 }],
+    "media-feature-range-notation": "prefix",
+    "order/properties-order": [
+      "display",
+      "align-items",
+      "justify-content",
+      "clear",
+      "float",
+      "overflow",
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "z-index",
+      "width",
+      "height",
+      "margin",
+      "padding",
+      "background",
+      "background-size",
+      "border",
+      "color",
+      "font-size",
+      "font-weight",
+      "text-overflow",
+      "text-align",
+      "line-height",
+      "text-indent",
+      "transform",
+      "transition",
+      "box-sizing",
+      "white-space"
+    ],
+    "selector-class-pattern": null,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["deep"]
+      }
+    ],
+    "no-descending-specificity": null,
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "ignoreFontFamilies": ["Font Awesome 5 Free"]
+      }
+    ]
+  }
+}
