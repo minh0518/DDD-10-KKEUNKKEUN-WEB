@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 
 import RQProvider from './_components/RQProvider';
 
-import { ReactChildrenProps } from '@/app/types/common';
+import { ReactChildrenProps } from '@/types/common';
 
 export const metadata: Metadata = {
   title: '홈',
