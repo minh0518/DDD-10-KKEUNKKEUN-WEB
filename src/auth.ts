@@ -9,6 +9,7 @@ export const {
   signIn,
 } = NextAuth({
   secret: process.env.AUTH_SECRECT,
+  trustHost: true,
   pages: {
     signIn: '#', // 로그인
     newUser: '#', // 회원가입
