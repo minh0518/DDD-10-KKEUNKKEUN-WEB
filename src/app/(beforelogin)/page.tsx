@@ -1,7 +1,3 @@
 export default function Page() {
-  return (
-    <div>
-      <h1>Main</h1>
-    </div>
-  );
+  return <div>렌딩 페이지</div>;
 }

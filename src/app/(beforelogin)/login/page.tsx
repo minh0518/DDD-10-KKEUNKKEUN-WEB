@@ -1,7 +1,11 @@
-export default function Page() {
+import Login from './_components/Login';
+
+const page = () => {
   return (
     <div>
-      <h1>Login</h1>
+      <Login />
     </div>
   );
-}
+};
+
+export default page;

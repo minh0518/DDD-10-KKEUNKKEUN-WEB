@@ -1,0 +1,16 @@
+@import '@/app/_components/globals';
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  ul {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+.authButtons {
+  @include pure-button;
+}

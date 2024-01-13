@@ -1,0 +1,18 @@
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin full-size {
+  width: 100dvw;
+  height: 100dvh;
+}
+
+@mixin pure-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+$login-backgroud-color: #d5d5d5;
