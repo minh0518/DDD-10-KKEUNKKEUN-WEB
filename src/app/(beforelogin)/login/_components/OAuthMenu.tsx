@@ -2,7 +2,7 @@
 
 import styles from './OAuthMenu.module.scss';
 
-import { ListInfoType } from '@/types/common';
+import { ListInfoType } from '@/types/element';
 
 import List from '@/app/_components/_elements/List';
 import Button from '@/app/_components/_elements/Button';
@@ -15,23 +15,24 @@ const OAuthMenu = () => {
   );
   const listArr: ListInfoType = [
     {
-      content: (
-        <Button content={TmpSvg} _onClick={() => {}} _className={styles.authButtons}></Button>
+      _content: (
+        <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
+      ),
+      // style: { backgroundColor: 'blue' },
+    },
+    {
+      _content: (
+        <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
       ),
     },
     {
-      content: (
-        <Button content={TmpSvg} _onClick={() => {}} _className={styles.authButtons}></Button>
+      _content: (
+        <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
       ),
     },
     {
-      content: (
-        <Button content={TmpSvg} _onClick={() => {}} _className={styles.authButtons}></Button>
-      ),
-    },
-    {
-      content: (
-        <Button content={TmpSvg} _onClick={() => {}} _className={styles.authButtons}></Button>
+      _content: (
+        <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
       ),
     },
   ];

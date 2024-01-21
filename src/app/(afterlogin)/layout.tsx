@@ -1,7 +1,6 @@
 import { Metadata } from 'next';
 
 import RQProvider from './_components/RQProvider';
-
 import { ReactChildrenProps } from '@/types/common';
 
 export const metadata: Metadata = {

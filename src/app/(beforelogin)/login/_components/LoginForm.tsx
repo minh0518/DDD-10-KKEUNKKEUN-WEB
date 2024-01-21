@@ -71,10 +71,10 @@ function LoginForm() {
           </small>
         )}
         <Button
-          _disabled={isSubmitting}
-          _onClick={() => {}}
-          _type="submit"
-          content={'로그인'}
+          disabled={isSubmitting}
+          onClick={() => {}}
+          type="submit"
+          _content={'로그인'}
           _className={styles.submitButton}
         ></Button>
       </form>

@@ -5,23 +5,24 @@ import Button from '@/app/_components/_elements/Button';
 
 import styles from './LoginMenus.module.scss';
 
-import { ListInfoType } from '@/types/common';
+import { ListInfoType } from '@/types/element';
 
 const LoginMenus = () => {
   const listArr: ListInfoType = [
     {
-      content: (
-        <Button content="회원가입" _className={styles.menuButton} _onClick={() => {}}></Button>
+      _content: (
+        <Button _content="회원가입" _className={styles.menuButton} onClick={() => {}}></Button>
+      ),
+      // style: { backgroundColor: 'blue' },
+    },
+    {
+      _content: (
+        <Button _content="아이디 찾기" _className={styles.menuButton} onClick={() => {}}></Button>
       ),
     },
     {
-      content: (
-        <Button content="아이디 찾기" _className={styles.menuButton} _onClick={() => {}}></Button>
-      ),
-    },
-    {
-      content: (
-        <Button content="비밀번호 찾기" _className={styles.menuButton} _onClick={() => {}}></Button>
+      _content: (
+        <Button _content="비밀번호 찾기" _className={styles.menuButton} onClick={() => {}}></Button>
       ),
     },
   ];
