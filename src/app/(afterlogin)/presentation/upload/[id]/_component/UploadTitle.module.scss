@@ -1,0 +1,12 @@
+@import '@/app/_components/globals';
+
+.container {
+  width: 100%;
+}
+
+.titleInput {
+  @include presentation-input;
+
+  height: 40px;
+  background-color: $tmp-backgroud-color;
+}

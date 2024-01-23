@@ -1,0 +1,23 @@
+@import '@/app/_components/globals';
+
+.container {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.description {
+  font-weight: bolder;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.timerInput {
+  @include presentation-input;
+
+  width: 60px;
+  height: 40px;
+  background-color: $tmp-backgroud-color;
+}

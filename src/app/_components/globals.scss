@@ -15,4 +15,12 @@
   border: none;
 }
 
-$login-backgroud-color: #d5d5d5;
+@mixin presentation-input {
+  width: 100%;
+  padding: 0 20px;
+  border: none;
+  font-size: 0.9rem;
+  border-radius: 15px;
+}
+
+$tmp-backgroud-color: #d5d5d5;

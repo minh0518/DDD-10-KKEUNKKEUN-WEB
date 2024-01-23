@@ -1,0 +1,14 @@
+@import '@/app/_components/globals';
+
+.container {
+  width: 100%;
+}
+
+.scriptInput {
+  @include presentation-input;
+
+  height: 350px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: $tmp-backgroud-color;
+}

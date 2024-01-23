@@ -1,0 +1,22 @@
+@import '@/app/_components/globals';
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  @include flex-center;
+
+  width: 100dvw;
+  height: 100dvh;
+}
+
+.loader {
+  animation: rotating 2s linear infinite;
+}

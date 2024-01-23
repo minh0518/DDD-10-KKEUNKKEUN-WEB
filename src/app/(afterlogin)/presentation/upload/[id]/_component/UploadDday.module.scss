@@ -1,0 +1,28 @@
+@import '@/app/_components/globals';
+
+.container {
+  width: 100%;
+}
+
+.description {
+  font-weight: bolder;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dDayInput {
+  @include presentation-input;
+
+  width: 60px;
+  height: 40px;
+  background-color: $tmp-backgroud-color;
+}
+
+.includeTodayDescription {
+  margin: 0;
+  color: $tmp-backgroud-color;
+  font-size: 0.9rem;
+}

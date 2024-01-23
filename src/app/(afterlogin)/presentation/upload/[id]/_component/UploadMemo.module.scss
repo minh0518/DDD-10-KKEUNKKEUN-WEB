@@ -1,0 +1,21 @@
+@import '@/app/_components/globals';
+
+.container {
+  width: 100%;
+}
+
+.memoInput {
+  @include presentation-input;
+
+  background-color: $tmp-backgroud-color;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 150px;
+}
+
+.description {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  color: $tmp-backgroud-color;
+  font-size: 0.9rem;
+}
