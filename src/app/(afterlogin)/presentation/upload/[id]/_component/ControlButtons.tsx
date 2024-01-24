@@ -124,8 +124,8 @@ const ControlButtons = ({
               <Button
                 onClick={addButton}
                 disabled={
-                  presentationData.scripts[currentPageIndex].ppt.dataURL === null ||
-                  presentationData.scripts[currentPageIndex].ppt.file === null
+                  presentationData.scripts[currentPageIndex].ppt.dataURL === null
+                  // || presentationData.scripts[currentPageIndex].ppt.file === null
                 }
                 _content={
                   <div

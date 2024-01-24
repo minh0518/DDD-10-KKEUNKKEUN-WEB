@@ -59,31 +59,34 @@ const UploadPpt = ({ pptInfo, setPresentationData, currentPageIndex }: UploadPpt
         ref={imageRef}
       />
       <div className={styles.pptUpdateSection}>
-        {pptInfo.dataURL === null || pptInfo.file === null ? (
-          <div className={styles.newPptSection}>
-            <div>LOGO</div>
-            <Button
-              onClick={onClickButton}
-              _content={<p>PPT 이미지 등록하기</p>}
-              className={styles.updateButton}
-            />
-          </div>
-        ) : (
-          <div className={styles.pptImageSection}>
-            <Image
-              src={pptInfo.dataURL as string}
-              alt="ppt image"
-              fill
-              style={{ objectFit: 'contain' }}
-              className={styles.pptImage}
-            />
-            <Button
-              _content={'이미지 변경'}
-              className={styles.changePptImageButton}
-              onClick={onClickButton}
-            />
-          </div>
-        )}
+        {
+          //  pptInfo.file === null ||
+          pptInfo.dataURL === null ? (
+            <div className={styles.newPptSection}>
+              <div>LOGO</div>
+              <Button
+                onClick={onClickButton}
+                _content={<p>PPT 이미지 등록하기</p>}
+                className={styles.updateButton}
+              />
+            </div>
+          ) : (
+            <div className={styles.pptImageSection}>
+              <Image
+                src={pptInfo.dataURL as string}
+                alt="ppt image"
+                fill
+                style={{ objectFit: 'contain' }}
+                className={styles.pptImage}
+              />
+              <Button
+                _content={'이미지 변경'}
+                className={styles.changePptImageButton}
+                onClick={onClickButton}
+              />
+            </div>
+          )
+        }
       </div>
     </div>
   );
