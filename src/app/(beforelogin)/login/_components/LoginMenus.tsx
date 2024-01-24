@@ -5,10 +5,10 @@ import Button from '@/app/_components/_elements/Button';
 
 import styles from './LoginMenus.module.scss';
 
-import { ListInfoType } from '@/types/element';
+import { ListProp } from '@/types/element';
 
 const LoginMenus = () => {
-  const listArr: ListInfoType = [
+  const listArr: ListProp = [
     {
       _content: (
         <Button _content="회원가입" _className={styles.menuButton} onClick={() => {}}></Button>

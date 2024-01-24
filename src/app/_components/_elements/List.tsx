@@ -1,6 +1,6 @@
-import { ListInfoType } from '@/types/element';
+import { ListProp } from '@/types/element';
 
-const List = ({ listArr }: { listArr: ListInfoType }) => {
+const List = ({ listArr }: { listArr: ListProp }) => {
   return (
     <>
       {listArr.map((item, index) => {

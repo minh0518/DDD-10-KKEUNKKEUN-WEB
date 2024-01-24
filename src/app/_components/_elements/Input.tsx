@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
-import { InputInfoType } from '@/types/element';
+import { InputProp } from '@/types/element';
 
-const Input = forwardRef<HTMLInputElement, InputInfoType>(({ _className, ...rest }, ref) => {
+const Input = forwardRef<HTMLInputElement, InputProp>(({ _className, ...rest }, ref) => {
   return <input ref={ref} className={_className} {...rest} />;
 });
 

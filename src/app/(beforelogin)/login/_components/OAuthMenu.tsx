@@ -2,7 +2,7 @@
 
 import styles from './OAuthMenu.module.scss';
 
-import { ListInfoType } from '@/types/element';
+import { ListProp } from '@/types/element';
 
 import List from '@/app/_components/_elements/List';
 import Button from '@/app/_components/_elements/Button';
@@ -13,7 +13,7 @@ const OAuthMenu = () => {
       <circle cx="18.5" cy="18" r="18" fill="#D9D9D9" />
     </svg>
   );
-  const listArr: ListInfoType = [
+  const listArr: ListProp = [
     {
       _content: (
         <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
