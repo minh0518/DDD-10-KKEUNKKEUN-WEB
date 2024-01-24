@@ -99,7 +99,10 @@ const mockPresentData: PresentInfoType[] = [
   },
 ];
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } },
+): Promise<NextResponse> {
   const targetId = params.id;
 
   try {
