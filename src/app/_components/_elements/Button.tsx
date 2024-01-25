@@ -1,6 +1,6 @@
-import { ButtonProp } from '@/types/element';
+import { ButtonProps } from '@/types/element';
 
-const Button = ({ _className, _content, ...rest }: ButtonProp) => {
+const Button = ({ _className, _content, ...rest }: ButtonProps) => {
   return (
     <button className={_className} {...rest}>
       {_content}

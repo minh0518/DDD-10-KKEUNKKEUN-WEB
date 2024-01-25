@@ -1,6 +1,6 @@
-import { CheckboxProp } from '@/types/element';
+import { CheckboxProps } from '@/types/element';
 
-const Checkbox = ({ _label, _isChecked, _onChange, ...rest }: CheckboxProp) => {
+const Checkbox = ({ _label, _isChecked, _onChange, ...rest }: CheckboxProps) => {
   return (
     <label htmlFor="checkbox">
       <input id="checkbox" type="checkbox" checked={_isChecked} onChange={_onChange} {...rest} />

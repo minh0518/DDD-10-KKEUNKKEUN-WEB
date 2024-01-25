@@ -1,4 +1,4 @@
-import { ToggleButtonProp } from '@/types/element';
+import { ToggleButtonProps } from '@/types/element';
 import { combineClassName } from '@/app/_utils/style';
 import styles from './ToggleButton.module.scss';
 
@@ -8,7 +8,7 @@ const ToggleButton = ({
   _activedLabel,
   _onChange,
   ...rest
-}: ToggleButtonProp) => {
+}: ToggleButtonProps) => {
   return (
     <>
       {_activedLabel ? (
