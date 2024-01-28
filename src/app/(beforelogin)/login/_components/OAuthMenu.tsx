@@ -18,7 +18,6 @@ const OAuthMenu = () => {
       _content: (
         <Button _content={TmpSvg} _className={styles.authButtons} onClick={() => {}}></Button>
       ),
-      // style: { backgroundColor: 'blue' },
     },
     {
       _content: (

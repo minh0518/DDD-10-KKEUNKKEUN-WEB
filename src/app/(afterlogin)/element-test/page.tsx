@@ -26,17 +26,17 @@ export default function Page() {
   return (
     <>
       <div>
-        <Checkbox _label="가능여부" _isChecked={isAvailable} _onChange={handleOnChange}></Checkbox>
+        <Checkbox _label="가능여부" _isChecked={isAvailable} onChange={handleOnChange}></Checkbox>
         <ToggleButton
           _label="알람? (acteved label)"
           _isChecked={isUsedAlarm}
-          _onChange={handleOnChangeAlarm}
           _activedLabel
+          onChange={handleOnChangeAlarm}
         ></ToggleButton>
         <ToggleButton
           _label="알람?"
           _isChecked={isUsedAlarm}
-          _onChange={handleOnChangeAlarm}
+          onChange={handleOnChangeAlarm}
         ></ToggleButton>
       </div>
       <div>

@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 interface Props {
   selectedFiles: File[];
   base64Strings: string[];

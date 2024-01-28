@@ -1,7 +1,7 @@
 'use client';
 import { PagesDataType } from '@/types/service';
 import styles from './InputSection.module.scss';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import UploadTitle from './UploadTitle';
 import UploadScript from './UploadScript';
 import UploadMemo from './UploadMemo';
@@ -10,6 +10,7 @@ import UploadTimer from './UploadTimer';
 import Button from '@/app/_components/_elements/Button';
 import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
+import { useAlertModalStore } from '@/store/modal';
 
 interface InputSectionProps {
   presentationData: PagesDataType;
@@ -27,6 +28,16 @@ const InputSection = ({
   initialState,
   slug,
 }: InputSectionProps) => {
+  const { openModal } = useAlertModalStore();
+
+  const openModalWithData = (data: ReactNode) =>
+    // ModalData 생성
+    openModal({
+      children: data,
+      onSubmit: () => console.log('submit'),
+      onCancel: () => console.log('cancel'),
+    });
+
   return (
     <div className={styles.container}>
       <div className={styles.leftSectionWrapper}>
@@ -66,7 +77,13 @@ const InputSection = ({
           <UploadTimer time={presentationData.time} setPresentationData={setPresentationData} />
 
           <div className={styles.saveButtons}>
-            <Button _content={<p>저장</p>} onClick={() => {}} className={styles.save} />
+            <Button
+              _content={<p>저장</p>}
+              onClick={() => {
+                openModalWithData(<p className={styles.modalContent}>저장이 완료되었습니다</p>);
+              }}
+              className={styles.save}
+            />
             <Button
               _content={<p>발표 연습 시작하기</p>}
               onClick={() => {}}

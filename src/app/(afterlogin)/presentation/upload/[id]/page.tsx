@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import CreatePresentation from './_component/CreatePresentation';
 import EditPresentation from './_component/EditPresentation';
-import styles from './page.module.scss';
 import Spinner from './_component/Spinner';
 
 interface PageProps {

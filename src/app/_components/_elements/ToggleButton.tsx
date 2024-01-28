@@ -2,13 +2,7 @@ import { ToggleButtonProps } from '@/types/element';
 import { combineClassName } from '@/app/_utils/style';
 import styles from './ToggleButton.module.scss';
 
-const ToggleButton = ({
-  _label,
-  _isChecked,
-  _activedLabel,
-  _onChange,
-  ...rest
-}: ToggleButtonProps) => {
+const ToggleButton = ({ _label, _isChecked, _activedLabel, ...rest }: ToggleButtonProps) => {
   return (
     <>
       {_activedLabel ? (
@@ -19,7 +13,6 @@ const ToggleButton = ({
               role="switch"
               type="checkbox"
               checked={_isChecked}
-              onChange={_onChange}
               {...rest}
             />
             {_label}
@@ -32,7 +25,6 @@ const ToggleButton = ({
             role="switch"
             type="checkbox"
             checked={_isChecked}
-            onChange={_onChange}
             {...rest}
           />
           <label>{_label}</label>

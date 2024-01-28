@@ -1,7 +1,6 @@
 'use client';
 
-import useImageUploader from '@/app/_hooks/useImageUploader';
-import { ChangeEvent, InputHTMLAttributes, useState } from 'react';
+import { ChangeEvent, InputHTMLAttributes } from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   _classname?: string;

@@ -8,11 +8,15 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   _className?: string;
 }
 
-// TODO: 타입 주석 필요
+/** 단일 리스트(li) 타입  */
 interface SingleList extends LiHTMLAttributes<HTMLLIElement> {
+  /** li 내 자식 컴포넌트 */
   _content: React.ReactNode;
+  /** li 태그 스타일  */
   _className?: string;
 }
+
+/** ul안에 들어갈 li태그 배열 */
 export type ListProps = SingleList[];
 
 /** 인풋 컴포넌트 prop */
@@ -27,8 +31,6 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   _label?: string;
   /** 체크 여부 */
   _isChecked: boolean;
-  /** 체크 여부 변경 핸들러 */
-  _onChange: () => void;
 }
 
 /** 토글 버튼 컴포넌트 prop */

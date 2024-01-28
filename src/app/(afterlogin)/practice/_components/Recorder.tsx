@@ -22,7 +22,6 @@ const Recorder = () => {
 
         mediaRecorder.onstop = () => {
           const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' }); // 오디오 파일 형식 확인 필요
-          console.log(audioBlob);
           setAudioBlob(audioBlob);
         };
 

@@ -1,11 +1,16 @@
 'use client';
 
-import Image from 'next/image';
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
+
+import Image from 'next/image';
+
 import Button from '@/app/_components/_elements/Button';
+
 import { PagesDataType } from '@/types/service';
+
 import styles from './ControlButtons.module.scss';
 import classNames from 'classnames/bind';
+
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
 
 const cx = classNames.bind(styles);
