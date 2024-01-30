@@ -1,39 +1,23 @@
 'use client';
 
-import { useConfirmModalStore } from '@/store/modal';
+import { useModalStore } from '@/store/modal';
 
 import styles from './ConfirmModal.module.scss';
 
 const ConfirmModal = () => {
-  const { isOpen, modalData, closeModal } = useConfirmModalStore();
+  const { modalData, closeModal } = useModalStore();
 
-  const { children, onCancel, onSubmit } = modalData;
-
-  if (!isOpen) {
-    return <></>;
-  }
-
-  const onCancelInternal = () => {
-    onCancel?.();
-    closeModal();
-  };
-
-  const onSubmitInternal = () => {
-    onSubmit?.();
-    closeModal();
-  };
+  const { content, onCancelButton, onSubmitButton } = modalData;
 
   return (
-    <div className={styles.modalContainer}>
-      <div className={styles.modalContent}>
-        <div onClick={closeModal}>x</div>
-        <div>
-          <div>{children}</div>
-          <div>
-            <button onClick={onCancelInternal}>cancel</button>
-            <button onClick={onSubmitInternal}>submit</button>
-          </div>
-        </div>
+    <div className={styles.modalContent}>
+      <div>{content}</div>
+      <button className={styles.closeButton} onClick={closeModal}>
+        x
+      </button>
+      <div className={styles.actionButtons}>
+        {onSubmitButton}
+        {onCancelButton}
       </div>
     </div>
   );

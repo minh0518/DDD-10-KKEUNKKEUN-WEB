@@ -10,7 +10,8 @@ import UploadTimer from './UploadTimer';
 import Button from '@/app/_components/_elements/Button';
 import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
-import { useAlertModalStore } from '@/store/modal';
+import { useToastStore } from '@/store/modal';
+import SaveToast from '@/app/_components/_modules/SaveToast';
 
 interface InputSectionProps {
   presentationData: PagesDataType;
@@ -28,14 +29,11 @@ const InputSection = ({
   initialState,
   slug,
 }: InputSectionProps) => {
-  const { openModal } = useAlertModalStore();
+  const { openModal } = useToastStore();
 
   const openModalWithData = (data: ReactNode) =>
-    // ModalData 생성
     openModal({
-      children: data,
-      onSubmit: () => console.log('submit'),
-      onCancel: () => console.log('cancel'),
+      content: data,
     });
 
   return (
@@ -80,7 +78,7 @@ const InputSection = ({
             <Button
               _content={<p>저장</p>}
               onClick={() => {
-                openModalWithData(<p className={styles.modalContent}>저장이 완료되었습니다</p>);
+                openModalWithData(<SaveToast />);
               }}
               className={styles.save}
             />
