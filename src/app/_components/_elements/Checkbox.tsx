@@ -1,9 +1,9 @@
 import { CheckboxProps } from '@/types/element';
 
-const Checkbox = ({ _label, _isChecked, ...rest }: CheckboxProps) => {
+const Checkbox = ({ _label, ...rest }: CheckboxProps) => {
   return (
-    <label htmlFor="checkbox">
-      <input id="checkbox" type="checkbox" checked={_isChecked} {...rest} />
+    <label>
+      <input type="checkbox" {...rest} />
       {_label}
     </label>
   );

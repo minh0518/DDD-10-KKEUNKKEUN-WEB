@@ -1,5 +1,6 @@
-import { TimePickerProps } from '@/types/element';
 import { ChangeEvent } from 'react';
+import { TimePickerProps } from '@/types/element';
+import { getTimeList } from '@/app/_utils/element';
 
 const TimePicker = ({ type, min, max, gap, selectedValue, onChange }: TimePickerProps) => {
   const isHour = type === 'hour';
@@ -25,12 +26,6 @@ const TimePicker = ({ type, min, max, gap, selectedValue, onChange }: TimePicker
       </select>
     </>
   );
-};
-
-const getTimeList = (min: number, max: number, gap: number) => {
-  if (max - min < gap) return [];
-
-  return Array.from({ length: (max - min) / gap + 1 }, (_, i) => (min + i * gap).toString());
 };
 
 export default TimePicker;

@@ -1,23 +1,31 @@
 import { ButtonHTMLAttributes, InputHTMLAttributes, LiHTMLAttributes, ReactNode } from 'react';
 
+// #region Button
 /** 버튼 컴포넌트 prop */
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** 버튼 내 자식 컴포넌트 */
-  _content: React.ReactNode;
+  _content: ReactNode;
   /** 버튼 스타일 */
   _className?: string;
 }
+// #endregion
 
+// #region List
 /** 단일 리스트(li) 타입  */
 interface SingleList extends LiHTMLAttributes<HTMLLIElement> {
   /** li 내 자식 컴포넌트 */
-  _content: React.ReactNode;
+  _content: ReactNode;
   /** li 태그 스타일  */
   _className?: string;
 }
 
 /** ul안에 들어갈 li태그 배열 */
 export type ListProps = SingleList[];
+// #endregion
+
+// #region Input
+/** input 태그 value 속성 타입 */
+type InputValue = InputHTMLAttributes<HTMLInputElement>['value'];
 
 /** 인풋 컴포넌트 prop */
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -29,8 +37,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   /** 레이블 */
   _label?: string;
-  /** 체크 여부 */
-  _isChecked: boolean;
 }
 
 /** 토글 버튼 컴포넌트 prop */
@@ -43,6 +49,18 @@ export interface ToggleButtonProps extends CheckboxProps {
   _activedLabel?: boolean;
 }
 
+/** 라디오 컴포넌트 prop */
+export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
+  /** 레이블 */
+  _label?: string;
+  /** 선택된 값 */
+  _selectedValue: InputValue;
+  /** 선택된 값 변경 핸들러 */
+  _onChangeSelected: (value: InputValue) => void;
+}
+// #endregion
+
+// #region Custom
 /** 타임피커 컴포넌트 prop */
 export interface TimePickerProps {
   /** 시간 타입 */
@@ -58,3 +76,4 @@ export interface TimePickerProps {
   /** 선택 값 변경 핸들러 */
   onChange: (value: TimePickerProps['selectedValue']) => void;
 }
+// #endregion
