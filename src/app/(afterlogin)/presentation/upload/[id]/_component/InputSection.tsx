@@ -1,7 +1,7 @@
 'use client';
-import { PagesDataType } from '@/types/service';
+import { PagesDataType, ValidtaionType } from '@/types/service';
 import styles from './InputSection.module.scss';
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction, useEffect } from 'react';
 import UploadTitle from './UploadTitle';
 import UploadScript from './UploadScript';
 import UploadMemo from './UploadMemo';
@@ -12,6 +12,7 @@ import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
 import { useToastStore } from '@/store/modal';
 import SaveToast from '@/app/_components/_modules/SaveToast';
+import { useForm } from 'react-hook-form';
 
 interface InputSectionProps {
   presentationData: PagesDataType;
@@ -36,10 +37,31 @@ const InputSection = ({
       content: data,
     });
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { defaultValues, isSubmitting, isSubmitted, errors },
+  } = useForm<ValidtaionType>();
+
+  useEffect(() => {
+    const resetFormData = () => {
+      reset({
+        title: presentationData.title || '',
+        script: presentationData.scripts[currentPageIndex].script || '',
+        dDayDate: presentationData.dDay.date,
+      });
+    };
+    resetFormData();
+  }, [presentationData, currentPageIndex]);
+
   return (
     <div className={styles.container}>
       <div className={styles.leftSectionWrapper}>
         <div className={styles.leftSection}>
+          <p className={styles.description}>
+            발표 자료 추가 <span>* 필수항목</span>
+          </p>
           <UploadPpt
             pptInfo={presentationData.scripts[currentPageIndex].ppt}
             setPresentationData={setPresentationData}
@@ -56,38 +78,56 @@ const InputSection = ({
       </div>
       <div className={styles.rightSectionWrapper}>
         <div className={styles.rightSection}>
-          <UploadTitle
-            title={presentationData.title || ''}
-            setPresentationData={setPresentationData}
-          />
-          <UploadScript
-            script={presentationData.scripts[currentPageIndex].script || ''}
-            setPresentationData={setPresentationData}
-            currentPageIndex={currentPageIndex}
-          />
-          <UploadMemo
-            memo={presentationData.scripts[currentPageIndex].memo || ''}
-            setPresentationData={setPresentationData}
-            currentPageIndex={currentPageIndex}
-          />
-          <div className={styles.line} />
-          <UploadDday dDay={presentationData.dDay} setPresentationData={setPresentationData} />
-          <UploadTimer time={presentationData.time} setPresentationData={setPresentationData} />
+          <form
+            onSubmit={handleSubmit((data) => {
+              // mutation의 onSuccess로 모달 띄우기
+              console.log(JSON.stringify(data));
+              openModalWithData(<SaveToast />);
+            })}
+          >
+            <UploadTitle
+              title={presentationData.title || ''}
+              setPresentationData={setPresentationData}
+              register={register}
+              errors={errors}
+            />
+            <UploadScript
+              script={presentationData.scripts[currentPageIndex].script || ''}
+              setPresentationData={setPresentationData}
+              currentPageIndex={currentPageIndex}
+              register={register}
+              errors={errors}
+            />
+            <UploadMemo
+              memo={presentationData.scripts[currentPageIndex].memo || ''}
+              setPresentationData={setPresentationData}
+              currentPageIndex={currentPageIndex}
+            />
+            <div className={styles.line} />
 
-          <div className={styles.saveButtons}>
-            <Button
-              _content={<p>저장</p>}
-              onClick={() => {
-                openModalWithData(<SaveToast />);
-              }}
-              className={styles.save}
+            <UploadDday
+              dDay={presentationData.dDay}
+              setPresentationData={setPresentationData}
+              register={register}
+              errors={errors}
             />
-            <Button
-              _content={<p>발표 연습 시작하기</p>}
-              onClick={() => {}}
-              className={styles.start}
-            />
-          </div>
+
+            <UploadTimer time={presentationData.time} setPresentationData={setPresentationData} />
+
+            <div className={styles.saveButtons}>
+              <Button
+                _content={<p>저장</p>}
+                type="submit"
+                className={styles.save}
+                disabled={isSubmitting}
+              />
+              <Button
+                _content={<p>발표 연습 시작하기</p>}
+                onClick={() => {}}
+                className={styles.start}
+              />
+            </div>
+          </form>
         </div>
       </div>
     </div>

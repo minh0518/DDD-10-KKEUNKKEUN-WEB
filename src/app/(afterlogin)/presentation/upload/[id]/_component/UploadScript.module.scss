@@ -1,14 +1,54 @@
 @import '@/app/_components/globals';
 
 .container {
+  display: flex;
   width: 100%;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.scriptInput {
+.scriptSection {
+  position: relative;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: darkgray;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+.scriptTextarea {
   @include presentation-input;
 
   height: 350px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  font-size: 1.1rem;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background-color: $tmp-backgroud-color;
+}
+
+.warning {
+  &:focus {
+    outline: none;
+  }
+
+  border: 2px solid red;
+}
+
+.lengthCount {
+  position: absolute;
+  top: 320px;
+  right: 20px;
+  z-index: 10;
 }

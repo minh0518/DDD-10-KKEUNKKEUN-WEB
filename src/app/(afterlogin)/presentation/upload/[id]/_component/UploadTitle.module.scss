@@ -1,12 +1,17 @@
 @import '@/app/_components/globals';
 
 .container {
+  display: flex;
   width: 100%;
+  margin: 20px 0;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .titleInput {
   @include presentation-input;
 
   height: 40px;
+  font-size: 1rem;
   background-color: $tmp-backgroud-color;
 }

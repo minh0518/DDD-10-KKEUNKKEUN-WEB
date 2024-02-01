@@ -1,7 +1,11 @@
 @import '@/app/_components/globals';
+@import 'react-calendar/dist/Calendar.css';
 
 .container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: 10px;
 }
 
 .description {
@@ -22,7 +26,6 @@
 }
 
 .includeTodayDescription {
-  margin: 0;
   color: $tmp-backgroud-color;
   font-size: 0.9rem;
 }

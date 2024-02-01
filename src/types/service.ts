@@ -1,7 +1,17 @@
+type ValuePiece = Date | null;
+
+export type Value = ValuePiece | [ValuePiece, ValuePiece];
+
+export interface ValidtaionType {
+  title: string;
+  script: string;
+  dDayDate: Value;
+}
+
 export interface PagesDataType {
   title: string | null;
   dDay: {
-    date: any;
+    date: Value;
     repeat: any;
     includeToday: any;
   };

@@ -14,7 +14,7 @@ const mockPresentData: PresentInfoType[] = [
     data: {
       title: '발표1',
       dDay: {
-        date: '2024.8.3',
+        date: new Date('2024-07-30'),
         repeat: '',
         includeToday: '',
       },
@@ -58,7 +58,7 @@ const mockPresentData: PresentInfoType[] = [
     data: {
       title: '발표2',
       dDay: {
-        date: '2024.8.3',
+        date: new Date('2024-07-30'),
         repeat: '',
         includeToday: '',
       },

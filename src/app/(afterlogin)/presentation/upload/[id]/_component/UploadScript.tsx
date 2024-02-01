@@ -2,23 +2,45 @@
 
 import { ChangeEventHandler, Dispatch, SetStateAction, forwardRef } from 'react';
 
-import { PagesDataType } from '@/types/service';
+import { PagesDataType, ValidtaionType } from '@/types/service';
 
 import styles from './UploadScript.module.scss';
+
+import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
+
+import classNames from 'classnames/bind';
 
 interface UploadScriptProps {
   script: string | null;
   currentPageIndex: number;
   setPresentationData: Dispatch<SetStateAction<PagesDataType>>;
+  register: UseFormRegister<ValidtaionType>;
+
+  errors: FieldErrors<ValidtaionType>;
 }
+
+const cx = classNames.bind(styles);
+
 const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
-  ({ script, currentPageIndex, setPresentationData }, ref) => {
+  ({ script, currentPageIndex, setPresentationData, register, errors }, ref) => {
+    const registerOptions: RegisterOptions = {
+      required: '대본은 필수 입력입니다.',
+      maxLength: {
+        value: 5000,
+        message: '5000자 이내로 작성해 주세요.',
+      },
+    };
+
     const onChange: ChangeEventHandler<HTMLTextAreaElement> = (e) => {
+      let scriptValue = e.target.value;
+      if (scriptValue.length >= 5001) {
+        scriptValue = scriptValue.slice(0, 5001);
+      }
       setPresentationData((prev) => {
         const shallow = [...prev.scripts];
         shallow[currentPageIndex] = {
           ...shallow[currentPageIndex],
-          script: e.target.value,
+          script: scriptValue,
         };
 
         return {
@@ -29,13 +51,26 @@ const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
     };
     return (
       <div className={styles.container}>
-        <p>{currentPageIndex + 1} 페이지 대본 붙여넣기</p>
-        <textarea
-          className={styles.scriptInput}
-          value={script || ''}
-          onChange={onChange}
-          placeholder="가지고 있는 대본을 이곳에 복사하여 붙여 넣어주세요."
-        ></textarea>
+        <label htmlFor="script">
+          {currentPageIndex + 1} 페이지 대본 붙여넣기 <span>*</span>
+        </label>
+
+        {errors.script && (
+          <small role="alert" style={{ color: 'red' }}>
+            {errors.script.message as string}
+          </small>
+        )}
+        <div className={styles.scriptSection}>
+          <textarea
+            id="script"
+            {...register('script', registerOptions)}
+            className={cx(['scriptTextarea', script && script?.length > 5000 && 'warning'])}
+            value={script || ''}
+            onChange={onChange}
+            placeholder="가지고 있는 대본을 이곳에 복사하여 붙여 넣어주세요."
+          ></textarea>
+          <span className={styles.lengthCount}>{script?.length}/5000</span>
+        </div>
       </div>
     );
   },

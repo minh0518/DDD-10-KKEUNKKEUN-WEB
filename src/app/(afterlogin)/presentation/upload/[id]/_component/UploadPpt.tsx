@@ -49,7 +49,6 @@ const UploadPpt = ({ pptInfo, setPresentationData, currentPageIndex }: UploadPpt
 
   return (
     <div className={styles.container}>
-      <p className={styles.description}>발표 자료 추가</p>
       <input
         type="file"
         accept="image/png, image/jpeg"
