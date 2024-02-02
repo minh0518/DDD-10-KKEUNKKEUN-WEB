@@ -6,6 +6,7 @@ import Checkbox from '@/app/_components/_elements/Checkbox';
 import Radio from '@/app/_components/_elements/Radio';
 import TimePicker from '@/app/_components/_elements/TimePicker';
 import ToggleButton from '@/app/_components/_elements/ToggleButton';
+import FlyoutMenu from '@/app/_components/_modules/FlyoutMenu';
 
 export default function Page() {
   const [isAvailable, setIsAvailable] = useState(false);
@@ -80,6 +81,19 @@ export default function Page() {
           _onChangeSelected={handleOnChangeRadio}
         />
         <span>selected : {radioValue}</span>
+      </div>
+      <div>
+        <span>Flyout menu test</span>
+        <FlyoutMenu>
+          <FlyoutMenu.ToggleButton>
+            <div style={{ width: '50px', height: '50px', background: 'tomato' }}>click!</div>
+          </FlyoutMenu.ToggleButton>
+          <FlyoutMenu.MenuList>
+            <FlyoutMenu.MenuItem>apple</FlyoutMenu.MenuItem>
+            <FlyoutMenu.MenuItem>banana</FlyoutMenu.MenuItem>
+            <FlyoutMenu.MenuItem>cat</FlyoutMenu.MenuItem>
+          </FlyoutMenu.MenuList>
+        </FlyoutMenu>
       </div>
     </>
   );

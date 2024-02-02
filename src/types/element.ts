@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, InputHTMLAttributes, LiHTMLAttributes, ReactNode 
 /** 버튼 컴포넌트 prop */
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** 버튼 내 자식 컴포넌트 */
-  _content: ReactNode;
+  _content: ReactNode; // TODO: 수정 논의 필요
   /** 버튼 스타일 */
   _className?: string;
 }
@@ -14,12 +14,15 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 /** 단일 리스트(li) 타입  */
 interface SingleList extends LiHTMLAttributes<HTMLLIElement> {
   /** li 내 자식 컴포넌트 */
-  _content: ReactNode;
+  _content: ReactNode; // TODO: 수정 논의 필요
   /** li 태그 스타일  */
   _className?: string;
 }
 
-/** ul안에 들어갈 li태그 배열 */
+/** ul안에 들어갈 li태그 배열
+ *
+ * TODO: 수정 논의 해봐요
+ */
 export type ListProps = SingleList[];
 // #endregion
 
