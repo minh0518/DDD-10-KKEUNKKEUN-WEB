@@ -9,6 +9,7 @@ import styles from './UploadScript.module.scss';
 import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
 
 import classNames from 'classnames/bind';
+import TextArea from '@/app/_components/_elements/TextArea';
 
 interface UploadScriptProps {
   script: string | null;
@@ -61,14 +62,17 @@ const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
           </small>
         )}
         <div className={styles.scriptSection}>
-          <textarea
+          <TextArea
             id="script"
             {...register('script', registerOptions)}
-            className={cx(['scriptTextarea', script && script?.length > 5000 && 'warning'])}
+            size="size_lg"
+            width="width_full"
+            theme="theme_gray"
+            warning={script!.length > 5000}
             value={script || ''}
             onChange={onChange}
             placeholder="가지고 있는 대본을 이곳에 복사하여 붙여 넣어주세요."
-          ></textarea>
+          ></TextArea>
           <span className={styles.lengthCount}>{script?.length}/5000</span>
         </div>
       </div>

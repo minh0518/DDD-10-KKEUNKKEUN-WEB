@@ -23,4 +23,37 @@
   border-radius: 15px;
 }
 
-$tmp-backgroud-color: #d5d5d5;
+$tmp-backgroud-color: #d7d7d7;
+
+// xs (extra small)
+// sm (small)
+// md (medium)
+// lg (large)
+// xl (extra large)
+// full (100%)
+
+/** # textarea */
+
+// 사이즈
+$textarea-size-md: (
+  height: 150px,
+  padding: 20px 20px,
+  font-size: 0.9rem,
+);
+$textarea-size-lg: (
+  height: 350px,
+  padding: 20px 30px,
+  font-size: 1.1rem,
+);
+
+// 너비
+$textarea-width-full: (
+  width: 100%,
+);
+
+// 색상 테마
+$textarea-theme-gray: (
+  background-color: #d7d7d7,
+  color: black,
+  border-radius: 15px,
+);

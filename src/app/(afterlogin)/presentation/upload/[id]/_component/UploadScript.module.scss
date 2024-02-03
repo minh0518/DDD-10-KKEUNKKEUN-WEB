@@ -36,14 +36,14 @@
   padding-top: 30px;
   padding-bottom: 30px;
   background-color: $tmp-backgroud-color;
-}
 
-.warning {
-  &:focus {
-    outline: none;
+  &.warning {
+    &:focus {
+      outline: none;
+    }
+
+    border: 2px solid red;
   }
-
-  border: 2px solid red;
 }
 
 .lengthCount {

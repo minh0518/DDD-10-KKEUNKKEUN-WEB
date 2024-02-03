@@ -1,4 +1,10 @@
-import { ButtonHTMLAttributes, InputHTMLAttributes, LiHTMLAttributes, ReactNode } from 'react';
+import {
+  ButtonHTMLAttributes,
+  InputHTMLAttributes,
+  LiHTMLAttributes,
+  ReactNode,
+  TextareaHTMLAttributes,
+} from 'react';
 
 // #region Button
 /** 버튼 컴포넌트 prop */
@@ -34,6 +40,17 @@ type InputValue = InputHTMLAttributes<HTMLInputElement>['value'];
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   /** 인풋 스타일 */
   _className?: string;
+}
+
+/** textarea 컴포넌트 prop */
+export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  /** textarea 테마 */
+  // theme?: 'presentation_memo' | 'presentation_script';
+  _className?: string;
+  size?: 'size_lg' | 'size_md';
+  width?: 'width_full';
+  theme?: 'theme_gray';
+  warning?: boolean;
 }
 
 /** 체크박스 컴포넌트 prop */

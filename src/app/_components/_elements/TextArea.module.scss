@@ -1,0 +1,30 @@
+@import '@/app/_components/mixins';
+
+.textarea {
+  // 공통
+  border: none;
+
+  &.size_lg {
+    @include textarea-size($textarea-size-lg);
+  }
+
+  &.size_md {
+    @include textarea-size($textarea-size-md);
+  }
+
+  &.width_full {
+    @include textarea-width($textarea-width-full);
+  }
+
+  &.theme_gray {
+    @include textarea-theme($textarea-theme-gray);
+  }
+
+  &.warning {
+    &:focus {
+      outline: none;
+    }
+
+    border: 2px solid red;
+  }
+}
