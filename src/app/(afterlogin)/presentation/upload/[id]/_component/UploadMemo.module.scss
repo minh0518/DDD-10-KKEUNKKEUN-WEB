@@ -4,14 +4,25 @@
   width: 100%;
 }
 
-.memoInput {
-  @include presentation-input;
+.memoSection {
+  position: relative;
 
-  background-color: $tmp-backgroud-color;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  height: 150px;
-  font-size: 1.1rem;
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: darkgray;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
 }
 
 .description {

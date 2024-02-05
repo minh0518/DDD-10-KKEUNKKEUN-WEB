@@ -72,7 +72,7 @@ const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
             value={script || ''}
             onChange={onChange}
             placeholder="가지고 있는 대본을 이곳에 복사하여 붙여 넣어주세요."
-          ></TextArea>
+          />
           <span className={styles.lengthCount}>{script?.length}/5000</span>
         </div>
       </div>
