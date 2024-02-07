@@ -1,6 +1,30 @@
 @import '@/app/_components/globals';
 
-/** # textarea */
+$tmp-backgroud-color: #d7d7d7;
+
+@function px-to-rem($size, $base-font-size: 16px) {
+  @return $size / $base-font-size * 1rem;
+}
+
+// # etc
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin pure-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+// # 해상도
+@mixin content-width {
+  width: 1440px;
+}
+
+// # textarea
 @mixin textarea-size($size) {
   height: map-get($size, height);
   padding: map-get($size, padding);
@@ -15,4 +39,150 @@
   background-color: map-get($theme, background-color);
   color: map-get($theme, color);
   border-radius: map-get($theme, border-radius);
+}
+
+// # button
+// 웹 재사용 버튼 사이즈 (모달, 그 외 재사용 버튼들)
+@mixin button_size_web {
+  width: 227px;
+  height: 56px;
+  font-size: px-to-rem(20px);
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+// 발표 목록페이지 재사용 버튼 사이즈
+@mixin button_size_web_presentation_list {
+  width: 117px;
+  height: 56px;
+  font-size: px-to-rem(20px);
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+// 모바일 모달 confirm 버튼 사이즈
+@mixin button_size_mobile_modal_confirm {
+  width: 128px;
+  height: 48px;
+  font-size: 20px;
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+// 모바일 모달 alert 버튼 사이즈
+@mixin button_size_mobile_modal_alert {
+  width: 264px;
+  height: 48px;
+  font-size: 20px;
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 12px;
+}
+
+// 버튼 default 테마
+@mixin button_theme_default {
+  background-color: $button-background-default-default;
+  color: $button-font-color-default-default;
+  border: none;
+  &:hover {
+    background-color: $button-background-default-hover;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $button-background-default-pressed;
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: $button-background-default-disabled;
+    cursor: not-allowed;
+  }
+}
+
+// 버튼 inverted 테마
+@mixin button_theme_inverted {
+  background-color: $button-background-inverted-default;
+  color: $button-font-color-inverted-default;
+  border: 1px solid $button-font-color-inverted-default;
+  &:hover {
+    color: $button-font-color-inverted-hover;
+    border: 1px solid $button-font-color-inverted-hover;
+    cursor: pointer;
+  }
+  &:active {
+    color: $button-font-color-inverted-pressed;
+    border: 1px solid $button-font-color-inverted-pressed;
+    cursor: pointer;
+  }
+  &:disabled {
+    color: $button-font-color-inverted-disabled;
+    border: 1px solid $button-font-color-inverted-pressed;
+    cursor: not-allowed;
+  }
+}
+
+// 버튼 lined 테마
+@mixin button_theme_lined {
+  background-color: $button-background-lined-default;
+  color: $button-font-color-lined-default;
+  border: 1px solid $button-font-color-lined-default;
+  &:hover {
+    color: $button-font-color-lined-hover;
+    border: 1px solid $button-font-color-lined-hover;
+    cursor: pointer;
+  }
+  &:active {
+    color: $button-font-color-lined-pressed;
+    border: 1px solid $button-font-color-lined-pressed;
+    cursor: pointer;
+  }
+  &:disabled {
+    color: $button-font-color-lined-disabled;
+    border: 1px solid $button-font-color-lined-disabled;
+    cursor: not-allowed;
+  }
+}
+
+// 버튼 error 테마
+@mixin button_theme_error {
+  background-color: $button-background-error-default;
+  color: $button-font-color-error-default;
+  border: none;
+  &:hover {
+    background-color: $button-background-error-hover;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $button-background-error-pressed;
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: $button-background-error-disabled;
+    cursor: not-allowed;
+  }
 }

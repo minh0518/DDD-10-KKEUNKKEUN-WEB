@@ -1,9 +1,10 @@
-@import '@/app/_components/globals';
+@import '@/app/_components/mixins';
 
 .container {
   @include flex-center;
-  @include full-size;
 
+  width: 100dvw;
+  height: 100dvh;
   background-color: $tmp-backgroud-color;
 }
 

@@ -1,29 +1,48 @@
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/** 버튼 default 테마 */
+// 색상
+$button-background-default-default: #6822ff;
+$button-background-default-hover: #864eff;
+$button-background-default-pressed: #5218f6;
+$button-background-default-disabled: #c3a7ff;
 
-@mixin full-size {
-  width: 100dvw;
-  height: 100dvh;
-}
+// 폰트
+$button-font-color-default-default: white;
 
-@mixin pure-button {
-  background-color: transparent;
-  cursor: pointer;
-  border: none;
-}
+/** 버튼 inverted 테마 */
+// 색상
+$button-background-inverted-default: white;
 
-@mixin presentation-input {
-  width: 100%;
-  padding: 0 20px;
-  border: none;
-  font-size: 0.9rem;
-  border-radius: 15px;
-}
+// 폰트
+$button-font-color-inverted-default: #6822ff;
+$button-font-color-inverted-hover: #864eff;
+$button-font-color-inverted-pressed: #5218f6;
+$button-font-color-inverted-disabled: #c3a7ff;
 
-$tmp-backgroud-color: #d7d7d7;
+/** 버튼 lined 테마 */
+// 색상
+$button-background-lined-default: white;
+
+// 폰트
+$button-font-color-lined-default: #727272;
+$button-font-color-lined-hover: #8e8e8e;
+$button-font-color-lined-pressed: #4b4b4b;
+$button-font-color-lined-disabled: #b7b7b7;
+
+// border
+$button-border-color-lined-default: #b7b7b7;
+$button-border-color-lined-hover: #c5c5c5;
+$button-border-color-lined-pressed: #939393;
+$button-border-color-lined-disabled: #b7b7b7;
+
+/** 버튼 에러 테마 */
+// 색상
+$button-background-error-default: #ff4a2e;
+$button-background-error-hover: #ff6e58;
+$button-background-error-pressed: #eb3d2a;
+$button-background-error-disabled: #ffb7ab;
+
+// 폰트
+$button-font-color-error-default: white;
 
 // xs (extra small)
 // sm (small)
@@ -33,7 +52,6 @@ $tmp-backgroud-color: #d7d7d7;
 // full (100%)
 
 /** # textarea */
-
 // 사이즈
 $textarea-size-md: (
   height: 150px,

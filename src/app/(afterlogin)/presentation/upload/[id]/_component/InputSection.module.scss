@@ -1,4 +1,4 @@
-@import '@/app/_components/globals';
+@import '@/app/_components/mixins';
 
 .container {
   display: flex;
@@ -69,4 +69,14 @@
     border-radius: 30px;
     background-color: #d9d9d9;
   }
+}
+
+.confirmButton {
+  @include button_size_web;
+  @include button_theme_default;
+}
+
+.cancelButton {
+  @include button_size_web;
+  @include button_theme_lined;
 }

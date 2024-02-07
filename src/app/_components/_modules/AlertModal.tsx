@@ -12,11 +12,8 @@ const AlertModal = () => {
 
   return (
     <div className={styles.modalContent}>
-      <div>{content}</div>
-      <button className={styles.closeButton} onClick={closeModal}>
-        x
-      </button>
-      {onSubmitButton}
+      {content}
+      <div className={styles.actionButtons}>{onSubmitButton}</div>
     </div>
   );
 };

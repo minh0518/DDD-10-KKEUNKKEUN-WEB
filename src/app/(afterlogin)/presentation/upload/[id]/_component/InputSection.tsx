@@ -10,7 +10,7 @@ import UploadTimer from './UploadTimer';
 import Button from '@/app/_components/_elements/Button';
 import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
-import { useToastStore } from '@/store/modal';
+import { useModalStore, useToastStore } from '@/store/modal';
 import SaveToast from '@/app/_components/_modules/SaveToast';
 import { useForm } from 'react-hook-form';
 
@@ -32,9 +32,9 @@ const InputSection = ({
 }: InputSectionProps) => {
   const { openModal } = useToastStore();
 
-  const openModalWithData = (data: ReactNode) =>
+  const openModalWithData = () =>
     openModal({
-      content: data,
+      content: <SaveToast />,
     });
 
   const {
@@ -82,7 +82,8 @@ const InputSection = ({
             onSubmit={handleSubmit((data) => {
               // mutation의 onSuccess로 모달 띄우기
               console.log(JSON.stringify(data));
-              openModalWithData(<SaveToast />);
+
+              openModalWithData();
             })}
           >
             <UploadTitle
