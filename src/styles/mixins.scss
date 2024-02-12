@@ -1,4 +1,4 @@
-@import '@/app/_components/globals';
+@import '@/styles/globals';
 
 $tmp-backgroud-color: #d7d7d7;
 
@@ -58,6 +58,7 @@ $tmp-backgroud-color: #d7d7d7;
   cursor: pointer;
 }
 
+// TODO: 삭제해도 될 거 같음
 // 발표 목록페이지 재사용 버튼 사이즈
 @mixin button_size_web_presentation_list {
   width: 117px;
@@ -107,82 +108,82 @@ $tmp-backgroud-color: #d7d7d7;
 
 // 버튼 default 테마
 @mixin button_theme_default {
-  background-color: $button-background-default-default;
-  color: $button-font-color-default-default;
+  background-color: $primary;
+  color: $white;
   border: none;
   &:hover {
-    background-color: $button-background-default-hover;
+    background-color: $primary-hover;
     cursor: pointer;
   }
   &:active {
-    background-color: $button-background-default-pressed;
+    background-color: $primary-pressed;
     cursor: pointer;
   }
   &:disabled {
-    background-color: $button-background-default-disabled;
+    background-color: $primary-disabled;
     cursor: not-allowed;
   }
 }
 
 // 버튼 inverted 테마
 @mixin button_theme_inverted {
-  background-color: $button-background-inverted-default;
-  color: $button-font-color-inverted-default;
-  border: 1px solid $button-font-color-inverted-default;
+  background-color: $white;
+  color: $primary;
+  border: 1px solid $primary;
   &:hover {
-    color: $button-font-color-inverted-hover;
-    border: 1px solid $button-font-color-inverted-hover;
+    color: $primary-hover;
+    border: 1px solid $primary-hover;
     cursor: pointer;
   }
   &:active {
-    color: $button-font-color-inverted-pressed;
-    border: 1px solid $button-font-color-inverted-pressed;
+    color: $primary-pressed;
+    border: 1px solid $primary-pressed;
     cursor: pointer;
   }
   &:disabled {
-    color: $button-font-color-inverted-disabled;
-    border: 1px solid $button-font-color-inverted-pressed;
+    color: $primary-disabled;
+    border: 1px solid $primary-pressed;
     cursor: not-allowed;
   }
 }
 
 // 버튼 lined 테마
 @mixin button_theme_lined {
-  background-color: $button-background-lined-default;
-  color: $button-font-color-lined-default;
-  border: 1px solid $button-font-color-lined-default;
+  background-color: $white;
+  color: $secondary;
+  border: 1px solid $secondary;
   &:hover {
-    color: $button-font-color-lined-hover;
-    border: 1px solid $button-font-color-lined-hover;
+    color: $secondary-hover;
+    border: 1px solid $secondary-hover;
     cursor: pointer;
   }
   &:active {
-    color: $button-font-color-lined-pressed;
-    border: 1px solid $button-font-color-lined-pressed;
+    color: $secondary-pressed;
+    border: 1px solid $secondary-pressed;
     cursor: pointer;
   }
   &:disabled {
-    color: $button-font-color-lined-disabled;
-    border: 1px solid $button-font-color-lined-disabled;
+    color: $secondary-disabled;
+    border: 1px solid $secondary-disabled;
     cursor: not-allowed;
   }
 }
 
 // 버튼 error 테마
 @mixin button_theme_error {
-  background-color: $button-background-error-default;
-  color: $button-font-color-error-default;
+  background-color: $error;
+  color: $white;
   border: none;
   &:hover {
-    background-color: $button-background-error-hover;
+    background-color: $error-hover;
     cursor: pointer;
   }
   &:active {
-    background-color: $button-background-error-pressed;
+    background-color: $error-pressed;
     cursor: pointer;
   }
   &:disabled {
-    background-color: $button-background-error-disabled;
+    background-color: $error-disabled;
     cursor: not-allowed;
   }
 }
