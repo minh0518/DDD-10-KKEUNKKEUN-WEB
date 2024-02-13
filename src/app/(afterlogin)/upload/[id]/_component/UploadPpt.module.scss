@@ -1,0 +1,88 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.pptUpdateSection {
+  @include flex-center;
+
+  position: relative;
+  width: 100%;
+  height: 285px;
+  border: 1px solid $gray-3;
+  border-radius: 16px;
+  margin-bottom: 21px;
+}
+
+.newPptSection {
+  @include flex-center;
+
+  flex-direction: column;
+  gap: 18px;
+  width: 214px;
+  height: 119px;
+}
+
+.updateButton {
+  @include button_theme_lined;
+
+  width: 214px;
+  height: 56px;
+  padding: 12px 24px;
+  font-size: px-to-rem(16px);
+  font-weight: bolder;
+  border-radius: 100px;
+}
+
+.pptImageSection {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.changePptImageButton {
+  display: none;
+}
+
+.hoverSection {
+  &:hover {
+    .changePptImageButton {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .pptImage {
+      filter: blur(8px);
+      transition: filter 0.3s ease;
+    }
+  }
+}
+
+.goLeft {
+  @include pure-button;
+
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  height: 100%;
+  transform: translate(0, -50%);
+  padding-left: 12px;
+}
+
+.goRight {
+  @include pure-button;
+
+  position: absolute;
+  top: 50%;
+  right: 0;
+  height: 100%;
+  transform: translate(0, -50%);
+  padding-right: 12px;
+}

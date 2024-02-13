@@ -8,9 +8,9 @@ import classNames from 'classnames/bind';
 import { useToastStore } from '@/store/modal';
 
 const Toast = () => {
-  const { isOpen, modalData, closeModal } = useToastStore();
+  const { isOpen, toastData, closeToast } = useToastStore();
 
-  const { content } = modalData;
+  const { content } = toastData;
 
   const [fadeOut, setFadeOut] = useState(false);
 
@@ -21,12 +21,12 @@ const Toast = () => {
       setFadeOut(false);
       const timer = setTimeout(() => {
         setFadeOut(true);
-        setTimeout(closeModal, 500);
+        setTimeout(closeToast, 500);
       }, 1000);
 
       return () => clearTimeout(timer);
     }
-  }, [isOpen, closeModal]);
+  }, [isOpen, closeToast]);
 
   if (!isOpen) {
     return <></>;

@@ -28,6 +28,27 @@ interface ModalStore {
   modalData: ModalData;
 }
 
+/** 토스트창에 사용되는 데이터 타입*/
+export type ToastData = {
+  /** 토스트창 컨텐츠 */
+  content?: ReactNode;
+};
+
+/** 토스트 스토어 타입 */
+interface ToastStore {
+  /** 현재 토스트 렌더링 유무 플래그 */
+  isOpen: boolean;
+
+  /** 인자로 받은 토스트 데이터를 기반으로 토스트를 생성하는 함수 */
+  openToast: (toastData: ToastData) => unknown;
+
+  /** 토스트를 닫는 함수(DOM에서 제거) */
+  closeToast: () => unknown;
+
+  /** 토스트창에 사용되는 데이터 */
+  toastData: ToastData;
+}
+
 /** confirm과 alert에 사용되는 스토어 */
 export const useModalStore = create<ModalStore>((set) => ({
   isOpen: false,
@@ -43,15 +64,15 @@ export const useModalStore = create<ModalStore>((set) => ({
 }));
 
 /** toast에 사용되는 스토어 */
-export const useToastStore = create<ModalStore>((set) => ({
+export const useToastStore = create<ToastStore>((set) => ({
   isOpen: false,
-  modalData: {} as ModalData,
+  toastData: {} as ToastData,
 
-  openModal: (modalData: ModalData) => {
-    set((state) => ({ isOpen: true, modalData: { ...modalData } }));
+  openToast: (toastData: ToastData) => {
+    set((state) => ({ isOpen: true, toastData: { ...toastData } }));
   },
 
-  closeModal: () => {
-    set((state) => ({ isOpen: false, modalData: {} }));
+  closeToast: () => {
+    set((state) => ({ isOpen: false, toastData: {} }));
   },
 }));

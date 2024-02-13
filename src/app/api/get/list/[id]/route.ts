@@ -1,6 +1,6 @@
 // src\app\api\get\list\[id]\route.ts
 
-import { PresentInfoType } from '@/types/service';
+import { PresentInfoType, Value } from '@/types/service';
 import { NextRequest, NextResponse } from 'next/server';
 
 // const dummyFile = new File(['dummy content'], 'hello.png', {
@@ -15,12 +15,10 @@ const mockPresentData: PresentInfoType[] = [
       title: '발표1',
       dDay: {
         date: new Date('2024-07-30'),
-        repeat: '',
-        includeToday: '',
       },
       time: {
-        timer: '200',
-        alramTime: '200',
+        timer: 200,
+        alramTime: 200,
       },
       scripts: [
         {
@@ -59,12 +57,10 @@ const mockPresentData: PresentInfoType[] = [
       title: '발표2',
       dDay: {
         date: new Date('2024-07-30'),
-        repeat: '',
-        includeToday: '',
       },
       time: {
-        timer: '200',
-        alramTime: '200',
+        timer: 200,
+        alramTime: 200,
       },
       scripts: [
         {

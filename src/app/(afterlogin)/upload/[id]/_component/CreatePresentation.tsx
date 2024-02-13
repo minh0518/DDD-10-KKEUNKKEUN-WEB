@@ -11,8 +11,6 @@ const CreatePresentation = () => {
     title: null,
     dDay: {
       date: null,
-      repeat: null,
-      includeToday: null,
     },
     time: {
       timer: null,
