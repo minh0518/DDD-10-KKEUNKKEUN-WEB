@@ -1,5 +1,5 @@
 /** Color - black, white */
-$black: #0000;
+$black: #000;
 $white: #ffff;
 
 /** Color - gray */
@@ -80,7 +80,7 @@ $textarea-width-full: (
 
 // 색상 테마
 $textarea-theme-gray: (
-  background-color: #d7d7d7,
+  background-color: $gray-1,
   color: black,
   border-radius: 15px,
 );

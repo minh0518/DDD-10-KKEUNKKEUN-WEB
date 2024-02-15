@@ -6,6 +6,30 @@ $tmp-backgroud-color: #d7d7d7;
   @return $size / $base-font-size * 1rem;
 }
 
+// line
+@mixin line($lineCount: 1) {
+  /* 사용법 : @include line(라인수) */
+  @if $lineCount == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else if $lineCount == 'auto' {
+    display: block;
+    overflow: visible;
+  } @else {
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+
+    /* autoprefixer: on */
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: $lineCount;
+  }
+}
+
 // # etc
 @mixin flex-center {
   display: flex;

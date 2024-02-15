@@ -1,26 +1,50 @@
 import { ReactChildrenProps } from '@/types/common';
-import { useFlyoutStore } from '@/store/flyout';
-import Button from '../_elements/Button';
 import styles from './FlyoutMenu.module.scss';
+import { createContext, useContext, useState } from 'react';
+
+interface FlyoutContext {
+  open: boolean;
+  toggle: (value: boolean) => void;
+}
+
+const FlyoutContext = createContext<FlyoutContext | null>(null);
 
 const FlyoutMenu = ({ children }: ReactChildrenProps) => {
-  return <div>{children}</div>;
+  const [open, toggle] = useState(false);
+
+  return (
+    <FlyoutContext.Provider value={{ open, toggle }}>
+      <article className={styles.flyout}>{children}</article>
+    </FlyoutContext.Provider>
+  );
 };
 
 const ToggleButton = ({ children }: ReactChildrenProps) => {
-  const { toggle } = useFlyoutStore();
+  const context = useContext(FlyoutContext);
 
-  return <Button _content={children} onClick={toggle} />;
+  if (!context) return;
+
+  const { open, toggle } = context;
+
+  return (
+    <button className={styles.flyout__button} onClick={() => toggle(!open)}>
+      {children}
+    </button>
+  );
 };
 
 const MenuList = ({ children }: ReactChildrenProps) => {
-  const { isOpen } = useFlyoutStore();
+  const context = useContext(FlyoutContext);
 
-  return isOpen && <ul className={styles.flyout__menu}>{children}</ul>;
+  if (!context) return;
+
+  const { open } = context;
+
+  return open && <ul className={styles.flyout__list}>{children}</ul>;
 };
 
 const MenuItem = ({ children }: ReactChildrenProps) => {
-  return <li>{children}</li>;
+  return <li className={styles.flyout__item}>{children}</li>;
 };
 
 FlyoutMenu.ToggleButton = ToggleButton;
