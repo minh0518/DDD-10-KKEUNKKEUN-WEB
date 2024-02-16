@@ -32,7 +32,15 @@ const cx = classNames.bind(styles);
 
 const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
   (
-    { script, currentPageIndex, setPresentationData, register, errors, lastDummyPageIndex },
+    {
+      script,
+      currentPageIndex,
+      setPresentationData,
+      register,
+      errors,
+      lastDummyPageIndex,
+      erroOnEachPage,
+    },
     ref,
   ) => {
     const registerOptions: RegisterOptions =
@@ -78,16 +86,19 @@ const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
               {errors.script.message as string}
             </small>
           )}
-          {/* 작성 시 유효성 검사 - 최대 길이*/}
-
-          {/* {!errors.script && script.length === 0 && erroOnEachPage.script.minLength && currentPageIndex !== lastDummyPageIndex &&  ( */}
-          {!errors.script && script.length === 0 && currentPageIndex !== lastDummyPageIndex && (
-            <small role="alert" style={{ color: '#DE3428' }}>
-              {VALIDATION_MESSAGE.SCRIPT.REQUIRED}
-            </small>
-          )}
-          {/* 작성 시 유효성 검사 - 최소 길이*/}
+          {/* 작성 시(+페이지 이동 시) 유효성 검사 - 최소 길이*/}
           {!errors.script &&
+            erroOnEachPage.script.minLength &&
+            !script.length &&
+            currentPageIndex !== lastDummyPageIndex && (
+              <small role="alert" style={{ color: '#DE3428' }}>
+                {VALIDATION_MESSAGE.SCRIPT.REQUIRED}
+              </small>
+            )}
+
+          {/* 작성 시 유효성 검사 - 최대 길이*/}
+          {!errors.script &&
+            // (erroOnEachPage.script.maxLength || script.length > MAX_LENGTH.SCRIPT) &&
             script.length > MAX_LENGTH.SCRIPT &&
             currentPageIndex !== lastDummyPageIndex && (
               <small role="alert" style={{ color: '#DE3428' }}>

@@ -1,0 +1,43 @@
+@import '@/styles/mixins';
+
+.memoDescriptionHover {
+  display: none;
+}
+
+.timerDescriptionHover {
+  display: none;
+}
+
+.memoDescriptionContainer {
+  position: relative;
+
+  &:hover {
+    .memoDescriptionHover {
+      display: block;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.timerDescriptionContainer {
+  position: relative;
+
+  &:hover {
+    .timerDescriptionHover {
+      display: block;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+  }
+}
+
+.descriptionText {
+  font-size: px-to-rem(16px);
+  font-weight: 100;
+  text-anchor: middle;
+}

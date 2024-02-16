@@ -96,9 +96,6 @@ export default function Page() {
           </FlyoutMenu.MenuList>
         </FlyoutMenu>
       </div>
-      <div>
-        <button className={styles.test}>연습하기</button>
-      </div>
     </>
   );
 }

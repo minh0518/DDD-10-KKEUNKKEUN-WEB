@@ -7,8 +7,8 @@ const ExerciseList = () => {
     <section className={styles.container}>
       <h3 className={styles.title}>내 발표연습 목록</h3>
       <ul className={styles.exercise__box}>
-        {Array.from({ length: 10 }, (_, i) => i).map((v) => (
-          <li className={styles.exercise}>
+        {Array.from({ length: 10 }, (_, i) => i).map((v, index) => (
+          <li className={styles.exercise} key={index}>
             <ExerciseItem />
           </li>
         ))}

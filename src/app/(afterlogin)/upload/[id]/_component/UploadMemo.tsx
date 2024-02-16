@@ -8,7 +8,7 @@ import styles from './UploadMemo.module.scss';
 import classNames from 'classnames/bind';
 import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import { MAX_LENGTH, VALIDATION_MESSAGE } from '@/config/const';
-import InputFormSvgs from '@/app/_components/_svgs/InputFormSvgs';
+import InputFormSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/InputFormSvgs';
 
 interface UploadMemoProps {
   memo: string;
@@ -36,7 +36,7 @@ const UploadMemo = forwardRef<HTMLInputElement, UploadMemoProps>(
         : {
             maxLength: {
               value: MAX_LENGTH.MEMO,
-              message: `${MAX_LENGTH.MEMO}자 이내로 작성해 주세요.`,
+              message: VALIDATION_MESSAGE.MEMO.MAX_LENGTH,
             },
           };
 

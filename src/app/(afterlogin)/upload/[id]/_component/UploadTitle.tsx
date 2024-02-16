@@ -23,10 +23,10 @@ const cx = classNames.bind(styles);
 const UploadTitle = forwardRef<HTMLInputElement, UploadTitleProps>(
   ({ title, setPresentationData, register, errors }, ref) => {
     const registerOptions: RegisterOptions = {
-      required: '제목은 필수 입력입니다.',
+      required: VALIDATION_MESSAGE.TITLE.REQUIRED,
       maxLength: {
         value: MAX_LENGTH.TITLE,
-        message: '20자 이내로 작성해주세요.',
+        message: VALIDATION_MESSAGE.TITLE.MAX_LENGTH,
       },
     };
     const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -47,20 +47,17 @@ const UploadTitle = forwardRef<HTMLInputElement, UploadTitleProps>(
           <label htmlFor="title">
             발표 이름 <Required />
           </label>
+
+          {/* 제출용 훅 폼 유효성 검사 */}
           {errors.title && (
             <small role="alert" style={{ color: '#DE3428' }}>
               {errors.title.message as string}
             </small>
           )}
-
+          {/* 작성 시 유효성 검사 - 최대 길이*/}
           {!errors.title && title.length > MAX_LENGTH.TITLE && (
             <small role="alert" style={{ color: '#DE3428' }}>
               {VALIDATION_MESSAGE.TITLE.MAX_LENGTH}
-            </small>
-          )}
-          {!errors.title && title.length === 0 && (
-            <small role="alert" style={{ color: '#DE3428' }}>
-              {VALIDATION_MESSAGE.TITLE.REQUIRED}
             </small>
           )}
         </div>

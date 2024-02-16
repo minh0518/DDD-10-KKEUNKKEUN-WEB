@@ -20,6 +20,6 @@ export const VALIDATION_MESSAGE = {
   },
 
   DDAY: {
-    REQUIRED: `날짜는 필수 입력입니다.`,
+    REQUIRED: `입력한 날짜를 확인해 주세요.`,
   },
 } as const;

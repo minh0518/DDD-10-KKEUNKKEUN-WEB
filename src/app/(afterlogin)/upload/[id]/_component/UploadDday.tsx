@@ -10,6 +10,7 @@ import CustomCalendar from './CustomCalendar';
 import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import Required from './Required';
 import { formatDate } from '../_utils/date';
+import { VALIDATION_MESSAGE } from '@/config/const';
 
 interface UploadDdayProps {
   dDay: PagesDataType['dDay'];
@@ -21,7 +22,7 @@ interface UploadDdayProps {
 const UploadDday = forwardRef<HTMLInputElement, UploadDdayProps>(
   ({ dDay, setPresentationData, register, errors }, ref) => {
     const registerOptions: RegisterOptions = {
-      required: '날짜는 필수 입력입니다.',
+      required: VALIDATION_MESSAGE.DDAY.REQUIRED,
     };
 
     const [isCalenderOpen, setIsCalenderOpen] = useState(false);
@@ -45,7 +46,12 @@ const UploadDday = forwardRef<HTMLInputElement, UploadDdayProps>(
 
         <div className={styles.inputWrapper}>
           <label htmlFor="date" className={styles.label}>
-            날짜 <Required />
+            날짜 <Required /> &nbsp;
+            {errors.dDayDate && (
+              <small role="alert" style={{ color: '#DE3428', fontWeight: 'bolder' }}>
+                {errors.dDayDate.message as string}
+              </small>
+            )}
           </label>
           <div style={{ position: 'relative' }}>
             <button
@@ -64,11 +70,7 @@ const UploadDday = forwardRef<HTMLInputElement, UploadDdayProps>(
               value={dDay.date?.toLocaleString()}
               {...register('dDayDate', registerOptions)}
             />
-            {errors.dDayDate && (
-              <small role="alert" style={{ color: 'red' }}>
-                {errors.dDayDate.message as string}
-              </small>
-            )}
+
             {isCalenderOpen && (
               <CustomCalendar
                 today={today}

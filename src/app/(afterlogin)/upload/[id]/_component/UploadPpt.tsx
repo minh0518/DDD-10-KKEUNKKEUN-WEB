@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ChangeEventHandler, Dispatch, SetStateAction, useRef } from 'react';
 import styles from './UploadPpt.module.scss';
 import { PagesDataType } from '@/types/service';
-import PptImageSvgs from '@/app/_components/_svgs/PptImgSvgs';
+import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/PptImgSvgs';
 
 interface UploadPptProps {
   pptInfo: PagesDataType['scripts'][0]['ppt'];
@@ -90,11 +90,11 @@ const UploadPpt = ({
                   src={pptInfo.dataURL as string}
                   alt="ppt image"
                   fill
-                  style={{ objectFit: 'contain' }}
+                  style={{ objectFit: 'contain', borderRadius: '16px' }}
                   className={styles.pptImage}
                 />
                 <button className={styles.changePptImageButton} onClick={onClickButton}>
-                  이미지 변경
+                  이미지 추가 및 변경하기
                 </button>
               </div>
               {currentPageIndex !== 0 && (

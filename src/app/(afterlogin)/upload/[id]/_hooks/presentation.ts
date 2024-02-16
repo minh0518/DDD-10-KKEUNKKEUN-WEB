@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 
 export const useGetPresentationData = (slug: string) => {
   const { data: value } = useSuspenseQuery({
-    queryKey: ['presentation', 'upload', slug],
+    queryKey: ['upload', slug],
     queryFn: async () => {
       const res = await userApi.getPresentData<PresentInfoType>(slug);
       return res;

@@ -1,7 +1,7 @@
 export const userApi = {
   // mock
   getPresentData: async <T>(id: string) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get/list/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_MOCK}/api/get/list/${id}`, {
       cache: 'no-store',
     });
 

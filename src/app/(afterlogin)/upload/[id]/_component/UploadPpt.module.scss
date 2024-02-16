@@ -45,7 +45,15 @@
 }
 
 .changePptImageButton {
+  @include pure-button;
+  @include button_theme_lined;
+
   display: none;
+  width: 198px;
+  height: 56px;
+  background-color: $white;
+  font-size: px-to-rem(16px);
+  border-radius: 100px;
 }
 
 .hoverSection {

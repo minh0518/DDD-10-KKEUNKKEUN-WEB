@@ -1,6 +1,0 @@
-@import '@/styles/mixins';
-
-.test {
-  @include button_size_web_presentation_list;
-  @include button_theme_inverted;
-}
