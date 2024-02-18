@@ -8,7 +8,7 @@ const Navbar = () => {
     <nav className={styles.container}>
       <div className={styles.content}>
         <div className={styles.left}>
-          <LogoIcon color="white" />
+          <LogoIcon />
           <NavMenu />
         </div>
 
