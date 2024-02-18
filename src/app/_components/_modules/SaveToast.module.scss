@@ -1,3 +1,4 @@
+@import '@/styles/globals';
 @import '@/styles/mixins';
 
 .toastContent {
@@ -9,7 +10,7 @@
   left: 50%;
   width: 297px;
   height: 56px;
-  font-size: px-to-rem(24px);
+  font-size: px-to-rem($h2);
   transform: translate(-50%, 0%);
   background-color: $gray-5;
   border-radius: 5px;

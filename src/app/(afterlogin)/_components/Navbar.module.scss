@@ -5,9 +5,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  min-width: 1440px;
-  height: 96px;
-  border-bottom: 1px solid $gray-1;
+  min-width: 1320px;
+  height: 68px;
+  background: $primary;
 }
 
 .content {
@@ -23,16 +23,19 @@
 
   button {
     height: 100%;
+    color: $white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    opacity: 0.5;
 
     @include pure-button;
 
-    font-size: 1.2rem;
-    font-weight: 500;
-
     &.clicked {
-      color: $primary;
+      color: $white;
       font-weight: 900;
-      border-bottom: 2px solid $primary;
+      opacity: 1;
+
+      // border-bottom: 2px solid $primary;
     }
   }
 }

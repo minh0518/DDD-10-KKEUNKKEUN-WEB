@@ -10,7 +10,7 @@ import styles from './ControlButtons.module.scss';
 import classNames from 'classnames/bind';
 
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/PptImgSvgs';
+import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 
 const cx = classNames.bind(styles);
 

@@ -15,7 +15,7 @@ import { useForm } from 'react-hook-form';
 import Required from './Required';
 import { checkValidtaion } from '../_utils/validation';
 
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/PptImgSvgs';
+import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 import ModalContents from '@/app/_components/_modules/_modal/ModalContents';
 
 interface InputSectionProps {

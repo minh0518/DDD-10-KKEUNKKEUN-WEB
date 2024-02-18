@@ -7,7 +7,7 @@ import Input from '@/app/_components/_elements/Input';
 import { PagesDataType } from '@/types/service';
 
 import styles from './UploadTimer.module.scss';
-import InputFormSvgs from './_svgs/InputFormSvgs';
+import InputFormSvgs from '../_svgs/InputFormSvgs';
 
 interface UploadTimerProps {
   time: PagesDataType['time'];

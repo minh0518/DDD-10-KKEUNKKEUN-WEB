@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { ChangeEventHandler, Dispatch, SetStateAction, useRef } from 'react';
 import styles from './UploadPpt.module.scss';
 import { PagesDataType } from '@/types/service';
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/PptImgSvgs';
+import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 
 interface UploadPptProps {
   pptInfo: PagesDataType['scripts'][0]['ppt'];

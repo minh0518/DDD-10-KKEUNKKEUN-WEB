@@ -8,7 +8,7 @@ import styles from './UploadMemo.module.scss';
 import classNames from 'classnames/bind';
 import { FieldErrors, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import { MAX_LENGTH, VALIDATION_MESSAGE } from '@/config/const';
-import InputFormSvgs from '@/app/(afterlogin)/upload/[id]/_component/_svgs/InputFormSvgs';
+import InputFormSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/InputFormSvgs';
 
 interface UploadMemoProps {
   memo: string;

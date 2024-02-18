@@ -10,7 +10,7 @@ const isClickedList = (name: string): name is ClickedList => {
   return name === 'presentationList' || name === 'report';
 };
 
-const NavButtons = () => {
+const NavMenu = () => {
   const [clicked, setClicked] = useState<ClickedList>('presentationList');
 
   const onClick: MouseEventHandler<HTMLButtonElement> = (e) => {
@@ -39,4 +39,4 @@ const NavButtons = () => {
   );
 };
 
-export default NavButtons;
+export default NavMenu;
