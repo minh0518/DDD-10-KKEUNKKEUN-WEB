@@ -7,7 +7,6 @@ import Radio from '@/app/_components/_elements/Radio';
 import TimePicker from '@/app/_components/_elements/TimePicker';
 import ToggleButton from '@/app/_components/_elements/ToggleButton';
 import FlyoutMenu from '@/app/_components/_modules/FlyoutMenu';
-import styles from './page.module.scss';
 
 export default function Page() {
   const [isAvailable, setIsAvailable] = useState(false);

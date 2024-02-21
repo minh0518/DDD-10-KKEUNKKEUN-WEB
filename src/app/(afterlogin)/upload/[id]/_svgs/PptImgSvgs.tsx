@@ -31,7 +31,7 @@ const X = () => {
       <path
         d="M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z"
         fill="#1E1E1E"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
     </svg>
   );
@@ -41,8 +41,8 @@ const NewPpt = () => {
   return (
     <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M7 4H21V15H18V7H7V4ZM6 7V3H22V16H18V20H2V7H6ZM17 16V19H3V8H6V16H17ZM17 15H7V8H17V15Z"
         fill="black"
       />
@@ -53,7 +53,7 @@ const NewPpt = () => {
 const AddNewPpt = () => {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M7.32812 11.9998L10.6293 15.3332L16.6615 8.6665" stroke="white" stroke-width="2" />
+      <path d="M7.32812 11.9998L10.6293 15.3332L16.6615 8.6665" stroke="white" strokeWidth="2" />
       <circle cx="12" cy="12" r="10" fill="#BCBCBC" />
       <rect x="11.0938" y="8.36377" width="1.51515" height="6.9697" rx="0.757576" fill="#878787" />
       <rect

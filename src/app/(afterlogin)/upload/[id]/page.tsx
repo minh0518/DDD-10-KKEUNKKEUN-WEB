@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import CreatePresentation from './_component/CreatePresentation';
 import EditPresentation from './_component/EditPresentation';
-import Spinner from './_component/Spinner';
+import Spinner from '../../../_components/_modules/Spinner';
 
 interface PageProps {
   params: { id: string };

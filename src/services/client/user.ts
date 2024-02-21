@@ -1,7 +1,8 @@
-export const userApi = {
+export const clientUserApi = {
   // mock
+  // TODO: 실제 백엔드 API로 변경 및 파일 위치 이동 예정
   getPresentData: async <T>(id: string) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL_MOCK}/api/get/list/${id}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_ROUTE_HANDLER}/api/get/list/${id}`, {
       cache: 'no-store',
     });
 

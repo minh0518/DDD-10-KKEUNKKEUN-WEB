@@ -23,3 +23,18 @@ export const VALIDATION_MESSAGE = {
     REQUIRED: `입력한 날짜를 확인해 주세요.`,
   },
 } as const;
+
+export const ERROR_MESSAGE = {
+  AUTH: {
+    EXIST: '이미 로그인 된 상태입니다.',
+    ERROR: '로그인 과정에서 문제가 발생했습니다',
+    EXPIRE: '다시 로그인 해주세요',
+  },
+  USER: {
+    ERROR: '유저 정보를 가져오는데 문제가 발생했습니다',
+  },
+  SERVICE: {
+    ERROR: '문제가 발생했습니다',
+    RETRY: '재시도 중 문제가 발생했습니다',
+  },
+} as const;
