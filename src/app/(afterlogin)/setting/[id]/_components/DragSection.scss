@@ -1,0 +1,54 @@
+@import '@/styles/mixins';
+@import 'draft-js/dist/Draft.css';
+
+.container {
+  @include flex-center;
+
+  width: 620px;
+  max-height: 383px;
+  border: 1px solid $gray-1;
+  border-radius: 16px;
+  background-color: white;
+
+  ::-webkit-scrollbar {
+    width: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gray-3;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $gray-3;
+  }
+}
+
+.contentSection {
+  width: 100%;
+  max-height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.DraftEditor-root,
+.DraftEditor-editorContainer,
+.notranslate {
+  height: 383px;
+
+  div {
+    height: 383px;
+  }
+
+  span {
+    max-height: 383px;
+  }
+}
+
+.public-drafteditor-content .public-DraftStyleDefault-block .public-DraftStyleDefault-ltr {
+  height: 383px;
+}
