@@ -16,7 +16,7 @@ import Required from './Required';
 import { checkValidtaion } from '../_utils/validation';
 
 import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
-import ModalContents from '@/app/_components/_modules/_modal/ModalContents';
+import ModalContents from '@/app/_components/_modules/_modal-pre/ModalContents';
 
 interface InputSectionProps {
   presentationData: PagesDataType;

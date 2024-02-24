@@ -60,7 +60,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 /** 토글 버튼 컴포넌트 prop */
-export interface ToggleButtonProps extends CheckboxProps {
+export interface SwitchProps extends CheckboxProps {
   /** 레이블 활성화 여부
    *
    * - true: 레이블 클릭 시에도 토글 버튼 on/off

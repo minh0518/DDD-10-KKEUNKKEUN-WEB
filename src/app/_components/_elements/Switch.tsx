@@ -1,8 +1,8 @@
-import { ToggleButtonProps } from '@/types/element';
+import { SwitchProps } from '@/types/element';
 import { combineClassName } from '@/app/_utils/style';
-import styles from './ToggleButton.module.scss';
+import styles from './Switch.module.scss';
 
-const ToggleButton = ({ _label, _activedLabel, ...rest }: ToggleButtonProps) => {
+const Switch = ({ _label, _activedLabel, ...rest }: SwitchProps) => {
   return (
     <>
       {_activedLabel ? (
@@ -22,4 +22,4 @@ const ToggleButton = ({ _label, _activedLabel, ...rest }: ToggleButtonProps) => 
   );
 };
 
-export default ToggleButton;
+export default Switch;

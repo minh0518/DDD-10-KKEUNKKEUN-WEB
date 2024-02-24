@@ -3,8 +3,7 @@ import { Metadata } from 'next';
 import RQProvider from './_components/RQProvider';
 import { ReactChildrenProps } from '@/types/common';
 
-import Modal from '../_components/_modules/_modal/Modal';
-import Toast from '../_components/_modules/_modal/Toast';
+import Toast from '../_components/_modules/_modal-pre/Toast';
 
 export const metadata: Metadata = {
   title: '홈',
@@ -17,7 +16,6 @@ export default function AfterLoginLayout({ children }: ReactChildrenProps) {
       <RQProvider>
         <div>{children}</div>
         <Toast />
-        <Modal />
       </RQProvider>
     </div>
   );
