@@ -11,13 +11,25 @@ interface Props {
   title: string;
   /** 본문 */
   message: string;
+  /** 왼쪽 확인 버튼 텍스트 */
+  okayText: string;
+  /** 오른쪽 취소 버튼 텍스트 */
+  cancelText: string;
   /** 왼쪽 확인 버튼 이벤트 (필수) */
   onOkayClick: () => void;
   /** 오른쪽 취소 버튼 이벤트 (기본 값 : 창 닫음) */
   onCancelClick?: () => void;
 }
 
-const Confirm = ({ context, title, message, onOkayClick, onCancelClick }: Props) => {
+const Confirm = ({
+  context,
+  title,
+  message,
+  okayText,
+  cancelText,
+  onOkayClick,
+  onCancelClick,
+}: Props) => {
   const cx = classNames.bind(styles);
 
   const handleOkay = () => {
@@ -40,10 +52,10 @@ const Confirm = ({ context, title, message, onOkayClick, onCancelClick }: Props)
           <p className={styles.messgae}>{message}</p>
           <div className={styles.action__box}>
             <button className={cx('action', 'action--okay')} onClick={handleOkay}>
-              okay
+              {okayText}
             </button>
             <button className={cx('action', 'action--cancel')} onClick={handleCancel}>
-              cancel
+              {cancelText}
             </button>
           </div>
         </div>

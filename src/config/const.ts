@@ -19,7 +19,7 @@ export const VALIDATION_MESSAGE = {
     REQUIRED: `발표 이름은 필수 입력 입니다.`,
   },
 
-  DDAY: {
+  DEADLINEDATE: {
     REQUIRED: `입력한 날짜를 확인해 주세요.`,
   },
 } as const;

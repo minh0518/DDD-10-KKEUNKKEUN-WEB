@@ -72,7 +72,7 @@ const MemoDescription = () => {
   );
 };
 
-const DDayDescription = () => {
+const DeadlineDateDescription = () => {
   return (
     <div className={styles.timerDescriptionContainer}>
       <TimerDescriptionHover />
@@ -82,5 +82,5 @@ const DDayDescription = () => {
 };
 
 InputFormSvgs.MemoDescription = MemoDescription;
-InputFormSvgs.DDayDescription = DDayDescription;
+InputFormSvgs.DeadlineDateDescription = DeadlineDateDescription;
 export default InputFormSvgs;

@@ -2,46 +2,49 @@
 
 import { useEffect, useState } from 'react';
 
-import { PagesDataType } from '@/types/service';
+import { UploadDataType } from '@/types/service';
 
 import { useGetPresentationData } from '../_hooks/presentation';
 
 import InputSection from './InputSection';
 
 interface EditPresentationProps {
-  slug: string;
+  slug: number;
 }
 const EditPresentation = ({ slug }: EditPresentationProps) => {
-  const initialState: PagesDataType = {
+  const initialState: UploadDataType = {
     title: null,
-    dDay: {
-      date: null,
+    deadlineDate: null,
+    timeLimit: {
+      hours: null,
+      minutes: 1,
     },
-    time: {
-      timer: null,
-      alramTime: null,
+    alertTime: {
+      hours: null,
+      minutes: null,
     },
-    scripts: [{ ppt: { dataURL: null, file: null }, script: null, memo: null }],
+    // slides의 ID값은 무시
+    slides: [{ imageFileId: null, imageFilePath: null, script: null, memo: null }],
   };
 
-  const [presentationData, setPresentationData] = useState<PagesDataType>(initialState);
+  const [presentationData, setPresentationData] = useState<UploadDataType>(initialState);
   const [currentPageIndex, setCurrpentPageIndex] = useState(0);
 
-  const value = useGetPresentationData(slug);
+  const value: UploadDataType = useGetPresentationData(slug);
+
   useEffect(() => {
     const initailSetting = async () => {
-      const { data: originData, id: originId } = value;
       setPresentationData(() => {
-        const shallow = [...originData.scripts];
-        shallow.push(...initialState.scripts);
+        const shallow = [...value.slides];
+        shallow.push(...initialState.slides);
         return {
-          ...originData,
-          scripts: shallow,
+          ...value,
+          slides: shallow,
         };
       });
     };
 
-    initailSetting();
+    if (value) initailSetting();
   }, [value]);
 
   return (

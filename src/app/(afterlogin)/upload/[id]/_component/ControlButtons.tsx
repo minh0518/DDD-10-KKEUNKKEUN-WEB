@@ -4,22 +4,26 @@ import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import Image from 'next/image';
 
-import { PagesDataType } from '@/types/service';
+import { UploadDataType, ValidtaionType } from '@/types/service';
 
 import styles from './ControlButtons.module.scss';
 import classNames from 'classnames/bind';
 
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
 import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
+import { FieldErrors, UseFormGetValues } from 'react-hook-form';
+import { MAX_LENGTH } from '@/config/const';
 
 const cx = classNames.bind(styles);
 
 interface ControlButtonsProps {
-  presentationData: PagesDataType;
-  setPresentationData: Dispatch<SetStateAction<PagesDataType>>;
+  presentationData: UploadDataType;
+  setPresentationData: Dispatch<SetStateAction<UploadDataType>>;
   currentPageIndex: number;
   slug?: string;
   changeCurrentPageIndex: (nextIndex: number) => void;
+  getValues: UseFormGetValues<ValidtaionType>;
+  errors: FieldErrors<ValidtaionType>;
 }
 
 const ControlButtons = ({
@@ -28,20 +32,18 @@ const ControlButtons = ({
   currentPageIndex,
   slug,
   changeCurrentPageIndex,
+  getValues,
+  errors,
 }: ControlButtonsProps) => {
-  const addButton = async () => {
-    changeCurrentPageIndex(presentationData.scripts.length - 1);
-  };
-
   const remove = (e: MouseEvent<HTMLButtonElement>, index: number) => {
     e.stopPropagation();
     setPresentationData((prev) => {
-      const shallow = [...prev.scripts];
+      const shallow = [...prev.slides];
       shallow.splice(index, 1);
 
       return {
         ...prev,
-        scripts: shallow,
+        slides: shallow,
       };
     });
 
@@ -53,29 +55,90 @@ const ControlButtons = ({
   };
 
   const handleChange = (result: DropResult) => {
-    if (!result.destination) return;
+    if (
+      !result.destination ||
+      errors.script ||
+      errors.memo ||
+      getValues('script').length > MAX_LENGTH.SCRIPT ||
+      getValues('script').length === 0 ||
+      getValues('memo').length > MAX_LENGTH.MEMO
+    )
+      return;
+
     const to = result.destination?.index;
     const from = result.source.index;
 
     setPresentationData((prev) => {
-      const shallow = [...prev.scripts];
+      const shallow = [...prev.slides];
       const moveTarget = shallow.splice(from, 1);
       shallow.splice(to, 0, ...moveTarget);
 
       return {
         ...prev,
-        scripts: shallow,
+        slides: shallow,
+      };
+    });
+  };
+
+  const eachPptButtonClick = (index: number) => {
+    changeCurrentPageIndex(index);
+
+    if (
+      errors.script ||
+      errors.memo ||
+      getValues('script').length > MAX_LENGTH.SCRIPT ||
+      getValues('script').length === 0 ||
+      getValues('memo').length > MAX_LENGTH.MEMO
+    )
+      return;
+    setPresentationData((prev) => {
+      const shallow = { ...prev };
+      shallow.title = getValues('title');
+      const shallowSlides = [...shallow.slides];
+      shallowSlides[currentPageIndex] = {
+        ...shallowSlides[currentPageIndex],
+        script: getValues('script'),
+        memo: getValues('memo'),
+      };
+      return {
+        ...shallow,
+        slides: shallowSlides,
+      };
+    });
+  };
+
+  const onStart = () => {
+    if (
+      errors.script ||
+      errors.memo ||
+      getValues('script').length > MAX_LENGTH.SCRIPT ||
+      getValues('script').length === 0 ||
+      getValues('memo').length > MAX_LENGTH.MEMO
+    )
+      return;
+    setPresentationData((prev) => {
+      const shallow = { ...prev };
+      shallow.title = getValues('title');
+      const shallowSlides = [...shallow.slides];
+      shallowSlides[currentPageIndex] = {
+        ...shallowSlides[currentPageIndex],
+        script: getValues('script'),
+        memo: getValues('memo'),
+      };
+      return {
+        ...shallow,
+        slides: shallowSlides,
       };
     });
   };
 
   return (
     <div className={styles.container}>
-      <DragDropContext onDragEnd={handleChange}>
+      <DragDropContext onDragStart={onStart} onDragEnd={handleChange}>
         <Droppable droppableId={styles.buttons} direction="horizontal">
           {(provided) => (
             <div className={styles.buttons} {...provided.droppableProps} ref={provided.innerRef}>
-              {presentationData.scripts.slice(0, -1).map((item, index) => (
+              {presentationData.slides.slice(0, -1).map((item, index) => (
                 <Draggable draggableId={`test-${index}`} index={index} key={`test-${index}`}>
                   {(provided, snapshot) => {
                     return (
@@ -86,13 +149,14 @@ const ControlButtons = ({
                       >
                         <div
                           key={index}
-                          onClick={() => changeCurrentPageIndex(index)}
+                          // onClick={() => changeCurrentPageIndex(index)}
+                          onClick={() => eachPptButtonClick(index)}
                           className={cx('singlePptPage', {
                             selected: currentPageIndex === index,
                           })}
                         >
                           <Image
-                            src={item.ppt!.dataURL as string}
+                            src={`http://124.49.161.33/${item.imageFilePath}`}
                             fill
                             alt="ppt이미지"
                             style={{ objectFit: 'contain', borderRadius: '8px' }}
@@ -118,13 +182,11 @@ const ControlButtons = ({
               ))}
               {provided.placeholder}
               <button
-                onClick={addButton}
-                disabled={
-                  presentationData.scripts[currentPageIndex].ppt.dataURL === null
-                  // || presentationData.scripts[currentPageIndex].ppt.file === null
-                }
+                // onClick={addButton}
+                onClick={() => eachPptButtonClick(presentationData.slides.length - 1)}
+                disabled={presentationData.slides[currentPageIndex].imageFilePath === null}
                 className={cx('addButton', {
-                  selected: currentPageIndex === presentationData.scripts.length - 1,
+                  selected: currentPageIndex === presentationData.slides.length - 1,
                 })}
               >
                 <div

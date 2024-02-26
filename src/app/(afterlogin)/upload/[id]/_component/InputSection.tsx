@@ -1,33 +1,38 @@
 'use client';
-import { PagesDataType, ValidtaionType } from '@/types/service';
-import styles from './InputSection.module.scss';
+
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { usePatchPresentationData, usePostPresentationData } from '../_hooks/presentation';
+import useToggle from '@/app/_hooks/useToggle';
+
 import UploadTitle from './UploadTitle';
 import UploadScript from './UploadScript';
 import UploadMemo from './UploadMemo';
-import UploadDday from './UploadDday';
+import UploadDeadlineDate from './UploadDeadlineDate';
 import UploadTimer from './UploadTimer';
 import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
-import { useModalStore, useToastStore } from '@/store/modal';
-import SaveToast from '@/app/_components/_modules/SaveToast';
-import { useForm } from 'react-hook-form';
 import Required from './Required';
-import { checkValidtaion } from '../_utils/validation';
-
 import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
-import ModalContents from '@/app/_components/_modules/_modal-pre/ModalContents';
+import Confirm from '@/app/_components/_modules/_modal/Confirm';
+
+import styles from './InputSection.module.scss';
+
+import { UploadDataType, ValidtaionType } from '@/types/service';
+import { MAX_LENGTH } from '@/config/const';
+
+import { useRouter } from 'next/navigation';
 
 interface InputSectionProps {
-  presentationData: PagesDataType;
-  setPresentationData: Dispatch<SetStateAction<PagesDataType>>;
+  presentationData: UploadDataType;
+  setPresentationData: Dispatch<SetStateAction<UploadDataType>>;
   currentPageIndex: number;
   setCurrpentPageIndex: Dispatch<SetStateAction<number>>;
-  initialState: PagesDataType;
-  slug?: string | 'new';
+  initialState: UploadDataType;
+  slug?: number | 'new';
 }
 
-interface ErroOnEachPageType {
+interface ErroForMovePageType {
   memo: boolean;
   script: {
     minLength: boolean;
@@ -42,7 +47,8 @@ const InputSection = ({
   initialState,
   slug,
 }: InputSectionProps) => {
-  const [erroOnEachPage, setErroOnEachPage] = useState<ErroOnEachPageType>({
+  const router = useRouter();
+  const [errorForMovePage, setErrorForMovePage] = useState<ErroForMovePageType>({
     script: {
       minLength: false,
       maxLength: false,
@@ -50,38 +56,16 @@ const InputSection = ({
     memo: false,
   });
 
-  const { openToast } = useToastStore();
-
-  const openToastWithData = () =>
-    openToast({
-      content: <SaveToast />,
-    });
-
-  const { openModal } = useModalStore();
-
-  const openModalWithData = () =>
-    openModal({
-      content: (
-        <ModalContents>
-          <ModalContents.ExitUpload />
-        </ModalContents>
-      ),
-      onCancelButton: (
-        <ModalContents>
-          <ModalContents.ExitUploadCancel />
-        </ModalContents>
-      ),
-      onSubmitButton: (
-        <ModalContents>
-          <ModalContents.ExitUploadSubmit />
-        </ModalContents>
-      ),
-    });
+  const postMutation = usePostPresentationData();
+  const patchMutation = usePatchPresentationData(slug!);
+  const confirm = useToggle();
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
+    getValues,
     formState: { defaultValues, isSubmitting, isSubmitted, errors },
   } = useForm<ValidtaionType>();
 
@@ -89,34 +73,37 @@ const InputSection = ({
     const resetFormData = () => {
       reset({
         title: presentationData.title || '',
-        script: presentationData.scripts[currentPageIndex].script || '',
-        memo: presentationData.scripts[currentPageIndex].memo || '',
-        dDayDate: presentationData.dDay.date,
+        script: presentationData.slides[currentPageIndex].script || '',
+        memo: presentationData.slides[currentPageIndex].memo || '',
+        deadlineDate: presentationData.deadlineDate,
       });
     };
     resetFormData();
   }, [presentationData, currentPageIndex]);
 
   const changeCurrentPageIndex = async (nextIndex: number) => {
-    if (currentPageIndex === presentationData.scripts.length - 1) {
+    if (currentPageIndex === presentationData.slides.length - 1) {
       setCurrpentPageIndex(nextIndex);
     } else {
-      const validateResult = checkValidtaion(presentationData, currentPageIndex);
-
-      setErroOnEachPage({
-        memo: validateResult.memo,
+      // 폼 데이터 사용 (watch도 가능)
+      setErrorForMovePage({
+        memo: getValues('memo').length > MAX_LENGTH.MEMO,
         script: {
-          minLength: validateResult.script.minLength,
-          maxLength: validateResult.script.maxLength,
+          minLength: getValues('script').length === 0,
+          maxLength: getValues('script').length > MAX_LENGTH.SCRIPT,
         },
       });
 
       if (
-        !validateResult.memo &&
-        !validateResult.script.maxLength &&
-        !validateResult.script.minLength
+        errors.script ||
+        errors.memo ||
+        getValues('script').length > MAX_LENGTH.SCRIPT ||
+        getValues('script').length === 0 ||
+        getValues('memo').length > MAX_LENGTH.MEMO
       )
-        setCurrpentPageIndex(nextIndex);
+        return;
+
+      setCurrpentPageIndex(nextIndex);
     }
   };
 
@@ -132,7 +119,7 @@ const InputSection = ({
             </span>
           </p>
           <UploadPpt
-            pptInfo={presentationData.scripts[currentPageIndex].ppt}
+            pptInfo={presentationData.slides[currentPageIndex]}
             setPresentationData={setPresentationData}
             currentPageIndex={currentPageIndex}
             changeCurrentPageIndex={changeCurrentPageIndex}
@@ -143,63 +130,109 @@ const InputSection = ({
             setPresentationData={setPresentationData}
             currentPageIndex={currentPageIndex}
             changeCurrentPageIndex={changeCurrentPageIndex}
+            getValues={getValues}
+            errors={errors}
           />
         </div>
       </div>
       <div className={styles.rightSectionWrapper}>
         <div className={styles.rightSection}>
-          <button className={styles.cancelButton} onClick={openModalWithData}>
+          <button
+            className={styles.cancelButton}
+            onClick={() => {
+              confirm.onOpen();
+            }}
+          >
             <PptImageSvgs>
               <PptImageSvgs.X />
             </PptImageSvgs>
           </button>
+          <Confirm
+            context={confirm}
+            title="발표 자료 추가를 중단하시겠어요?"
+            message="임시저장하지 않은 자료는 복원할 수 없어요."
+            okayText="중단하기"
+            cancelText="계속 작성하기"
+            onOkayClick={() => {
+              router.push('/home');
+              confirm.onClose();
+            }}
+          />
           <form
-            onSubmit={handleSubmit((data) => {
-              // 마지막 페이지는 제거
-              // mutation의 onSuccess로 모달 띄우기
-              console.log(JSON.stringify(data));
-              openToastWithData();
+            onSubmit={handleSubmit(async (data) => {
+              // 1. 마지막 더미 페이지 제거
+              const shallow = { ...presentationData };
+              const shallowSlides = [...presentationData.slides.slice(0, -1)];
+
+              // 2. 현재페이지의 title,script,memo를 getValue로 가져온 뒤 상태에 추가
+              shallow.title = data.title;
+              shallowSlides[currentPageIndex] = {
+                ...shallowSlides[currentPageIndex],
+                script: data.script,
+                memo: data.memo,
+              };
+              const result = {
+                ...shallow,
+                slides: shallowSlides,
+              };
+
+              // 3. post, patch + mutation의 onSuccess로 모달 띄우기
+              if (slug === 'new') {
+                // post
+                postMutation.mutate(result);
+              }
+              if (slug !== 'new') {
+                // patch
+                patchMutation.mutate(result);
+              }
             })}
           >
             <UploadTitle
               title={presentationData.title || ''}
-              setPresentationData={setPresentationData}
+              setValue={setValue}
               register={register}
               errors={errors}
             />
             <UploadScript
-              script={presentationData.scripts[currentPageIndex].script || ''}
-              lastDummyPageIndex={presentationData.scripts.length - 1}
-              setPresentationData={setPresentationData}
+              script={presentationData.slides[currentPageIndex].script || ''}
+              lastDummyPageIndex={presentationData.slides.length - 1}
               currentPageIndex={currentPageIndex}
               register={register}
               errors={errors}
-              erroOnEachPage={erroOnEachPage}
+              setValue={setValue}
+              errorForMovePage={errorForMovePage}
             />
             <UploadMemo
-              memo={presentationData.scripts[currentPageIndex].memo || ''}
-              lastDummyPageIndex={presentationData.scripts.length - 1}
-              setPresentationData={setPresentationData}
+              memo={presentationData.slides[currentPageIndex].memo || ''}
+              lastDummyPageIndex={presentationData.slides.length - 1}
               currentPageIndex={currentPageIndex}
               register={register}
               errors={errors}
-              erroOnEachPage={erroOnEachPage}
+              setValue={setValue}
             />
             <div className={styles.line} />
 
-            <UploadDday
-              dDay={presentationData.dDay}
+            <UploadDeadlineDate
+              deadlineDate={presentationData.deadlineDate}
               setPresentationData={setPresentationData}
               register={register}
               errors={errors}
+              currentPageIndex={currentPageIndex}
+              getValues={getValues}
             />
-            <UploadTimer time={presentationData.time} setPresentationData={setPresentationData} />
+            <UploadTimer
+              timeLimit={presentationData.timeLimit}
+              alertTime={presentationData.alertTime}
+              setPresentationData={setPresentationData}
+              currentPageIndex={currentPageIndex}
+              getValues={getValues}
+            />
             <div className={styles.saveButtons}>
               <button
                 type="submit"
                 onClick={() => {}}
                 className={styles.save}
-                disabled={isSubmitting || presentationData.scripts.length === 1}
+                disabled={isSubmitting || presentationData.slides.length === 1}
               >
                 <p>임시저장</p>
               </button>
@@ -207,7 +240,7 @@ const InputSection = ({
                 type="submit"
                 onClick={() => {}}
                 className={styles.start}
-                disabled={isSubmitting || presentationData.scripts.length === 1}
+                disabled={isSubmitting || presentationData.slides.length === 1}
               >
                 <p>저장하고 발표 연습 시작하기</p>
               </button>

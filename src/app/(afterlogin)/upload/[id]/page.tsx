@@ -12,7 +12,7 @@ const page = ({ params }: PageProps) => {
   return (
     <div>
       <Suspense fallback={<Spinner />}>
-        {slug === 'new' ? <CreatePresentation /> : <EditPresentation slug={slug} />}
+        {slug === 'new' ? <CreatePresentation /> : <EditPresentation slug={Number(slug)} />}
       </Suspense>
     </div>
   );

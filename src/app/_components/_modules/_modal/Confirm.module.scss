@@ -29,10 +29,13 @@
   &--okay {
     @include button_theme_default;
 
+    font-size: $h2;
     margin-right: 8px;
   }
 
   &--cancel {
     @include button_theme_lined;
+
+    font-size: $h2;
   }
 }

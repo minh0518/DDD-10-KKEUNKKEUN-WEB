@@ -135,6 +135,8 @@ export default function Page() {
           context={confirm}
           title="Confirm Test"
           message="testing confirm ~~!"
+          okayText="okay"
+          cancelText="cancel"
           onOkayClick={() => {
             console.log('okay okay ~');
             confirm.onClose();

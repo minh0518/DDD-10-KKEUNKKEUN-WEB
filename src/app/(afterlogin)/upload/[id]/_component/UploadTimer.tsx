@@ -4,63 +4,99 @@ import { ChangeEventHandler, Dispatch, SetStateAction, forwardRef } from 'react'
 
 import Input from '@/app/_components/_elements/Input';
 
-import { PagesDataType } from '@/types/service';
+import { UploadDataType, ValidtaionType } from '@/types/service';
 
 import styles from './UploadTimer.module.scss';
 import InputFormSvgs from '../_svgs/InputFormSvgs';
+import { UseFormGetValues } from 'react-hook-form';
 
 interface UploadTimerProps {
-  time: PagesDataType['time'];
-  setPresentationData: Dispatch<SetStateAction<PagesDataType>>;
+  timeLimit: UploadDataType['timeLimit'];
+  alertTime: UploadDataType['alertTime'];
+  setPresentationData: Dispatch<SetStateAction<UploadDataType>>;
+  currentPageIndex: number;
+  getValues: UseFormGetValues<ValidtaionType>;
 }
 
 const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
-  ({ time, setPresentationData }, ref) => {
+  ({ timeLimit, alertTime, setPresentationData, currentPageIndex, getValues }, ref) => {
     const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+      let { name, value } = e.target;
+      let changeValue = Number(value);
+
       setPresentationData((prev) => {
-        let { name, value } = e.target;
+        const shallow = { ...prev };
+        const timeLimitShallow = { ...shallow.timeLimit };
+        const alertTimeShallow = { ...shallow.alertTime };
 
-        let timerHour = Math.floor((time.timer ? time.timer : 0) / 60);
-        let timerMinute = (time.timer ? time.timer : 0) % 60;
-        let alarmHour = Math.floor((time.alramTime ? time.alramTime : 0) / 60);
-        let alarmMinute = (time.alramTime ? time.alramTime : 0) % 60;
-        let changeValue = Number(value);
-
-        const shallow = { ...prev.time };
-        if (name === 'timerHour' || name === 'timerMinute') {
-          if (name === 'timerHour') {
-            if (changeValue > 12) changeValue = 12;
-            timerHour = changeValue;
-          }
-
-          if (name === 'timerMinute') {
-            if (changeValue > 59) changeValue = 59;
-            timerMinute = changeValue;
-          }
-
-          const result = timerHour * 60 + timerMinute;
-          shallow['timer'] = result;
+        if (name === 'timeLimit_hour') {
+          if (changeValue > 12) changeValue = 12;
+          timeLimitShallow['hours'] = changeValue;
         }
 
-        if (name === 'alarmHour' || name === 'alarmMinute') {
-          if (name === 'alarmHour') {
-            if (changeValue > 12) changeValue = 12;
-            alarmHour = changeValue;
-          }
-          if (name === 'alarmMinute') {
-            if (changeValue > 59) changeValue = 59;
-            alarmMinute = changeValue;
-          }
-
-          const result = alarmHour * 60 + alarmMinute;
-          shallow['alramTime'] = result;
+        if (name === 'timeLimit_minute') {
+          if (changeValue > 59) changeValue = 59;
+          timeLimitShallow['minutes'] = changeValue;
         }
 
+        if (name === 'alertTime_hour') {
+          if (changeValue > 12) changeValue = 12;
+          alertTimeShallow['hours'] = changeValue;
+        }
+
+        if (name === 'alertTime_minute') {
+          if (changeValue > 59) changeValue = 59;
+          alertTimeShallow['minutes'] = changeValue;
+        }
+
+        shallow.title = getValues('title');
+        shallow.timeLimit = timeLimitShallow;
+        shallow.alertTime = alertTimeShallow;
+
+        const shallowSlides = [...shallow.slides];
+        shallowSlides[currentPageIndex] = {
+          ...shallowSlides[currentPageIndex],
+          script: getValues('script'),
+          memo: getValues('memo'),
+        };
         return {
-          ...prev,
-          time: shallow,
+          ...shallow,
+          slides: shallowSlides,
         };
       });
+      // setPresentationData((prev) => {
+      //   let { name, value } = e.target;
+      //   let changeValue = Number(value);
+
+      //   const timeLimitShallow = { ...prev.timeLimit };
+      //   const alertTimeShallow = { ...prev.alertTime };
+
+      //   if (name === 'timeLimit_hour') {
+      //     if (changeValue > 12) changeValue = 12;
+      //     timeLimitShallow['hours'] = changeValue;
+      //   }
+
+      //   if (name === 'timeLimit_minute') {
+      //     if (changeValue > 59) changeValue = 59;
+      //     timeLimitShallow['minutes'] = changeValue;
+      //   }
+
+      //   if (name === 'alertTime_hour') {
+      //     if (changeValue > 12) changeValue = 12;
+      //     alertTimeShallow['hours'] = changeValue;
+      //   }
+
+      //   if (name === 'alertTime_minute') {
+      //     if (changeValue > 59) changeValue = 59;
+      //     alertTimeShallow['minutes'] = changeValue;
+      //   }
+
+      //   return {
+      //     ...prev,
+      //     timeLimit: timeLimitShallow,
+      //     alertTime: alertTimeShallow,
+      //   };
+      // });
     };
 
     return (
@@ -74,18 +110,18 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
             <input
               type="number"
               id="timer"
-              value={time.timer ? Math.floor(time.timer / 60) : ''}
+              value={timeLimit.hours ? timeLimit.hours : ''}
               onChange={onChange}
-              name="timerHour"
+              name="timeLimit_hour"
               placeholder="00"
             />
             시간 &nbsp;
             <input
               type="number"
               id="timer"
-              value={time.timer ? time.timer % 60 : ''}
+              value={timeLimit.minutes ? timeLimit.minutes : ''}
               onChange={onChange}
-              name="timerMinute"
+              name="timeLimit_minute"
               placeholder="00"
             />
             분
@@ -95,7 +131,7 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
           <label htmlFor="alarm" className={styles.label}>
             중간 알림
             <InputFormSvgs>
-              <InputFormSvgs.DDayDescription />
+              <InputFormSvgs.DeadlineDateDescription />
             </InputFormSvgs>
           </label>
 
@@ -103,18 +139,18 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
             <input
               type="number"
               id="alarm"
-              value={time.alramTime ? Math.floor(time.alramTime / 60) : ''}
+              value={alertTime.hours ? alertTime.hours : ''}
               onChange={onChange}
-              name="alarmHour"
+              name="alertTime_hour"
               placeholder="00"
             />
             시간 &nbsp;
             <input
               type="number"
               id="alarm"
-              value={time.alramTime ? time.alramTime % 60 : ''}
+              value={alertTime.minutes ? alertTime.minutes : ''}
               onChange={onChange}
-              name="alarmMinute"
+              name="alertTime_minute"
               placeholder="00"
             />
             분
