@@ -1,10 +1,10 @@
-import Navbar from '@/app/(afterlogin)/_components/Navbar';
 import { ReactChildrenProps } from '@/types/common';
+import PracticeNav from './_components/PracticeNav';
 
 const Layout = ({ children }: ReactChildrenProps) => {
   return (
     <div>
-      <Navbar />
+      <PracticeNav />
       {children}
     </div>
   );

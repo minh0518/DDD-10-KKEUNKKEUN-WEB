@@ -12,9 +12,9 @@ interface Props {
   /** 본문 */
   message: string;
   /** 왼쪽 확인 버튼 텍스트 */
-  okayText: string;
+  okayText?: string;
   /** 오른쪽 취소 버튼 텍스트 */
-  cancelText: string;
+  cancelText?: string;
   /** 왼쪽 확인 버튼 이벤트 (필수) */
   onOkayClick: () => void;
   /** 오른쪽 취소 버튼 이벤트 (기본 값 : 창 닫음) */
@@ -25,8 +25,8 @@ const Confirm = ({
   context,
   title,
   message,
-  okayText,
-  cancelText,
+  okayText = '확인',
+  cancelText = '닫기',
   onOkayClick,
   onCancelClick,
 }: Props) => {

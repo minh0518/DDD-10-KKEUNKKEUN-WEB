@@ -11,6 +11,7 @@ import Alert from '@/app/_components/_modules/_modal/Alert';
 import useToggle from '@/app/_hooks/useToggle';
 import Confirm from '@/app/_components/_modules/_modal/Confirm';
 import Modal from '@/app/_components/_modules/_modal/Modal';
+import SpeechBubble from '@/app/_components/_modules/SpeechBubble';
 
 export default function Page() {
   const [isAvailable, setIsAvailable] = useState(false);
@@ -21,6 +22,7 @@ export default function Page() {
   const alert2 = useToggle();
   const confirm = useToggle();
   const modal = useToggle();
+  const bubble = useToggle();
 
   const handleOnChange = () => {
     setIsAvailable(!isAvailable);
@@ -156,6 +158,18 @@ export default function Page() {
         <Modal context={modal} size="sm">
           <span>안녕?</span>
         </Modal>
+      </div>
+
+      <div>
+        <span>speech bubble test</span>
+        <button
+          onClick={() => {
+            bubble.onOpen();
+          }}
+        >
+          click here
+        </button>
+        <SpeechBubble context={bubble} message="hello ~" direction="up" hasCloseBtn />
       </div>
     </>
   );

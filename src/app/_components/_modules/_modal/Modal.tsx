@@ -20,13 +20,21 @@ interface Props {
 const Modal = ({ context, size = 'sm', hasCloseBtn = true, children }: Props) => {
   const cx = classNames.bind(styles);
 
+  const handleClose = () => {
+    if (hasCloseBtn) {
+      context.onClose();
+    }
+  };
+
   return (
     <ToggleContext.Provider value={context}>
       <ModalLayout>
         <div className={cx(['container', `container--${size}`])}>
           {hasCloseBtn ? (
             <div className={cx('header')}>
-              <CloseIcon />
+              <button onClick={handleClose}>
+                <CloseIcon />
+              </button>
             </div>
           ) : null}
           {children}

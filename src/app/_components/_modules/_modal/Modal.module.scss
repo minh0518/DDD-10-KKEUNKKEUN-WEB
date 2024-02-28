@@ -1,4 +1,5 @@
 @import '@/styles/globals';
+@import '@/styles/mixins';
 
 .container {
   display: flex;
@@ -25,4 +26,8 @@
   position: absolute;
   top: 20px;
   right: 20px;
+
+  button {
+    @include pure-button;
+  }
 }
