@@ -156,7 +156,7 @@ const ControlButtons = ({
                           })}
                         >
                           <Image
-                            src={`http://124.49.161.33/${item.imageFilePath}`}
+                            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${item.imageFilePath}`}
                             fill
                             alt="ppt이미지"
                             style={{ objectFit: 'contain', borderRadius: '8px' }}

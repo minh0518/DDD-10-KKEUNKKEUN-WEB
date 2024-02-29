@@ -49,8 +49,7 @@ const SettingProcess = () => {
     }
     if (currentStep === 0 && settingInfo.practiceMode === 'SHOW') {
       setCurrentStep(2);
-    }
-    if (currentStep !== 2) setCurrentStep((prev) => (prev + 1) as ProcessStepType);
+    } else if (currentStep !== 2) setCurrentStep((prev) => (prev + 1) as ProcessStepType);
   };
 
   return (

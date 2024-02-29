@@ -107,7 +107,7 @@ const UploadPpt = ({
           <div className={styles.pptImageSection}>
             <div className={styles.hoverSection}>
               <Image
-                src={`http://124.49.161.33/${pptInfo.imageFilePath}`}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${pptInfo.imageFilePath}`}
                 alt={`${currentPageIndex + 1}페이지 ppt 이미지`}
                 width={503}
                 height={283}

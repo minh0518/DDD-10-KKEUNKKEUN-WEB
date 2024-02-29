@@ -37,7 +37,10 @@ export const usePostPresentationData = (submitAction: 'save' | 'start') => {
     onSuccess: async (response) => {
       const { presentationId } = await response.json();
       if (submitAction === 'start') router.push(`/setting/${presentationId}`);
-      if (submitAction === 'save') openToastWithData();
+      if (submitAction === 'save') {
+        router.push(`/upload/${presentationId}`);
+        openToastWithData();
+      }
     },
     onError: () => {
       alert('저장하는 도중 문제가 발생했습니다.');

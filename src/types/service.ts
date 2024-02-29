@@ -2,15 +2,14 @@ type ValuePiece = Date | null;
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-// mock
+// # Mock
+
 export interface ValidtaionType {
   title: string;
   script: string;
   memo: string;
   deadlineDate: Value;
 }
-
-// Mock
 export interface MockUploadDataType {
   id?: number;
   dday?: number;
@@ -34,8 +33,12 @@ export interface MockUploadDataType {
   }[];
 }
 
-// service
-/** 유저 정보를 나타내는 객체 */
+// # Service
+
+/** 발표 자료 업로드 객체 - 발표 상세 조회, 생성 및 수정
+ *  기본타입 - 생성 및 수정에 사용되는 요소들
+ *  옵셔널타입 - 발표 상세 조회시, 추가되는 요소들
+ */
 export interface UploadDataType {
   /** 발표 ID - URL에 라우팅 되는 값 */
   id?: number;
