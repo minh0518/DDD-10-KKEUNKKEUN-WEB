@@ -9,7 +9,8 @@ const ExerciseList = () => {
       <ul className={styles.exercise__box}>
         {Array.from({ length: 10 }, (_, i) => i).map((v, index) => (
           <li className={styles.exercise} key={index}>
-            <ExerciseItem />
+            {/* TODO: 실제 id 값으로 변경 */}
+            <ExerciseItem id={v} />
           </li>
         ))}
         <button className={styles.exercise__new}>
