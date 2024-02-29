@@ -1,0 +1,93 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 99px;
+  width: 100dvw;
+  height: 100dvh;
+}
+
+.leftSectionWrapper {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.rightSectionWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+}
+
+.leftSection {
+  display: flex;
+  flex-direction: column;
+  width: 621px;
+  height: 383px;
+}
+
+.rightSection {
+  width: 837px;
+  height: 760px;
+  background-color: $purple-5;
+}
+
+.smallDescription {
+  display: flex;
+  align-items: center;
+  width: 355px;
+
+  &::before {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid $gray-1;
+  }
+
+  & > p {
+    padding: 0 0 0 30px;
+  }
+}
+
+.mainTitle {
+  display: flex;
+  font-size: px-to-rem(49px);
+  font-weight: bolder;
+  flex-direction: column;
+  letter-spacing: -1%;
+
+  p {
+    margin: 0;
+  }
+
+  p:nth-of-type(1) {
+    color: $black;
+  }
+
+  p:nth-of-type(2) {
+    color: $pink-8;
+  }
+}
+
+.subTitle {
+  margin-top: 20px;
+  display: flex;
+  color: $gray-5;
+  font-size: px-to-rem($h2);
+  flex-direction: column;
+  letter-spacing: -1.5%;
+
+  p {
+    margin: 0;
+  }
+}
+
+.startButton {
+  @include button_size_web;
+  @include button_theme_default;
+
+  font-size: px-to-rem($h2);
+  letter-spacing: -1.5%;
+  margin-top: 58px;
+}
