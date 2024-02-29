@@ -10,7 +10,7 @@ interface Props {
   /** 제목 */
   title: string;
   /** 본문 */
-  message: string;
+  message?: string;
   /** 왼쪽 확인 버튼 텍스트 */
   okayText?: string;
   /** 오른쪽 취소 버튼 텍스트 */

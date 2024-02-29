@@ -1,27 +1,51 @@
 'use client';
 
 import { Dispatch, SetStateAction } from 'react';
-import DragSection from './DragSection';
+
 import SelectCardSection from './SelectCardSection';
 import styles from './StepsContent.module.scss';
-import { ContentType } from './SettingProcess';
 import SelectSentenceSection from './SelectSentenceSection';
+import { SettingDataType, SlidesSettingType } from '@/types/service';
 
 interface StepsContentProps {
-  current: number;
-  selectedValue: ContentType;
-  setSelectedValue: Dispatch<SetStateAction<ContentType>>;
+  totalInfo: SettingDataType;
+  settingInfo: SlidesSettingType;
+  currentStep: number;
+  onChangePracticeMode: (practiceMode: SlidesSettingType['practiceMode']) => void;
+  onChangeSlide: (
+    index: number,
+    memorizationSentences: {
+      offset: SlidesSettingType['slides'][0]['memorizationSentences'][0]['offset'];
+      length: SlidesSettingType['slides'][0]['memorizationSentences'][0]['length'];
+    }[],
+  ) => void;
+  setSelectedDevice: Dispatch<SetStateAction<'DESKTOP' | 'BOTH'>>;
+  selectedDevice: 'DESKTOP' | 'BOTH';
 }
-const StepsContent = ({ current, setSelectedValue, selectedValue }: StepsContentProps) => {
+const StepsContent = ({
+  totalInfo,
+  currentStep,
+  onChangePracticeMode,
+  onChangeSlide,
+  settingInfo,
+  setSelectedDevice,
+  selectedDevice,
+}: StepsContentProps) => {
   return (
     <div className={styles.container}>
-      {current === 1 ? (
-        <SelectSentenceSection />
+      {currentStep === 1 ? (
+        <SelectSentenceSection
+          totalInfo={totalInfo}
+          settingInfo={settingInfo}
+          onChangeSlide={onChangeSlide}
+        />
       ) : (
         <SelectCardSection
-          current={current}
-          setSelectedValue={setSelectedValue}
-          selectedValue={selectedValue}
+          settingInfo={settingInfo}
+          currentStep={currentStep}
+          onChangePracticeMode={onChangePracticeMode}
+          setSelectedDevice={setSelectedDevice}
+          selectedDevice={selectedDevice}
         />
       )}
     </div>

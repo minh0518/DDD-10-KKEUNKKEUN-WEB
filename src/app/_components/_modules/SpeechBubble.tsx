@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './SpeechBubble.module.scss';
-import CloseIcon from '@/app/_svgs/CloseIcon';
+import CloseIconBlack from '@/app/_svgs/CloseIconBlack';
 import { ToggleContext } from '@/app/_hooks/useToggleContext';
 import { ToggleType } from '@/app/_hooks/useToggle';
 
@@ -32,7 +32,7 @@ const SpeechBubble = ({ context, message, direction = 'up', hasCloseBtn = false 
         {message}
         {hasCloseBtn && (
           <button className={cx('close')} onClick={handleClose}>
-            <CloseIcon />
+            <CloseIconBlack />
           </button>
         )}
       </div>

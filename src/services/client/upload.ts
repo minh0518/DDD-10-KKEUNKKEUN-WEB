@@ -44,8 +44,12 @@ export const clientPptApi = {
       body: JSON.stringify(data),
     });
 
-    // mutation의 onError
-    if (response.status === 401) throw new Error(ERROR_MESSAGE.AUTH.EXPIRE);
+    // mutation의 onError로 전달
+    if (!response.ok) {
+      const errorBody = await response.json();
+      throw new Error(errorBody.message || '데이터를 저장하는 도중 문제가 발생 했습니다');
+    }
+
     return response;
   },
 

@@ -55,9 +55,12 @@ const InputSection = ({
     },
     memo: false,
   });
+  const [submitAction, setSubmitAction] = useState<'save' | 'start'>('save');
+  const handleSaveClick = () => setSubmitAction('save');
+  const handleStartClick = () => setSubmitAction('start');
 
-  const postMutation = usePostPresentationData();
-  const patchMutation = usePatchPresentationData(slug!);
+  const postMutation = usePostPresentationData(submitAction);
+  const patchMutation = usePatchPresentationData(submitAction, slug!);
   const confirm = useToggle();
 
   const {
@@ -230,7 +233,7 @@ const InputSection = ({
             <div className={styles.saveButtons}>
               <button
                 type="submit"
-                onClick={() => {}}
+                onClick={handleSaveClick}
                 className={styles.save}
                 disabled={isSubmitting || presentationData.slides.length === 1}
               >
@@ -238,7 +241,7 @@ const InputSection = ({
               </button>
               <button
                 type="submit"
-                onClick={() => {}}
+                onClick={handleStartClick}
                 className={styles.start}
                 disabled={isSubmitting || presentationData.slides.length === 1}
               >

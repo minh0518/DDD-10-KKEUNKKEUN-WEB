@@ -3,6 +3,7 @@ import { clientPptApi } from '@/services/client/upload';
 import { useToastStore } from '@/store/modal';
 import { UploadDataType } from '@/types/service';
 import { useMutation, useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 // TODO: useSuspenseQuery 사용 버그 처리
 export const useGetPresentationData = (slug: number) => {
@@ -18,7 +19,8 @@ export const useGetPresentationData = (slug: number) => {
   return value;
 };
 
-export const usePostPresentationData = () => {
+export const usePostPresentationData = (submitAction: 'save' | 'start') => {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { openToast } = useToastStore();
@@ -33,17 +35,20 @@ export const usePostPresentationData = () => {
       return await clientPptApi.postPresentationUpload(result);
     },
     onSuccess: async (response) => {
-      openToastWithData();
+      const { presentationId } = await response.json();
+      if (submitAction === 'start') router.push(`/setting/${presentationId}`);
+      if (submitAction === 'save') openToastWithData();
     },
     onError: () => {
-      alert('문제가 발생했습니다.');
+      alert('저장하는 도중 문제가 발생했습니다.');
     },
   });
 
   return postMutation;
 };
 
-export const usePatchPresentationData = (slug: number | 'new') => {
+export const usePatchPresentationData = (submitAction: 'save' | 'start', slug: number | 'new') => {
+  const router = useRouter();
   const queryClient = useQueryClient();
 
   const { openToast } = useToastStore();
@@ -59,10 +64,12 @@ export const usePatchPresentationData = (slug: number | 'new') => {
       return await clientPptApi.patchPresentationData(slug as number, result);
     },
     onSuccess: async (response) => {
-      openToastWithData();
+      const { presentationId } = await response.json();
+      if (submitAction === 'start') router.push(`/setting/${presentationId}`);
+      if (submitAction === 'save') openToastWithData();
     },
-    onError: () => {
-      alert('문제가 발생했습니다.');
+    onError: (error) => {
+      alert(error.message);
     },
   });
 

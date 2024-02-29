@@ -3,31 +3,23 @@
 import { Dispatch, SetStateAction } from 'react';
 import Card from './Card';
 import styles from './SelectCardSection.module.scss';
-import { ContentType } from './SettingProcess';
+
+import { SettingDataType, SlidesSettingType } from '@/types/service';
 interface SelectCardSectionProps {
-  current: number;
-  setSelectedValue: Dispatch<SetStateAction<ContentType>>;
-  selectedValue: ContentType;
+  settingInfo: SlidesSettingType;
+  currentStep: number;
+  onChangePracticeMode: (practiceMode: SlidesSettingType['practiceMode']) => void;
+
+  setSelectedDevice: Dispatch<SetStateAction<'DESKTOP' | 'BOTH'>>;
+  selectedDevice: 'DESKTOP' | 'BOTH';
 }
 const SelectCardSection = ({
-  current,
-  setSelectedValue,
-  selectedValue,
+  currentStep,
+  onChangePracticeMode,
+  settingInfo,
+  setSelectedDevice,
+  selectedDevice,
 }: SelectCardSectionProps) => {
-  const setMode = (newValue: ContentType['mode']) => {
-    setSelectedValue((prev) => ({
-      ...prev,
-      mode: newValue,
-    }));
-  };
-
-  const setDevice = (newValue: ContentType['device']) => {
-    setSelectedValue((prev) => ({
-      ...prev,
-      device: newValue,
-    }));
-  };
-
   const firstStepCardInfo = [
     {
       image: 'image',
@@ -65,35 +57,35 @@ const SelectCardSection = ({
 
   return (
     <div className={styles.container}>
-      {current === 0 && (
+      {currentStep === 0 && (
         <>
           <Card
             title={firstStepCardInfo[0].title}
             content={firstStepCardInfo[0].content}
-            setMode={() => setMode('all')}
-            selected={selectedValue.mode === 'all'}
+            setMode={() => onChangePracticeMode('SHOW')}
+            selected={settingInfo.practiceMode === 'SHOW'}
           />
           <Card
             title={firstStepCardInfo[1].title}
             content={firstStepCardInfo[1].content}
-            setMode={() => setMode('memorise')}
-            selected={selectedValue.mode === 'memorise'}
+            setMode={() => onChangePracticeMode('HIDE')}
+            selected={settingInfo.practiceMode === 'HIDE'}
           />
         </>
       )}
-      {current === 2 && (
+      {currentStep === 2 && (
         <>
           <Card
             title={thirdStepCardInfo[0].title}
             content={thirdStepCardInfo[0].content}
-            setDevice={() => setDevice('desktop')}
-            selected={selectedValue.device === 'desktop'}
+            setDevice={() => setSelectedDevice('DESKTOP')}
+            selected={selectedDevice === 'DESKTOP'}
           />
           <Card
             title={thirdStepCardInfo[1].title}
             content={thirdStepCardInfo[1].content}
-            setDevice={() => setDevice('both')}
-            selected={selectedValue.device === 'both'}
+            setDevice={() => setSelectedDevice('BOTH')}
+            selected={selectedDevice === 'BOTH'}
           />
         </>
       )}

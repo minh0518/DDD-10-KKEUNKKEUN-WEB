@@ -3,9 +3,9 @@
 import styles from './StepsDescription.module.scss';
 
 interface StepsDescriptionProps {
-  current: number;
+  currentStep: number;
 }
-const StepsDescription = ({ current }: StepsDescriptionProps) => {
+const StepsDescription = ({ currentStep }: StepsDescriptionProps) => {
   const first = (
     <>
       <h1>어떤 모드로 연습을 하시겠어요?</h1>
@@ -28,9 +28,9 @@ const StepsDescription = ({ current }: StepsDescriptionProps) => {
 
   return (
     <div className={styles.container}>
-      {current === 0 && first}
-      {current === 1 && second}
-      {current === 2 && third}
+      {currentStep === 0 && first}
+      {currentStep === 1 && second}
+      {currentStep === 2 && third}
     </div>
   );
 };

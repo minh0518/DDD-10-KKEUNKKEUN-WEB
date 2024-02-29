@@ -33,6 +33,8 @@
   max-height: 100%;
   padding: 20px;
   overflow-y: scroll;
+  font-size: $font-1;
+  line-height: 180%;
 }
 
 .DraftEditor-root,
@@ -49,6 +51,15 @@
   }
 }
 
-.public-drafteditor-content .public-DraftStyleDefault-block .public-DraftStyleDefault-ltr {
-  height: 383px;
+.toolbar {
+  display: flex;
+  padding: 14px 18px;
+  background-color: $white;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tukdd6b {
+  border: none !important;
+  border-radius: 8px !important;
 }

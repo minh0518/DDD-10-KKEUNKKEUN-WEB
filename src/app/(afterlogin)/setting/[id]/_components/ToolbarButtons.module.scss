@@ -1,0 +1,12 @@
+@import '@/styles/mixins';
+
+.toolbarButton {
+  @include pure-button;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 103px;
+  height: 24px;
+  background-color: $white;
+}

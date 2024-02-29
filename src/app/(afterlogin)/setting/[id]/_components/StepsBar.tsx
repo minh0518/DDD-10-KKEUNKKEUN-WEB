@@ -4,9 +4,9 @@ import StepNumbers from './StepNumbers';
 import styles from './StepsBar.module.scss';
 
 interface StepsBarProps {
-  current: number;
+  currentStep: number;
 }
-const StepsBar = ({ current }: StepsBarProps) => {
+const StepsBar = ({ currentStep }: StepsBarProps) => {
   const steps = [
     { number: 1, label: '연습 모드 설정' },
     { number: 2, label: '외울 문장 설정' },
@@ -15,7 +15,9 @@ const StepsBar = ({ current }: StepsBarProps) => {
   return (
     <div className={styles.container}>
       {steps.map((i) => {
-        return <StepNumbers key={i.number} number={i.number} label={i.label} current={current} />;
+        return (
+          <StepNumbers key={i.number} number={i.number} label={i.label} currentStep={currentStep} />
+        );
       })}
     </div>
   );

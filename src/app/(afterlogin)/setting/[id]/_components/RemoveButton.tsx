@@ -1,6 +1,8 @@
 'use client';
 
 import { Modifier, EditorState } from 'draft-js';
+import TrashcanIcon from './_svgs/TrashcanIcon';
+import styles from './ToolbarButtons.module.scss';
 
 const RemoveHighlightButton = ({ getEditorState, setEditorState }: any) => {
   const removeHighlight = (color: any) => {
@@ -20,10 +22,12 @@ const RemoveHighlightButton = ({ getEditorState, setEditorState }: any) => {
     <button
       onMouseDown={(e) => {
         e.preventDefault();
-        removeHighlight('BLUE');
+        removeHighlight('PINK');
       }}
+      className={styles.toolbarButton}
     >
-      하이라이트 제거
+      <TrashcanIcon />
+      지우기
     </button>
   );
 };

@@ -1,7 +1,6 @@
 'use client';
 import classNames from 'classnames/bind';
 import styles from './Card.module.scss';
-import { ContentType } from './SettingProcess';
 
 interface CardProps {
   title: string;
