@@ -1,19 +1,18 @@
 import { ReactChildrenProps } from '@/types/common';
 import styles from './FlyoutMenu.module.scss';
-import { ReactNode, createContext, useContext, useEffect, useRef, useState } from 'react';
-import useToggle, { ToggleType } from '@/app/_hooks/useToggle';
+import { ReactNode, useEffect, useRef } from 'react';
+import { ToggleType } from '@/app/_hooks/useToggle';
 import useToggleContext, { ToggleContext } from '@/app/_hooks/useToggleContext';
-import ModalLayout from './_modal/ModalLayout';
 
 interface Props {
   /** 컨텍스트 (부모에서 전달이 필요한 경우를 위해) */
-  context?: ToggleType;
+  context: ToggleType;
   /** 자식 노드 */
   children: ReactNode;
 }
 
 const FlyoutMenu = ({ context, children }: Props) => {
-  const flyoutContext = context ?? useToggle();
+  const flyoutContext = context;
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

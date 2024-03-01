@@ -1,3 +1,5 @@
+'use client';
+
 import FlyoutMenu from '@/app/_components/_modules/FlyoutMenu';
 import styles from './ExerciseItem.module.scss';
 import ExerciseInfo from './_elements/ExerciseInfo';
@@ -6,18 +8,24 @@ import ModifyIcon from './_svgs/ModifyIcon';
 import DeleteIcon from './_svgs/DeleteIcon';
 import useToggle from '@/app/_hooks/useToggle';
 import Confirm from '@/app/_components/_modules/_modal/Confirm';
+import { PresentationListType } from '@/types/service';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useDeletePresentation } from '../_hooks/presentationList';
 
 interface Props {
-  id: number;
+  presentation: PresentationListType['page']['content'][0];
 }
 
-const ExerciseItem = ({ id }: Props) => {
+const ExerciseItem = ({ presentation }: Props) => {
+  const router = useRouter();
   const flyout = useToggle();
   const modal = useToggle();
 
+  const { mutate } = useDeletePresentation(presentation.id);
+
   const handleModify = () => {
-    // TODO: 발표 수정 페이지로 이동
-    console.log('modify');
+    router.push(`/upload/${presentation.id}`);
     flyout.onClose();
   };
 
@@ -26,15 +34,21 @@ const ExerciseItem = ({ id }: Props) => {
     modal.onOpen();
   };
 
-  const deleteItem = (id: number) => {
-    // TODO: 실제 API 연동 필요한 부분
-    console.log('delete: ', id);
+  const deleteItem = () => {
+    mutate();
   };
 
   return (
     <>
       <article className={styles.container}>
         <div className={styles.thumbnail}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${presentation.thumbnailPath}`}
+            alt={`${presentation.id} 썸네일`}
+            width={440}
+            height={250}
+            style={{ borderRadius: '16px' }}
+          />
           <div className={styles.menu__box}>
             <FlyoutMenu context={flyout}>
               <FlyoutMenu.ToggleButton>
@@ -59,10 +73,15 @@ const ExerciseItem = ({ id }: Props) => {
         </div>
         <div className={styles.info__box}>
           <div className={styles.info}>
-            <ExerciseInfo />
+            <ExerciseInfo presentation={presentation} />
           </div>
           <div className={styles.action__box}>
-            <button className={styles.action}>연습하기</button>
+            <button
+              className={styles.action}
+              onClick={() => router.push(`/setting/${presentation.id}`)}
+            >
+              연습하기
+            </button>
           </div>
         </div>
       </article>
@@ -74,7 +93,7 @@ const ExerciseItem = ({ id }: Props) => {
         okayText="삭제하기"
         cancelText="취소"
         onOkayClick={() => {
-          deleteItem(id);
+          deleteItem();
         }}
       />
     </>

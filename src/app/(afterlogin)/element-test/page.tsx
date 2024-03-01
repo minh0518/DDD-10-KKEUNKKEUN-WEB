@@ -100,7 +100,7 @@ export default function Page() {
       </div>
       <div>
         <span>Flyout menu test</span>
-        <FlyoutMenu>
+        {/* <FlyoutMenu>
           <FlyoutMenu.ToggleButton>
             <div style={{ width: '50px', height: '50px', background: 'tomato' }}>click!</div>
           </FlyoutMenu.ToggleButton>
@@ -109,7 +109,7 @@ export default function Page() {
             <FlyoutMenu.MenuItem>banana</FlyoutMenu.MenuItem>
             <FlyoutMenu.MenuItem>cat</FlyoutMenu.MenuItem>
           </FlyoutMenu.MenuList>
-        </FlyoutMenu>
+        </FlyoutMenu> */}
       </div>
 
       <div>

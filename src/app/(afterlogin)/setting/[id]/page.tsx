@@ -1,8 +1,6 @@
-import { fetch_ServerAuth } from '@/services/server/fetchServer';
 import SettingProcess from './_components/SettingProcess';
 import styles from './page.module.scss';
 import { serverSettingApi } from '@/services/server/setting';
-import { SettingDataType } from '@/types/service';
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
 
 interface PageProps {

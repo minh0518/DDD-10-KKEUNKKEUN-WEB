@@ -233,3 +233,36 @@ export interface UploadFile {
   path: string;
 }
 // #endregion
+
+export interface PresentationListType {
+  page: {
+    content: [
+      {
+        id: number;
+        title: string;
+        dday: number;
+        timeLimit: {
+          hours: number;
+          minutes: number;
+        };
+        thumbnailPath: string;
+        createdAt: Date;
+        modifiedAt: Date;
+      },
+    ];
+    totalPages: number;
+    totalElements: number;
+    empty: false;
+  };
+}
+export interface LatestPresentationType {
+  id: number;
+  title: string;
+  dday: number;
+  timeLimit: {
+    hours: number;
+    minutes: number;
+  };
+  createdAt: Date;
+  modifiedAt: Date;
+}

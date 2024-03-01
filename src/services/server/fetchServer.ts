@@ -11,6 +11,7 @@ export const fetch_ServerAuth = async (url: string, options: RequestInit = {}) =
     headers: { Cookie: cookies().toString() },
     ...options,
   });
+
   if (response.status === 401) {
     throw new Error('reIssue');
   }
