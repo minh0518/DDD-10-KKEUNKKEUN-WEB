@@ -127,6 +127,8 @@ const InputSection = ({
             currentPageIndex={currentPageIndex}
             changeCurrentPageIndex={changeCurrentPageIndex}
             initialState={initialState}
+            getValues={getValues}
+            errors={errors}
           />
           <ControlButtons
             presentationData={presentationData}

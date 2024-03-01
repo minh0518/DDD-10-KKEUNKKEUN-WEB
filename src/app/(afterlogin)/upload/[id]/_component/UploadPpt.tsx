@@ -3,9 +3,11 @@
 import Image from 'next/image';
 import { ChangeEventHandler, Dispatch, SetStateAction, useRef } from 'react';
 import styles from './UploadPpt.module.scss';
-import { UploadDataType } from '@/types/service';
+import { UploadDataType, ValidtaionType } from '@/types/service';
 import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 import { clientPptApi } from '@/services/client/upload';
+import { FieldErrors, UseFormGetValues } from 'react-hook-form';
+import { MAX_LENGTH } from '@/config/const';
 
 interface UploadPptProps {
   pptInfo: UploadDataType['slides'][0];
@@ -13,6 +15,8 @@ interface UploadPptProps {
   currentPageIndex: number;
   initialState: UploadDataType;
   changeCurrentPageIndex: (nextIndex: number) => void;
+  getValues: UseFormGetValues<ValidtaionType>;
+  errors: FieldErrors<ValidtaionType>;
 }
 const UploadPpt = ({
   pptInfo,
@@ -20,6 +24,8 @@ const UploadPpt = ({
   currentPageIndex,
   changeCurrentPageIndex,
   initialState,
+  errors,
+  getValues,
 }: UploadPptProps) => {
   const imageRef = useRef<HTMLInputElement>(null);
 
@@ -82,6 +88,33 @@ const UploadPpt = ({
     }
   };
 
+  const movePage = (index: number) => {
+    changeCurrentPageIndex(index);
+
+    if (
+      errors.script ||
+      errors.memo ||
+      getValues('script').length > MAX_LENGTH.SCRIPT ||
+      getValues('script').length === 0 ||
+      getValues('memo').length > MAX_LENGTH.MEMO
+    )
+      return;
+    setPresentationData((prev) => {
+      const shallow = { ...prev };
+      shallow.title = getValues('title');
+      const shallowSlides = [...shallow.slides];
+      shallowSlides[currentPageIndex] = {
+        ...shallowSlides[currentPageIndex],
+        script: getValues('script'),
+        memo: getValues('memo'),
+      };
+      return {
+        ...shallow,
+        slides: shallowSlides,
+      };
+    });
+  };
+
   return (
     <div className={styles.container}>
       <input
@@ -123,7 +156,7 @@ const UploadPpt = ({
               <button
                 className={styles.goLeft}
                 disabled={currentPageIndex === 0}
-                onClick={() => changeCurrentPageIndex(currentPageIndex - 1)}
+                onClick={() => movePage(currentPageIndex - 1)}
               >
                 <PptImageSvgs>
                   <PptImageSvgs.GoLeft />
@@ -131,10 +164,7 @@ const UploadPpt = ({
               </button>
             )}
 
-            <button
-              className={styles.goRight}
-              onClick={() => changeCurrentPageIndex(currentPageIndex + 1)}
-            >
+            <button className={styles.goRight} onClick={() => movePage(currentPageIndex + 1)}>
               <PptImageSvgs>
                 <PptImageSvgs.GoRight />
               </PptImageSvgs>
