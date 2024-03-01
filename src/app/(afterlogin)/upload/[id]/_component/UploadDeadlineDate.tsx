@@ -33,11 +33,17 @@ const UploadDeadlineDate = forwardRef<HTMLInputElement, UploadDeadlineDateProps>
 
     // 리액트 캘린더 전용 업데이트 함수
     const setDate: Dispatch<SetStateAction<Value>> = (newValue) => {
+      // KST를 UTC로 변환하기 위해, getTimezoneOffset()의 결과를 반전시키고 9시간(한국 시간대)을 더함
+      // (년,월,일만 적용)
+      const targetDate = newValue as Date;
+      const utcDate = new Date(
+        targetDate.getTime() - targetDate.getTimezoneOffset() * 60000 + 9 * 60 * 60000,
+      );
+
       setPresentationData((prev) => {
         const shallow = { ...prev };
         shallow.title = getValues('title');
-        shallow.deadlineDate =
-          newValue instanceof Function ? newValue(prev.deadlineDate) : newValue;
+        shallow.deadlineDate = newValue instanceof Function ? newValue(prev.deadlineDate) : utcDate;
         const shallowSlides = [...shallow.slides];
         shallowSlides[currentPageIndex] = {
           ...shallowSlides[currentPageIndex],
