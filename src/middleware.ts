@@ -13,7 +13,9 @@ export async function middleware(request: NextRequest) {
     !refreshToken &&
     (currentPath.startsWith('/home') ||
       currentPath.startsWith('/upload') ||
-      currentPath.startsWith('/setting'))
+      currentPath.startsWith('/setting') ||
+      currentPath.startsWith('/practice') ||
+      currentPath.startsWith('/feedback'))
   ) {
     const url = request.nextUrl.clone();
     url.pathname = '/login';
