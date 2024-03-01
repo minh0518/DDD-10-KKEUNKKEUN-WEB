@@ -4,7 +4,7 @@ import { ToggleContext } from '@/app/_hooks/useToggleContext';
 import ModalLayout from './ModalLayout';
 import classNames from 'classnames/bind';
 import { ReactNode } from 'react';
-import CloseIconBlack from '@/app/_svgs/CloseIconBlack';
+import CloseIcon from '@/app/_svgs/CloseIcon';
 
 interface Props {
   /** 컨텍스트 */
@@ -33,7 +33,7 @@ const Modal = ({ context, size = 'sm', hasCloseBtn = true, children }: Props) =>
           {hasCloseBtn ? (
             <div className={cx('header')}>
               <button onClick={handleClose}>
-                <CloseIconBlack />
+                <CloseIcon />
               </button>
             </div>
           ) : null}

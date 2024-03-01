@@ -7,8 +7,15 @@
   justify-content: center;
   width: 100%;
   height: 68px;
-  background: $primary;
   min-width: 1320px;
+
+  &--record-on {
+    background: $primary;
+  }
+
+  &--record-off {
+    background: $pink-4;
+  }
 }
 
 .contents {
@@ -37,6 +44,10 @@
     position: absolute;
     top: 12px;
     right: 50%;
+
+    .recorder {
+      @include pure-button;
+    }
 
     .division {
       width: 10px;

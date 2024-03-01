@@ -2,6 +2,8 @@
 @import '@/styles/mixins';
 
 .container {
+  display: flex;
+  justify-content: center;
   position: relative;
   width: 100%;
   padding: 60px;
@@ -15,8 +17,8 @@
 .presentation {
   width: 900px;
   height: 100%;
+  border: 1px solid $gray-1;
   border-radius: 15px;
-  background: $purple-1;
 
   &__box {
     display: flex;
@@ -58,8 +60,8 @@
     width: 100%;
     height: 100%;
     margin-top: 12px;
+    border: 1px solid $gray-1;
     border-radius: 15px;
-    background: $purple-1;
   }
 
   &__box {
@@ -86,6 +88,6 @@
 
 .bubble {
   position: absolute;
-  top: 8px;
-  left: 30%;
+  top: 75px;
+  left: 35%;
 }

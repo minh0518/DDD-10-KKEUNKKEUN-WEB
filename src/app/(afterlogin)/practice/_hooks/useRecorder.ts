@@ -15,6 +15,8 @@ interface ReturnType {
   startRecording: () => void;
   /** 녹음 일시정지 함수 */
   pauseRecording: () => void;
+  /** 녹음 재개 함수 */
+  resumeRecording: () => void;
   /** 녹음 종료 함수 */
   stopRecording: () => void;
 }
@@ -101,8 +103,18 @@ const useRecorder = (): ReturnType => {
   /** 녹음 일시정지 함수 */
   const pauseRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
+      console.log('pause ...');
       mediaRecorderRef.current.pause();
       setIsRecording(false);
+    }
+  };
+
+  /** 녹음 재개 함수 */
+  const resumeRecording = () => {
+    if (mediaRecorderRef.current && !isRecording) {
+      console.log('resume ...!');
+      mediaRecorderRef.current.resume();
+      setIsRecording(true);
     }
   };
 
@@ -122,6 +134,7 @@ const useRecorder = (): ReturnType => {
     getMedia,
     startRecording,
     pauseRecording,
+    resumeRecording,
     stopRecording,
   };
 };

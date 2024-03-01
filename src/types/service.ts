@@ -1,6 +1,7 @@
 type ValuePiece = Date | null;
 
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
+export type PracticeMode = 'SHOW' | 'HIDE';
 
 // # Mock
 
@@ -33,8 +34,27 @@ export interface MockUploadDataType {
   }[];
 }
 
-// # Service
+//
 
+// #region Account API
+/** 유저 정보를 나타내는 객체
+ * @property email - 소셜 이메일
+ * @property nickName - 소셜 닉네임
+ * @property socialProvider - 네이버, 카카오, 구글
+ */
+export interface UserInfoType {
+  email: string;
+  nickName: string;
+  socialProvider: string;
+}
+
+/** 세션 id 조회 res */
+export interface SessionId {
+  sessionId: string;
+}
+// #endregion
+
+// #region Presentation API
 /** 발표 자료 업로드 객체 - 발표 상세 조회, 생성 및 수정
  *  기본타입 - 생성 및 수정에 사용되는 요소들
  *  옵셔널타입 - 발표 상세 조회시, 추가되는 요소들
@@ -60,7 +80,7 @@ export interface UploadDataType {
     hours: number | null;
     minutes: number | null;
   };
-  /** 발표 날짜  */
+  /** 발표 날짜 */
   deadlineDate: Value;
   /** ppt 슬라이드 리스트 */
   slides: {
@@ -77,21 +97,10 @@ export interface UploadDataType {
   }[];
 }
 
-/** 유저 정보를 나타내는 객체
- * @property email - 소셜 이메일
- * @property nickName - 소셜 닉네임
- * @property socialProvider - 네이버, 카카오, 구글
- */
-export interface UserInfoType {
-  email: string;
-  nickName: string;
-  socialProvider: string;
-}
-
 /** ppt 주요 문장 설정 정보 - 발표 설정 후 최종적으로 PATCH */
 export interface SlidesSettingType {
   /** SHOW: 모든 문장 보기 HIDE: 외울 문장 가리기 */
-  practiceMode: 'SHOW' | 'HIDE';
+  practiceMode: PracticeMode;
   /** ppt 슬라이드 리스트 */
   slides: {
     /** DB Identity Sequence. 백엔드 조회용 */
@@ -123,7 +132,7 @@ export interface SettingDataType {
     minutes: number | null;
   };
   /** SHOW: 모든 문장 보기 HIDE: 외울 문장 가리기 (default: 'SHOW')*/
-  practiceMode: 'SHOW' | 'HIDE';
+  practiceMode: PracticeMode;
   /** 다음 슬라이드 넘어가기 모달 표시 여부 (default: true)*/
   activateNextSlideModal: boolean;
   /** ppt 슬라이드 리스트 */
@@ -153,8 +162,74 @@ export interface SettingDataType {
   /** 마지막 수정 시간  */
   modifiedAt: Date;
 }
+// #endregion
 
-/** 세션 id 조회 res */
-export interface SessionId {
-  sessionId: string;
+// #region Practice API
+
+/** 발표 연습 상세 조회 res */
+export interface PracticeDetail {
+  /** 발표 ID */
+  presentationId: number;
+  /** 발표 제목 */
+  title: string;
+  /** 타이머 정보 */
+  timeLimit: PracticeTime;
+  /** 종료 전 알림 정보 */
+  alertTime: PracticeTime;
+  /** 발표 모드 */
+  practiceMode: PracticeMode;
+  /** 다음 슬라이드 넘어가기 모달 표시 여부 */
+  activateNextSlideModal: boolean;
+  /** 슬라이드 리스트 */
+  slides: PracticeSlide[];
+
+  createdAt: string;
+  modifiedAt: string;
 }
+
+/** 발표연습 상세 조회 - 시간 정보 */
+export interface PracticeTime {
+  hours: number;
+  minutes: number;
+}
+
+/** 발표연습 상세 조회 - 슬라이드 정보 */
+export interface PracticeSlide {
+  /** 슬라이드 ID */
+  id: number;
+  /** 슬라이드 이미지 파일 ID */
+  imageFilePath: string | null;
+  /** 발표 스크립트 */
+  script: string;
+  /** 메모 */
+  memo: string | null;
+  /** 외울 문장 리스트 */
+  memorizationSentences: Memorization[];
+}
+
+/** 발표연습 상세 조회 - 외울문장 정보 */
+export interface Memorization {
+  /** 외울 문장 시작점  */
+  offset: number;
+  /** 외울 문장 끝점 */
+  end: number;
+  /** 외울 문장 길이 */
+  length: number;
+  /** 외울 문장 텍스트 */
+  text: string;
+}
+
+/** 발표 연습 완료된 슬라이드 저장 req */
+export interface SavePracticeParams {
+  memo: string | null;
+  audioFileId: number | null;
+}
+// #endregion
+
+// #region File API
+/** 파일 업로드 res */
+export interface UploadFile {
+  id: number;
+  path: string;
+}
+// #endregion

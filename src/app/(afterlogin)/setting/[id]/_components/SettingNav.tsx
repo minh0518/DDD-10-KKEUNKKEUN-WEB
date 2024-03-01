@@ -1,7 +1,7 @@
 import LogoIcon from '@/app/_svgs/LogoIcon';
 
 import styles from './SettingNav.module.scss';
-import CloseIconWhite from '@/app/_svgs/CloseIconWhite';
+import CloseIcon from '@/app/_svgs/CloseIcon';
 import classNames from 'classnames';
 import CancelButton from './CancelButton';
 
@@ -21,7 +21,7 @@ const SettingNav = () => {
 
         <div className={styles.right}>
           <CancelButton>
-            <CloseIconWhite />
+            <CloseIcon color="white" />
           </CancelButton>
         </div>
       </div>
