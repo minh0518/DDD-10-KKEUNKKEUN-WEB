@@ -153,3 +153,8 @@ export interface SettingDataType {
   /** 마지막 수정 시간  */
   modifiedAt: Date;
 }
+
+/** 세션 id 조회 res */
+export interface SessionId {
+  sessionId: string;
+}
