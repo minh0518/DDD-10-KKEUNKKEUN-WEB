@@ -5,9 +5,9 @@ import { ChangeEventHandler, Dispatch, SetStateAction, useRef } from 'react';
 import styles from './UploadPpt.module.scss';
 import { UploadDataType, ValidtaionType } from '@/types/service';
 import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
-import { clientPptApi } from '@/services/client/upload';
 import { FieldErrors, UseFormGetValues } from 'react-hook-form';
 import { MAX_LENGTH } from '@/config/const';
+import { FileService } from '@/services/client/file';
 
 interface UploadPptProps {
   pptInfo: UploadDataType['slides'][0];
@@ -64,8 +64,9 @@ const UploadPpt = ({
         // };
 
         // reader.readAsDataURL(file);
-        const imageResponse = await clientPptApi.postImageUrl(file);
-        const { id, path } = await imageResponse.json();
+        // const imageResponse = await FileService.fileUpload(file);
+        // const { id, path } = await imageResponse.json();
+        const { id, path } = await FileService.fileUpload(file);
         setPresentationData((prev) => {
           const shallow = [...prev.slides];
           shallow[currentPageIndex] = {

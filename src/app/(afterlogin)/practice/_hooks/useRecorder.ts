@@ -19,6 +19,8 @@ interface ReturnType {
   resumeRecording: () => void;
   /** 녹음 종료 함수 */
   stopRecording: () => void;
+  /** 녹음 파일 반환 함수 */
+  getAudioFile: () => Promise<unknown>;
 }
 
 const useRecorder = (): ReturnType => {
@@ -79,6 +81,7 @@ const useRecorder = (): ReturnType => {
 
   /** 녹음 시작하는 함수 */
   const startRecording = () => {
+    console.log('start ~');
     if (!stream) return;
 
     const mediaRecorder = new MediaRecorder(stream);
@@ -91,6 +94,7 @@ const useRecorder = (): ReturnType => {
 
     mediaRecorder.onstop = () => {
       const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
+      console.log('on stop!...', audioBlob);
       setAudioBlob(audioBlob);
     };
 
@@ -119,11 +123,29 @@ const useRecorder = (): ReturnType => {
   };
 
   /** 녹음 멈추는 함수 */
-  const stopRecording = () => {
+  const stopRecording = async () => {
+    console.log('stop!');
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);
     }
+  };
+
+  /** 녹음 파일 반환 함수 */
+  const getAudioFile = async () => {
+    return new Promise((resolve, reject) => {
+      if (!mediaRecorderRef.current) return reject('media recorder is not');
+
+      // onstop 이벤트 핸들러 등록
+      mediaRecorderRef.current.onstop = () => {
+        resolve(audioBlob); // Promise 해결
+      };
+
+      // onerror 이벤트 핸들러 등록 (필요에 따라)
+      mediaRecorderRef.current.onerror = (event) => {
+        reject(`event error !`); // Promise 거부
+      };
+    });
   };
 
   return {
@@ -136,6 +158,7 @@ const useRecorder = (): ReturnType => {
     pauseRecording,
     resumeRecording,
     stopRecording,
+    getAudioFile,
   };
 };
 

@@ -182,7 +182,7 @@ $tmp-backgroud-color: #d7d7d7;
   color: $white;
   border: none;
   &:hover {
-    background-color: $red-4;
+    background-color: $error;
     cursor: pointer;
   }
   &:active {

@@ -42,7 +42,7 @@ const RecordOffIcon = () => {
         viewBox="0 0 40 40"
         fill="none"
       >
-        <g clip-path="url(#clip0_3744_9405)">
+        <g clipPath="url(#clip0_3744_9405)">
           <g opacity="0.2">
             <path
               d="M20 38C29.9411 38 38 29.9411 38 20C38 10.0589 29.9411 2 20 2C10.0589 2 2 10.0589 2 20C2 29.9411 10.0589 38 20 38Z"
@@ -52,9 +52,9 @@ const RecordOffIcon = () => {
           <path
             d="M30.116 11L11 29.144"
             stroke="white"
-            stroke-width="2.25"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="2.25"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
           />
           <path
             d="M23.6062 13.1111C23.6062 10.9512 21.9945 9.2002 20.0062 9.2002C18.018 9.2002 16.4062 10.9512 16.4062 13.1111V19.6893C16.4062 21.8492 18.018 23.6002 20.0062 23.6002C21.9945 23.6002 23.6062 21.8492 23.6062 19.6893V13.1111Z"
@@ -63,23 +63,23 @@ const RecordOffIcon = () => {
           <path
             d="M27.2125 20C27.2125 23.7057 23.993 26.7029 20.0125 26.7029C16.032 26.7029 12.8125 23.7057 12.8125 20"
             stroke="white"
-            stroke-width="2.25"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="2.25"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
           />
           <path
             d="M15.7812 30.7998H20.0154"
             stroke="white"
-            stroke-width="2.25"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="2.25"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
           />
           <path
             d="M20.0156 27.1235V30.7997H24.2498"
             stroke="white"
-            stroke-width="2.25"
-            stroke-miterlimit="10"
-            stroke-linecap="round"
+            strokeWidth="2.25"
+            strokeMiterlimit="10"
+            strokeLinecap="round"
           />
         </g>
         <defs>

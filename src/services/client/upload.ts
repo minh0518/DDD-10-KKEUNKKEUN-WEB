@@ -3,19 +3,6 @@ import { fetch_ClientAuth } from './fetchClient';
 import { ERROR_MESSAGE } from '@/config/const';
 
 export const clientPptApi = {
-  postImageUrl: async (file: File) => {
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const response = await fetch_ClientAuth(`/api/files/upload`, {
-      method: 'POST',
-
-      body: formData,
-    });
-
-    return response;
-  },
-
   postPresentationUpload: async (data: UploadDataType) => {
     const response = await fetch_ClientAuth(`/api/presentations`, {
       method: 'POST',
