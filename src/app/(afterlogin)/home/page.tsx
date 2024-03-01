@@ -3,10 +3,12 @@ import ExerciseList from './_components/ExerciseList';
 import HistoryBanner from './_components/HistoryBanner';
 import styles from './page.module.scss';
 import { serverHomeApi } from '@/services/server/home';
+import { PresentationListType } from '@/types/service';
+import GuideForNew from './_components/GuideForNew';
 
 export default async function Page() {
   const queryClient = new QueryClient();
-  await queryClient.fetchInfiniteQuery({
+  const listResponse = await queryClient.fetchInfiniteQuery({
     queryKey: ['home', 'list'],
     queryFn: async ({ pageParam = 0 }) => {
       const response = await serverHomeApi.getPresentationList({ pageParam });
@@ -15,22 +17,30 @@ export default async function Page() {
     initialPageParam: 0,
   });
 
-  const response = await queryClient.fetchQuery({
+  const isEmpty = listResponse.pages[0].page.empty;
+
+  const latestResponse = await queryClient.fetchQuery({
     queryKey: ['home', 'latest'],
     queryFn: async () => {
-      const response = await serverHomeApi.getLatestPresentation();
-      if (response.status === 204) return 'empty';
-      return await response.json();
+      const latestResponse = await serverHomeApi.getLatestPresentation();
+      if (latestResponse.status === 204) return 'empty';
+      return await latestResponse.json();
     },
   });
 
   const dehydratedState = dehydrate(queryClient);
   return (
-    <div className={styles.container}>
-      <HydrationBoundary state={dehydratedState}>
-        {response !== 'empty' && <HistoryBanner presentation={response} />}
-        <ExerciseList />
-      </HydrationBoundary>
-    </div>
+    <>
+      {isEmpty ? (
+        <GuideForNew />
+      ) : (
+        <div className={styles.container}>
+          <HydrationBoundary state={dehydratedState}>
+            {latestResponse !== 'empty' && <HistoryBanner presentation={latestResponse} />}
+            <ExerciseList />
+          </HydrationBoundary>
+        </div>
+      )}
+    </>
   );
 }
