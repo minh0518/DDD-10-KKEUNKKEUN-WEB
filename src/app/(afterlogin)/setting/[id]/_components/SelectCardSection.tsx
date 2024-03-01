@@ -22,7 +22,7 @@ const SelectCardSection = ({
 }: SelectCardSectionProps) => {
   const firstStepCardInfo = [
     {
-      image: 'image',
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/show.png`,
       title: '모든 문장 보기',
       content: [
         '발표문 암기를 못 했을 때 추천드려요!',
@@ -30,7 +30,7 @@ const SelectCardSection = ({
       ],
     },
     {
-      image: 'image',
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/hide.png`,
       title: '외울 문장 가리기',
       content: [
         '대본 암기를 잘 했는지 확인할 때 추천드려요!',
@@ -41,12 +41,12 @@ const SelectCardSection = ({
 
   const thirdStepCardInfo = [
     {
-      image: 'image',
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/desktop.png`,
       title: '데스크탑',
       content: ['PPT 슬라이드, 타이머, 그리고 발표문을', ' 테스크탑에서 보실 수 있어요.'],
     },
     {
-      image: 'image',
+      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/both.png`,
       title: '데스트탑과 모바일',
       content: [
         '모바일에서는 타이머와 발표문, 그리고 리모콘 기능을 제공해요.',
@@ -60,12 +60,14 @@ const SelectCardSection = ({
       {currentStep === 0 && (
         <>
           <Card
+            imageSrc={firstStepCardInfo[0].imageSrc}
             title={firstStepCardInfo[0].title}
             content={firstStepCardInfo[0].content}
             setMode={() => onChangePracticeMode('SHOW')}
             selected={settingInfo.practiceMode === 'SHOW'}
           />
           <Card
+            imageSrc={firstStepCardInfo[1].imageSrc}
             title={firstStepCardInfo[1].title}
             content={firstStepCardInfo[1].content}
             setMode={() => onChangePracticeMode('HIDE')}
@@ -76,12 +78,14 @@ const SelectCardSection = ({
       {currentStep === 2 && (
         <>
           <Card
+            imageSrc={thirdStepCardInfo[0].imageSrc}
             title={thirdStepCardInfo[0].title}
             content={thirdStepCardInfo[0].content}
             setDevice={() => setSelectedDevice('DESKTOP')}
             selected={selectedDevice === 'DESKTOP'}
           />
           <Card
+            imageSrc={thirdStepCardInfo[1].imageSrc}
             title={thirdStepCardInfo[1].title}
             content={thirdStepCardInfo[1].content}
             setDevice={() => setSelectedDevice('BOTH')}

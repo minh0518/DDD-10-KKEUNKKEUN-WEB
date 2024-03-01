@@ -3,7 +3,6 @@ import ExerciseList from './_components/ExerciseList';
 import HistoryBanner from './_components/HistoryBanner';
 import styles from './page.module.scss';
 import { serverHomeApi } from '@/services/server/home';
-import { PresentationListType } from '@/types/service';
 import GuideForNew from './_components/GuideForNew';
 
 export default async function Page() {

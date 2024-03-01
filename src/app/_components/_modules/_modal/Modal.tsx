@@ -15,9 +15,17 @@ interface Props {
   hasCloseBtn?: boolean;
   /** 자식 노드 */
   children: ReactNode;
+  /** dimmed 영역을 눌러서 닫기 여부 (기본값 : true) */
+  hasClosedDim?: boolean;
 }
 
-const Modal = ({ context, size = 'sm', hasCloseBtn = true, children }: Props) => {
+const Modal = ({
+  context,
+  size = 'sm',
+  hasCloseBtn = true,
+  children,
+  hasClosedDim = true,
+}: Props) => {
   const cx = classNames.bind(styles);
 
   const handleClose = () => {
@@ -28,7 +36,7 @@ const Modal = ({ context, size = 'sm', hasCloseBtn = true, children }: Props) =>
 
   return (
     <ToggleContext.Provider value={context}>
-      <ModalLayout>
+      <ModalLayout hasClosedDim={hasClosedDim}>
         <div className={cx(['container', `container--${size}`])}>
           {hasCloseBtn ? (
             <div className={cx('header')}>

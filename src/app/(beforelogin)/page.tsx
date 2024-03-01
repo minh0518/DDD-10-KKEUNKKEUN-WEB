@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './page.module.scss';
+import Image from 'next/image';
 
 export default function Page() {
   return (
@@ -23,7 +24,14 @@ export default function Page() {
         </div>
       </div>
       <div className={styles.rightSectionWrapper}>
-        <div className={styles.rightSection}>SVG</div>
+        <div className={styles.rightSection}>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/minho.gif`}
+            width={837}
+            height={760}
+            alt="gif"
+          />
+        </div>
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 'use client';
 
 import { Modifier, EditorState } from 'draft-js';
-import PenIcon from './_svgs/PenIcon';
+
 import styles from './ToolbarButtons.module.scss';
+import PenIcon from '../_svgs/PenIcon';
 
 const HighlightButton = ({ getEditorState, setEditorState }: any) => {
   const applyHighlight = (color: any) => {

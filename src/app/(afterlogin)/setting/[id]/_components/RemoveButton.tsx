@@ -1,8 +1,9 @@
 'use client';
 
 import { Modifier, EditorState } from 'draft-js';
-import TrashcanIcon from './_svgs/TrashcanIcon';
+
 import styles from './ToolbarButtons.module.scss';
+import TrashcanIcon from '../_svgs/TrashcanIcon';
 
 const RemoveHighlightButton = ({ getEditorState, setEditorState }: any) => {
   const removeHighlight = (color: any) => {

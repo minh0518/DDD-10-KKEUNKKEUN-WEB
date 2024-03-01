@@ -13,7 +13,7 @@ const GuideForNew = () => {
   }, []);
   return (
     <>
-      <Modal context={modal} size="lg" hasCloseBtn={false}>
+      <Modal context={modal} size="lg" hasCloseBtn={false} hasClosedDim={false}>
         <GuideContent />
       </Modal>
     </>

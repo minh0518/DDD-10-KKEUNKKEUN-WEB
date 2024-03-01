@@ -3,8 +3,11 @@
 import classNames from 'classnames/bind';
 import styles from './SocialLoginButtons.module.scss';
 
-import SocialLogoIcon from '../_svgs/SocialLogoIcon';
 import { SOCIAL_ACCESS_URL } from '@/config/path';
+import Image from 'next/image';
+import GoogleIcon from '../_svgs/GoogleIcon';
+import NaverIcon from '../_svgs/NaverIcon';
+import KaKaoIcon from '../_svgs/KaKaoIcon';
 
 const cx = classNames.bind(styles);
 
@@ -19,20 +22,18 @@ const SocialLoginButtons = () => {
   };
   return (
     <>
-      <button className={cx(['buttons', 'google'])} onClick={() => onClick('google')}>
-        <svg />
+      <button className={cx(['buttons', 'google'])} onClick={() => onClick('google')} disabled>
+        <GoogleIcon />
         Google로 시작하기
         <div />
       </button>
       <button className={cx(['buttons', 'kakao'])} onClick={() => onClick('kakao')}>
-        <SocialLogoIcon>
-          <SocialLogoIcon.Kakao />
-        </SocialLogoIcon>
+        <KaKaoIcon />
         KAKAO로 시작하기
         <div />
       </button>
-      <button className={cx(['buttons', 'naver'])} onClick={() => onClick('naver')}>
-        <svg />
+      <button className={cx(['buttons', 'naver'])} onClick={() => onClick('naver')} disabled>
+        <NaverIcon />
         네이버로 시작하기
         <div />
       </button>
