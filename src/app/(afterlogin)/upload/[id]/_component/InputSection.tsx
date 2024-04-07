@@ -1,6 +1,6 @@
 'use client';
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { usePatchPresentationData, usePostPresentationData } from '../_hooks/presentation';
 import useToggle from '@/app/_hooks/useToggle';
@@ -69,7 +69,7 @@ const InputSection = ({
     reset,
     setValue,
     getValues,
-    formState: { defaultValues, isSubmitting, isSubmitted, errors },
+    formState: { isSubmitting, errors },
   } = useForm<ValidtaionType>();
 
   useEffect(() => {
@@ -84,31 +84,41 @@ const InputSection = ({
     resetFormData();
   }, [presentationData, currentPageIndex]);
 
-  const changeCurrentPageIndex = async (nextIndex: number) => {
-    if (currentPageIndex === presentationData.slides.length - 1) {
-      setCurrpentPageIndex(nextIndex);
-    } else {
-      // 폼 데이터 사용 (watch도 가능)
-      setErrorForMovePage({
-        memo: getValues('memo').length > MAX_LENGTH.MEMO,
-        script: {
-          minLength: getValues('script').length === 0,
-          maxLength: getValues('script').length > MAX_LENGTH.SCRIPT,
-        },
-      });
+  const changeCurrentPageIndex = useCallback(
+    (nextIndex: number) => {
+      if (currentPageIndex === presentationData.slides.length - 1) {
+        setCurrpentPageIndex(nextIndex);
+      } else {
+        // 폼 데이터 사용 (watch도 가능)
+        setErrorForMovePage({
+          memo: getValues('memo').length > MAX_LENGTH.MEMO,
+          script: {
+            minLength: getValues('script').length === 0,
+            maxLength: getValues('script').length > MAX_LENGTH.SCRIPT,
+          },
+        });
 
-      if (
-        errors.script ||
-        errors.memo ||
-        getValues('script').length > MAX_LENGTH.SCRIPT ||
-        getValues('script').length === 0 ||
-        getValues('memo').length > MAX_LENGTH.MEMO
-      )
-        return;
+        if (
+          errors.script ||
+          errors.memo ||
+          getValues('script').length > MAX_LENGTH.SCRIPT ||
+          getValues('script').length === 0 ||
+          getValues('memo').length > MAX_LENGTH.MEMO
+        )
+          return;
 
-      setCurrpentPageIndex(nextIndex);
-    }
-  };
+        setCurrpentPageIndex(nextIndex);
+      }
+    },
+    [
+      currentPageIndex,
+      errors.memo,
+      errors.script,
+      getValues,
+      presentationData.slides.length,
+      setCurrpentPageIndex,
+    ],
+  );
 
   return (
     <div className={styles.container}>
@@ -207,6 +217,7 @@ const InputSection = ({
               setValue={setValue}
               errorForMovePage={errorForMovePage}
             />
+
             <UploadMemo
               memo={presentationData.slides[currentPageIndex].memo || ''}
               lastDummyPageIndex={presentationData.slides.length - 1}

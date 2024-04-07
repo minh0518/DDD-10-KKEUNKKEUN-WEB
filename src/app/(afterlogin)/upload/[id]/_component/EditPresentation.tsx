@@ -7,10 +7,12 @@ import { UploadDataType } from '@/types/service';
 import { useGetPresentationData } from '../_hooks/presentation';
 
 import InputSection from './InputSection';
+import Spinner from '@/app/_components/_modules/Spinner';
 
 interface EditPresentationProps {
   slug: number;
 }
+
 const EditPresentation = ({ slug }: EditPresentationProps) => {
   const initialState: UploadDataType = {
     title: null,
@@ -30,7 +32,8 @@ const EditPresentation = ({ slug }: EditPresentationProps) => {
   const [presentationData, setPresentationData] = useState<UploadDataType>(initialState);
   const [currentPageIndex, setCurrpentPageIndex] = useState(0);
 
-  const value: UploadDataType = useGetPresentationData(slug);
+  const { value, isLoading }: { value: UploadDataType; isLoading: boolean } =
+    useGetPresentationData(slug);
 
   useEffect(() => {
     const initailSetting = async () => {
@@ -48,14 +51,20 @@ const EditPresentation = ({ slug }: EditPresentationProps) => {
   }, [value]);
 
   return (
-    <InputSection
-      presentationData={presentationData}
-      setPresentationData={setPresentationData}
-      currentPageIndex={currentPageIndex}
-      setCurrpentPageIndex={setCurrpentPageIndex}
-      slug={slug}
-      initialState={initialState}
-    />
+    <>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <InputSection
+          presentationData={presentationData}
+          setPresentationData={setPresentationData}
+          currentPageIndex={currentPageIndex}
+          setCurrpentPageIndex={setCurrpentPageIndex}
+          slug={slug}
+          initialState={initialState}
+        />
+      )}
+    </>
   );
 };
 

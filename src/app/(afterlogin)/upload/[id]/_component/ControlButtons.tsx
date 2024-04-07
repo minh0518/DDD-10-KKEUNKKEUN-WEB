@@ -1,17 +1,20 @@
 'use client';
+import React from 'react';
 
 import { Dispatch, MouseEvent, SetStateAction } from 'react';
 
 import Image from 'next/image';
 
-import { UploadDataType, ValidtaionType } from '@/types/service';
-
 import styles from './ControlButtons.module.scss';
 import classNames from 'classnames/bind';
 
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
+
 import { FieldErrors, UseFormGetValues } from 'react-hook-form';
+
+import { UploadDataType, ValidtaionType } from '@/types/service';
+
+import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 import { MAX_LENGTH } from '@/config/const';
 
 const cx = classNames.bind(styles);
@@ -30,7 +33,6 @@ const ControlButtons = ({
   presentationData,
   setPresentationData,
   currentPageIndex,
-  slug,
   changeCurrentPageIndex,
   getValues,
   errors,
@@ -209,4 +211,4 @@ const ControlButtons = ({
   );
 };
 
-export default ControlButtons;
+export default React.memo(ControlButtons);

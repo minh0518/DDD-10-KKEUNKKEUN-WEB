@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 
 // TODO: useSuspenseQuery 사용 버그 처리
 export const useGetPresentationData = (slug: number) => {
-  const { data: value } = useQuery({
+  const { data: value, isLoading } = useQuery({
     queryKey: ['upload', slug],
     queryFn: async () => {
       const res = await clientPptApi.getPresentationData(slug);
@@ -16,12 +16,11 @@ export const useGetPresentationData = (slug: number) => {
     },
   });
 
-  return value;
+  return { value, isLoading };
 };
 
 export const usePostPresentationData = (submitAction: 'save' | 'start') => {
   const router = useRouter();
-  const queryClient = useQueryClient();
 
   const { openToast } = useToastStore();
 

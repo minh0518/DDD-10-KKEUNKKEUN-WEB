@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEventHandler, forwardRef, useState } from 'react';
+import { ChangeEventHandler, forwardRef, useEffect, useState } from 'react';
 
 import { ValidtaionType } from '@/types/service';
 
@@ -55,6 +55,12 @@ const UploadScript = forwardRef<HTMLInputElement, UploadScriptProps>(
       }
       setCurrentLength(value.length);
     };
+
+    useEffect(() => {
+      (function reset() {
+        setCurrentLength(script.length);
+      })();
+    }, [currentPageIndex, script.length]);
 
     return (
       <div className={styles.container}>

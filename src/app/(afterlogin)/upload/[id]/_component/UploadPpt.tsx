@@ -39,50 +39,25 @@ const UploadPpt = ({
       const file = imageRef.current.files[0];
 
       if (file) {
-        // const reader = new FileReader();
-        // reader.onloadend = () => {
-        //   setPresentationData((prev) => {
-        //     const shallow = [...prev.slides];
-        //     shallow[currentPageIndex] = {
-        //       ...shallow[currentPageIndex],
-        //       imageFileId: {
-        //         dataURL: reader.result as string, // 미리보기용
-        //         file, // 서버용
-        //       },
-        //     };
-
-        //     // 추가
-        //     if (currentPageIndex === prev.slides.length - 1) {
-        //       shallow.push(initialState.slides[0]);
-        //     }
-
-        //     return {
-        //       ...prev,
-        //       slides: shallow,
-        //     };
-        //   });
-        // };
-
-        // reader.readAsDataURL(file);
-        // const imageResponse = await FileService.fileUpload(file);
-        // const { id, path } = await imageResponse.json();
         const { id, path } = await FileService.fileUpload(file);
         setPresentationData((prev) => {
-          const shallow = [...prev.slides];
-          shallow[currentPageIndex] = {
-            ...shallow[currentPageIndex],
+          const shallow = { ...prev };
+          shallow.title = getValues('title');
+          const shallowSlides = [...shallow.slides];
+          shallowSlides[currentPageIndex] = {
+            ...shallowSlides[currentPageIndex],
+            script: getValues('script'),
+            memo: getValues('memo'),
             imageFileId: id,
             imageFilePath: path,
           };
-
           // 추가
           if (currentPageIndex === prev.slides.length - 1) {
-            shallow.push(initialState.slides[0]);
+            shallowSlides.push(initialState.slides[0]);
           }
-
           return {
-            ...prev,
-            slides: shallow,
+            ...shallow,
+            slides: shallowSlides,
           };
         });
       }
