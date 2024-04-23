@@ -1,0 +1,11 @@
+@import '@/styles/globals';
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    margin: 0 0 12px;
+    font-size: $h2;
+  }
+}

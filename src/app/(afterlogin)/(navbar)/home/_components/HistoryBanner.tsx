@@ -1,13 +1,17 @@
-import { PresentationListType } from '@/types/service';
+import { LatestPresentationType, PresentationListType } from '@/types/service';
 import styles from './HistoryBanner.module.scss';
 import ExerciseInfo from './_elements/ExerciseInfo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useGetLatestPresentation } from '../_hooks/presentationList';
 
 interface Props {
   presentation: PresentationListType['page']['content'][0];
 }
 const HistoryBanner = ({ presentation }: Props) => {
+  // const { data: latestData }: { data: LatestPresentationType | string | undefined } =
+  //   useGetLatestPresentation();
+
   return (
     <section className={styles.container}>
       <div className={styles.history}>

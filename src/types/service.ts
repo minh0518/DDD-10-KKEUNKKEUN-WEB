@@ -236,20 +236,18 @@ export interface UploadFile {
 
 export interface PresentationListType {
   page: {
-    content: [
-      {
-        id: number;
-        title: string;
-        dday: number;
-        timeLimit: {
-          hours: number;
-          minutes: number;
-        };
-        thumbnailPath: string;
-        createdAt: Date;
-        modifiedAt: Date;
-      },
-    ];
+    content: {
+      id: number;
+      title: string;
+      dday: number;
+      timeLimit: {
+        hours: number;
+        minutes: number;
+      };
+      thumbnailPath: string;
+      createdAt: Date;
+      modifiedAt: Date;
+    }[];
     totalPages: number;
     totalElements: number;
     empty: false;
@@ -265,4 +263,85 @@ export interface LatestPresentationType {
   };
   createdAt: Date;
   modifiedAt: Date;
+}
+
+export interface FeedbackListType {
+  page: {
+    content: {
+      id: number;
+      title: string;
+      practiceDate: Date;
+      totalScore: number;
+      status: 'IN_PROGRESS' | 'DONE';
+    }[];
+    totalPages: number;
+    totalElements: number;
+    empty: boolean;
+  };
+}
+export interface FeedbackInfoType {
+  id: number;
+  title: string;
+  practiceDate: Date;
+  practiceTimes: number;
+  isFirstPractice: boolean;
+  totalScore: number;
+  variationFeedback: {
+    beforeTotalScore: number;
+    increasePercentage: number;
+    description: string;
+  };
+  memorizationFeedback: {
+    score: number;
+    grade: string;
+    description: string;
+  };
+  speedFeedback: {
+    score: string;
+    grade: string;
+    description: string;
+  };
+  timeFeedback: {
+    targetTime: {
+      hours: number;
+      minutes: number;
+      seconds: number;
+    };
+    practicedTime: {
+      hours: number;
+      minutes: number;
+      seconds: number;
+    };
+  };
+  memorizationSentenceReivew: {
+    slides: [
+      {
+        id: number;
+        imageFilePath: string;
+        script: string;
+        hasWordError: boolean;
+        wordErros: [
+          {
+            offset: number;
+            length: number;
+            end: number;
+            text: string;
+          },
+          {
+            offset: number;
+            length: number;
+            end: number;
+            text: string;
+          },
+        ];
+      },
+      {
+        id: number;
+        imageFilePath: string;
+        script: string;
+        hasWordError: boolean;
+        wordErros: string[];
+      },
+    ];
+  };
 }

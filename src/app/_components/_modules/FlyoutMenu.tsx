@@ -26,7 +26,7 @@ const FlyoutMenu = ({ context, children }: Props) => {
     /** 이벤트 등록 */
     window.addEventListener('mousedown', closeModal);
     return () => {
-      window.addEventListener('mousedown', closeModal);
+      window.removeEventListener('mousedown', closeModal);
     };
   }, [flyoutContext]);
 
@@ -57,6 +57,7 @@ const ToggleButton = ({ children }: ReactChildrenProps) => {
 const MenuList = ({ children }: ReactChildrenProps) => {
   const context = useToggleContext();
 
+  // ToggleButton은 계속 유지한 체, flyout의 메뉴들만 보여주거나 없애거나
   if (!context.isOpen) return null;
 
   return <ul className={styles.flyout__list}>{children}</ul>;

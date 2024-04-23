@@ -1,3 +1,4 @@
+import SettingNav from './_components/SettingNav';
 import SettingProcess from './_components/SettingProcess';
 import styles from './page.module.scss';
 import { serverSettingApi } from '@/services/server/setting';
@@ -10,7 +11,6 @@ const page = async ({ params }: PageProps) => {
   const slug = Number(params.id);
 
   const queryClient = new QueryClient();
-  // await queryClient.prefetchQuery({
   await queryClient.fetchQuery({
     queryKey: ['setting', slug],
     queryFn: async () => {
@@ -21,10 +21,13 @@ const page = async ({ params }: PageProps) => {
   const dehydratedState = dehydrate(queryClient);
 
   return (
-    <div className={styles.container}>
-      <HydrationBoundary state={dehydratedState}>
-        <SettingProcess />
-      </HydrationBoundary>
+    <div>
+      <SettingNav id={slug} />
+      <div className={styles.container}>
+        <HydrationBoundary state={dehydratedState}>
+          <SettingProcess />
+        </HydrationBoundary>
+      </div>
     </div>
   );
 };

@@ -1,0 +1,43 @@
+@import '@/styles/mixins';
+
+.content {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  height: 500px;
+  padding: 40px 73px;
+  background-color: $white;
+  flex: 1;
+  border-radius: 16px;
+
+  .top {
+    & > p:nth-child(2) {
+      margin: 10px 0;
+      color: $gray-7;
+    }
+
+    & > div:nth-child(3) {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  .bottom {
+    height: 72px;
+
+    p {
+      color: $gray-6;
+    }
+  }
+}
+
+.notFirst {
+  padding: 40px 17px;
+}

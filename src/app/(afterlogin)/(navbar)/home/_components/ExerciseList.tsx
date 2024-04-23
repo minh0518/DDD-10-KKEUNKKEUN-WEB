@@ -6,9 +6,8 @@ import PlusIcon from './_svgs/PlusIcon';
 import { clientHomeApi } from '@/services/client/home';
 import { useInView } from 'react-intersection-observer';
 import { Fragment, useEffect } from 'react';
-import { LatestPresentationType, PresentationListType } from '@/types/service';
+import { PresentationListType } from '@/types/service';
 import { useRouter } from 'next/navigation';
-import { useGetLatestPresentation } from '../_hooks/presentationList';
 
 const ExerciseList = () => {
   const router = useRouter();

@@ -34,6 +34,10 @@ h5 {
   font-size: 14px;
 }
 
+p {
+  margin: 0;
+}
+
 button,
 p,
 textarea,

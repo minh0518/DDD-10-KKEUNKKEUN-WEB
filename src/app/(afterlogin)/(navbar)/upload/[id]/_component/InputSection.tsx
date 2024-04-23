@@ -13,7 +13,7 @@ import UploadTimer from './UploadTimer';
 import UploadPpt from './UploadPpt';
 import ControlButtons from './ControlButtons';
 import Required from './Required';
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
+
 import Confirm from '@/app/_components/_modules/_modal/Confirm';
 
 import styles from './InputSection.module.scss';
@@ -22,6 +22,7 @@ import { UploadDataType, ValidtaionType } from '@/types/service';
 import { MAX_LENGTH } from '@/config/const';
 
 import { useRouter } from 'next/navigation';
+import PptImageSvgs from '../_svgs/PptImgSvgs';
 
 interface InputSectionProps {
   presentationData: UploadDataType;

@@ -26,7 +26,7 @@ const ModalLayout = ({ hasClosedDim = true, children }: Props) => {
       /** 이벤트 등록 */
       window.addEventListener('mousedown', closeModal);
       return () => {
-        window.addEventListener('mousedown', closeModal);
+        window.removeEventListener('mousedown', closeModal);
       };
     }
   }, [context]);

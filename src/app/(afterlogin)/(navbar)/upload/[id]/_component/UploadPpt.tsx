@@ -4,10 +4,11 @@ import Image from 'next/image';
 import { ChangeEventHandler, Dispatch, SetStateAction, useRef } from 'react';
 import styles from './UploadPpt.module.scss';
 import { UploadDataType, ValidtaionType } from '@/types/service';
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
+
 import { FieldErrors, UseFormGetValues } from 'react-hook-form';
 import { MAX_LENGTH } from '@/config/const';
 import { FileService } from '@/services/client/file';
+import PptImageSvgs from '../_svgs/PptImgSvgs';
 
 interface UploadPptProps {
   pptInfo: UploadDataType['slides'][0];

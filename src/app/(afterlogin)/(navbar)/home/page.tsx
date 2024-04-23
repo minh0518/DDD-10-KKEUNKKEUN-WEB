@@ -1,9 +1,9 @@
 import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query';
-import ExerciseList from './_components/ExerciseList';
 import HistoryBanner from './_components/HistoryBanner';
 import styles from './page.module.scss';
 import { serverHomeApi } from '@/services/server/home';
 import GuideForNew from './_components/GuideForNew';
+import CardList from '../_components/CardList';
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -36,7 +36,8 @@ export default async function Page() {
         <div className={styles.container}>
           <HydrationBoundary state={dehydratedState}>
             {latestResponse !== 'empty' && <HistoryBanner presentation={latestResponse} />}
-            <ExerciseList />
+            {/* <ExerciseList /> */}
+            <CardList usage="home" />
           </HydrationBoundary>
         </div>
       )}

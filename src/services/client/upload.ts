@@ -18,6 +18,8 @@ export const clientPptApi = {
     const response = await fetch_ClientAuth(`/api/presentations/${presentationId}`, {
       method: 'GET',
     });
+    // const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
+    // await delay(3000);
 
     return response;
   },

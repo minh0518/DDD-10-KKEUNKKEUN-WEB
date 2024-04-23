@@ -1,11 +1,18 @@
 import LogoIcon from '@/app/_svgs/LogoIcon';
-
 import styles from './SettingNav.module.scss';
 import CloseIcon from '@/app/_svgs/CloseIcon';
 import classNames from 'classnames';
 import CancelButton from './CancelButton';
+import { UploadDataType } from '@/types/service';
+import { serverPptApi } from '@/services/server/upload';
 
-const SettingNav = () => {
+interface Props {
+  id: number;
+}
+
+const SettingNav = async ({ id }: Props) => {
+  const data = await serverPptApi.getPresentationData(id);
+  const pptResult = (await data.json()) as UploadDataType;
   return (
     <nav className={styles.container}>
       <div className={styles.content}>
@@ -15,7 +22,7 @@ const SettingNav = () => {
             className={classNames([styles.presentationList, styles.clicked])}
             name="presentationList"
           >
-            발표 목록
+            {pptResult.title}
           </button>
         </div>
 

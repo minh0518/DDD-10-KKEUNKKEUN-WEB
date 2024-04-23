@@ -10,18 +10,25 @@ export interface ToggleType {
  *
  * - isOpen: 노출 여부
  * - onOpen: 컴포넌트를 노출 시키는 함수
- * - onOpen: 컴포넌트를 미노출 시키는 함수
+ * - onClose: 컴포넌트를 미노출 시키는 함수
  */
 const useToggle = (): ToggleType => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const onOpen = useCallback(() => {
+  // const onOpen = useCallback(() => {
+  //   setIsOpen(true);
+  // }, []);
+  const onOpen = () => {
     setIsOpen(true);
-  }, []);
+  };
 
-  const onClose = useCallback(() => {
+  // const onClose = useCallback(() => {
+  //   setIsOpen(false);
+  // }, []);
+
+  const onClose = () => {
     setIsOpen(false);
-  }, []);
+  };
 
   return { isOpen, onOpen, onClose };
 };

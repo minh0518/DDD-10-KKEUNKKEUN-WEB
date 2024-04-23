@@ -14,8 +14,8 @@ import { FieldErrors, UseFormGetValues } from 'react-hook-form';
 
 import { UploadDataType, ValidtaionType } from '@/types/service';
 
-import PptImageSvgs from '@/app/(afterlogin)/upload/[id]/_svgs/PptImgSvgs';
 import { MAX_LENGTH } from '@/config/const';
+import PptImageSvgs from '../_svgs/PptImgSvgs';
 
 const cx = classNames.bind(styles);
 
