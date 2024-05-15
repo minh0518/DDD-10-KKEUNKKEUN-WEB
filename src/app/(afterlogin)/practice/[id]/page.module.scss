@@ -1,0 +1,129 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding: 60px;
+}
+
+.contents {
+  width: 1320px;
+  height: 870px;
+}
+
+.presentation {
+  width: 900px;
+  height: 100%;
+  border: 1px solid $gray-1;
+  border-radius: 15px;
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 510px;
+    margin-bottom: 40px;
+  }
+}
+
+.helper {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 240px;
+  flex-direction: column;
+
+  textarea {
+    padding: 20px;
+  }
+
+  &__subtitle {
+    font-size: $font-3;
+
+    &--next {
+      margin-left: 12px;
+      color: $gray-10;
+    }
+
+    &--memo {
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+  }
+
+  .recording {
+    color: $gray-8;
+  }
+
+  .pausing {
+    color: $pink-4;
+  }
+
+  .memo-validation {
+    margin-top: 4px;
+    color: $gray-8;
+    text-align: end;
+
+    &--error {
+      color: $error;
+    }
+  }
+
+  &__recorder {
+    @include pure-button;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 35px;
+    background: $pink-4;
+    color: $white;
+    border-radius: 12px;
+
+    &:disabled {
+      background: $gray-0;
+      color: $gray-2;
+    }
+  }
+
+  &__item {
+    width: 100%;
+    height: 100%;
+    margin-top: 12px;
+    border: 1px solid $gray-1;
+    border-radius: 15px;
+  }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 370px;
+    height: 100%;
+  }
+}
+
+.script {
+  width: 100%;
+  height: 100%;
+
+  &__box {
+    width: 100%;
+    height: 320px;
+    padding: 20px;
+    border: 1px solid $gray-1;
+    border-radius: 15px;
+  }
+}
+
+.bubble {
+  position: absolute;
+  top: 75px;
+  left: 35%;
+}

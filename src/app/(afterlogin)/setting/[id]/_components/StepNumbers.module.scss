@@ -1,0 +1,45 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.number {
+  @include flex-center;
+
+  width: 25px;
+  height: 25px;
+  border-radius: 60px;
+  background-color: $gray-2;
+  color: $white;
+
+  &.selected {
+    background-color: $gray-6;
+  }
+}
+
+.label {
+  @include flex-center;
+
+  color: $gray-2;
+
+  p {
+    margin: 0;
+  }
+
+  &.selected {
+    color: $gray-6;
+  }
+}
+
+.line {
+  width: 97px;
+  height: 2px;
+  background-color: $gray-2;
+
+  &.selected {
+    background-color: $gray-6;
+  }
+}

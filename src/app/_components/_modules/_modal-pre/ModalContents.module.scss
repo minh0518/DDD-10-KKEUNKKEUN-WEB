@@ -1,0 +1,23 @@
+@import '@/styles/mixins';
+
+.exitUpload_firstParagraph {
+  margin: 0;
+  font-size: px-to-rem(26px);
+  font-weight: bolder;
+}
+
+.exitUpload_secondParagraph {
+  margin: 0;
+  margin-top: 20px;
+  font-size: px-to-rem(20px);
+}
+
+.exitUpload_cancelButton {
+  @include button_theme_lined;
+  @include button_size_web;
+}
+
+.exitUpload_submitButton {
+  @include button_theme_default;
+  @include button_size_web;
+}

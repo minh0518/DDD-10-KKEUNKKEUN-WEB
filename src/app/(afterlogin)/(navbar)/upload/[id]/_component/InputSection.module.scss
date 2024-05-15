@@ -1,0 +1,96 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: stretch;
+  gap: 62px;
+}
+
+.leftSectionWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+.description {
+  margin: 24px 0 40px;
+  font-size: px-to-rem(28px);
+  font-weight: bolder;
+
+  span {
+    margin-left: 20px;
+    font-size: px-to-rem(20px);
+  }
+}
+
+.leftSection {
+  width: 504px;
+}
+
+.cancelButton {
+  @include pure-button;
+
+  margin-left: auto;
+  margin-top: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.rightSectionWrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-grow: 1;
+  margin-bottom: 95px;
+}
+
+.rightSection {
+  display: flex;
+  width: 874px;
+  flex-direction: column;
+}
+
+.line {
+  width: 100%;
+  margin: 33px 0 22px;
+  border-top: 2px solid $gray-1;
+}
+
+.saveButtons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  height: 56px;
+
+  .save {
+    @include button_theme_lined;
+    @include flex-center;
+
+    width: 100%;
+    height: 100%;
+    max-width: 117px;
+    font-size: px-to-rem(20px);
+    border-radius: 12px;
+  }
+
+  .start {
+    @include button_theme_default;
+    @include flex-center;
+
+    width: 100%;
+    height: 100%;
+    max-width: 743px;
+    border-radius: 12px;
+    font-size: px-to-rem(20px);
+  }
+}
+
+.modlaConfirmButton {
+  @include button_size_web;
+  @include button_theme_default;
+}
+
+.modalCancelButton {
+  @include button_size_web;
+  @include button_theme_lined;
+}

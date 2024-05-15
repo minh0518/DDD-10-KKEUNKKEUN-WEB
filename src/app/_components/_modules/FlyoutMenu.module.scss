@@ -1,0 +1,45 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.flyout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  .dimmed {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__button {
+    @include pure-button;
+
+    margin-bottom: 8px;
+  }
+
+  &__list {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 2;
+    width: 120px;
+    padding: 0;
+    background: $white;
+    border: 1px solid $gray-1;
+    border-radius: 8px;
+    box-shadow: 2px 2px 3px $gray-2;
+  }
+
+  &__item {
+    padding: 12px;
+    border-bottom: 1px solid $gray-1;
+
+    &:last-child {
+      border: unset;
+    }
+  }
+}

@@ -1,0 +1,95 @@
+/** Color - gray */
+$gray-10: #1e1e1e;
+$gray-9: #393939;
+$gray-8: #4b4b4b;
+$gray-7: #5e5e5e;
+$gray-6: #727272;
+$gray-5: #868686;
+$gray-4: #9b9b9b;
+$gray-3: #b0b0b0;
+$gray-2: #c6c6c6;
+$gray-1: #dddd;
+$gray-0: #f3f3f3;
+
+/** Color - purple */
+$purple-9: #0000e6;
+$purple-8: #2507eb;
+$purple-7: #4312f0;
+$purple-6: #5a1df8;
+$purple-5: #6822ff; // primary
+$purple-4: #854cff;
+$purple-3: #9f70ff;
+$purple-2: #bc9bff;
+$purple-1: #d7c4fe;
+$purple-0: #f0e7ff;
+
+/** Color - Pink */
+$pink-0: #ffe4ed;
+$pink-1: #ffbad1;
+$pink-2: #ff8db3;
+$pink-3: #ff5b94;
+$pink-4: #ff2e7b;
+$pink-5: #fe0062;
+$pink-6: #ed0060;
+$pink-7: #d7005c;
+$pink-8: #c20059;
+$pink-9: #9c0054;
+
+/** Color - green */
+$green-1: #009b00;
+$green-2: #06be34;
+
+/** Color - yellow */
+$yellow: #f8e049;
+
+/** Color - red */
+$red-7: #de3428;
+$red-5: #ff4a2e;
+$red-3: #ef7771;
+
+/** Color - black, white */
+$white: #ffff;
+$black: $gray-10;
+
+/** Color - value */
+$primary: $purple-5;
+$secondary: $gray-6;
+$error: $red-5;
+
+/** Font - Headline */
+$h1: 32px;
+$h2: 24px;
+$h3: 18px;
+$h4: 16px;
+$h5: 14px;
+
+/** Font - Body */
+$font-1: 18px;
+$font-2: 16px;
+$font-3: 14px;
+$font-4: 12px;
+
+/** # textarea */
+// 사이즈
+$textarea-size-md: (
+  height: 150px,
+  padding: 20px 20px,
+  font-size: 0.9rem,
+);
+$textarea-size-lg: (
+  height: 350px,
+  padding: 20px 30px,
+  font-size: 1.1rem,
+);
+
+// 너비
+$textarea-width-full: (
+  width: 100%,
+);
+
+// 색상 테마
+$textarea-theme-gray: (
+  background-color: $gray-1,
+  color: black,
+  border-radius: 15px,
+);

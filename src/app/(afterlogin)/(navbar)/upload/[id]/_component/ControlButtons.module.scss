@@ -1,0 +1,94 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  ::-webkit-scrollbar {
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gray-3;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $gray-3;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+}
+
+.singlePptPage {
+  position: relative;
+  width: 107px; // border-box
+  height: 62px; // border-box
+  background-color: transparent;
+  border: 1px solid $gray-3;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &.selected {
+    border: 3px solid $purple-4;
+  }
+}
+
+.closeButton {
+  @include pure-button;
+  @include flex-center;
+
+  position: absolute;
+  top: 8%;
+  left: 8%;
+  width: 19px;
+  height: 19px;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: none;
+  transition: box-shadow 0.1s ease;
+
+  &:hover {
+    box-shadow: 0 2px 4px rgb(0 0 0 / 100%);
+  }
+}
+
+.orderNumber {
+  @include flex-center;
+
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  height: 20px;
+  color: $white;
+  font-size: px-to-rem(13px);
+  background-color: $gray-5;
+  border-top-left-radius: 8px;
+  border-end-end-radius: 4px;
+
+  &.selected {
+    background-color: $purple-4;
+  }
+}
+
+.addButton {
+  @include pure-button;
+  @include flex-center;
+
+  display: inline-block;
+  min-width: 107px; // border-box
+  height: 62px; // border-box
+  border: 1px solid $gray-3;
+  border-radius: 15px;
+}

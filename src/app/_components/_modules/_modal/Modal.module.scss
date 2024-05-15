@@ -1,0 +1,33 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px;
+  background: $white;
+  flex-direction: column;
+  border-radius: 16px;
+
+  &--sm {
+    width: 600px;
+    min-height: 350px;
+  }
+
+  &--lg {
+    width: 800px;
+    min-height: 650px;
+  }
+}
+
+.header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  button {
+    @include pure-button;
+  }
+}

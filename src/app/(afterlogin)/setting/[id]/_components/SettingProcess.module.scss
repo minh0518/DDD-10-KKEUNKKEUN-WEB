@@ -1,0 +1,15 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 1006px;
+  padding-top: 70px;
+  padding-bottom: 154px;
+  flex-direction: column;
+
+  .confirmButton {
+    @include button_size_web;
+    @include button_theme_default;
+  }
+}

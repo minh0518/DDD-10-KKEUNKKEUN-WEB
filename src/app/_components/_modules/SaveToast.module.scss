@@ -1,0 +1,22 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.toastContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 92px;
+  left: 50%;
+  width: 297px;
+  height: 56px;
+  font-size: px-to-rem($h2);
+  transform: translate(-50%, 0%);
+  background-color: $gray-5;
+  border-radius: 5px;
+
+  p {
+    margin: 0;
+    color: white;
+  }
+}

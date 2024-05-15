@@ -1,0 +1,45 @@
+@import '@/styles/mixins';
+
+.container {
+  @include flex-center;
+
+  width: 100dvw;
+  height: 100dvh;
+  background-color: $purple-6;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
+  width: 704px;
+  height: 720px;
+  padding: 137px 122px 148px;
+  background-color: $white;
+  border-radius: 16px;
+  flex-direction: column;
+}
+
+.description {
+  margin-top: 20px;
+
+  p {
+    margin: 0;
+  }
+
+  p:nth-of-type(1) {
+    font-size: px-to-rem(24px);
+    font-weight: bolder;
+  }
+
+  p:nth-of-type(2) {
+    margin-top: 15px;
+    font-size: px-to-rem(18px);
+  }
+}
+
+.socialButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-top: 75px;
+}

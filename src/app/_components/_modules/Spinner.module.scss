@@ -1,0 +1,33 @@
+@import '@/styles/mixins';
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  @include flex-center;
+
+  width: 100dvw;
+  height: 100dvh;
+
+  circle:nth-of-type(1) {
+    stroke: $purple-5;
+    opacity: 0.2;
+  }
+
+  circle:nth-of-type(2) {
+    stroke: $purple-5;
+    stroke-dasharray: 80;
+    stroke-dashoffset: 60;
+  }
+}
+
+.loader {
+  animation: rotating 2s linear infinite;
+}

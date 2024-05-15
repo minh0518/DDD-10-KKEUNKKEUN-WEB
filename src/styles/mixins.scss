@@ -1,0 +1,192 @@
+@import '@/styles/globals';
+
+$tmp-backgroud-color: #d7d7d7;
+
+@function px-to-rem($size, $base-font-size: $font-2) {
+  @return $size / $base-font-size * 1rem;
+}
+
+// line
+@mixin line($lineCount: 1) {
+  /* 사용법 : @include line(라인수) */
+  @if $lineCount == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else if $lineCount == 'auto' {
+    display: block;
+    overflow: visible;
+  } @else {
+    /* autoprefixer: off */
+    -webkit-box-orient: vertical;
+
+    /* autoprefixer: on */
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-line-clamp: $lineCount;
+  }
+}
+
+// # etc
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin pure-button {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+
+// # 해상도
+@mixin content-width {
+  width: 1440px;
+}
+
+// # textarea
+@mixin textarea-size($size) {
+  height: map-get($size, height);
+  padding: map-get($size, padding);
+  font-size: map-get($size, font-size);
+}
+
+@mixin textarea-width($width) {
+  width: map-get($width, width);
+}
+
+@mixin textarea-theme($theme) {
+  background-color: map-get($theme, background-color);
+  color: map-get($theme, color);
+  border-radius: map-get($theme, border-radius);
+}
+
+// # button
+
+// ## size
+// ### 웹 버튼 사이즈 (모달, 그 외 기본 버튼(삭제하기,확인,..))
+@mixin button_size_web {
+  width: 227px;
+  height: 56px;
+  font-size: px-to-rem($h2);
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+// ### 모바일 모달 confirm 버튼 사이즈
+@mixin button_size_mobile_modal_confirm {
+  width: 128px;
+  height: 48px;
+  font-size: $font-2;
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+// ### 모바일 모달 alert 버튼 사이즈
+@mixin button_size_mobile_modal_alert {
+  width: 264px;
+  height: 48px;
+  font-size: $font-2;
+
+  // 내부 글씨 중앙 정렬
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 12px;
+}
+
+// ## theme
+
+// ### 버튼 default 테마
+@mixin button_theme_default {
+  background-color: $gray-9;
+  color: $white;
+  border: none;
+  &:hover {
+    background-color: $primary;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $gray-9;
+    cursor: pointer;
+  }
+  &:disabled {
+    background-color: $gray-3;
+    cursor: not-allowed;
+  }
+}
+
+// ### 버튼 inverted 테마
+@mixin button_theme_inverted {
+  background-color: $white;
+  color: $primary;
+  border: 1px solid $primary;
+  &:hover {
+    color: $purple-4;
+    border: 1px solid $purple-4;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $white;
+    color: $primary;
+    cursor: pointer;
+  }
+  &:disabled {
+    color: $gray-2;
+    border: 1px solid $gray-0;
+    cursor: not-allowed;
+  }
+}
+
+// ### 버튼 lined 테마
+@mixin button_theme_lined {
+  background-color: $white;
+  color: $secondary;
+  border: 1px solid $gray-3;
+  &:hover {
+    color: $gray-4;
+    border: 1px solid $gray-2;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $white;
+    color: $secondary;
+    border: 1px solid $gray-3;
+    cursor: pointer;
+  }
+}
+
+// ### 버튼 error 테마
+@mixin button_theme_error {
+  background-color: $error;
+  color: $white;
+  border: none;
+  &:hover {
+    background-color: $error;
+    cursor: pointer;
+  }
+  &:active {
+    background-color: $error;
+    cursor: pointer;
+  }
+}

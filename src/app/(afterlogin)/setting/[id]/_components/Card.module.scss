@@ -1,0 +1,44 @@
+@import '@/styles/mixins';
+
+.container {
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  width: 480px;
+  height: 401px;
+  padding: 20px;
+  border: 1px solid $gray-1;
+  flex-direction: column;
+  border-radius: 22px;
+  background-color: $white;
+
+  &.selected {
+    box-shadow: 3px 3px 3px rgb(0 0 0 / 20%);
+    border: 1px solid $pink-2;
+  }
+}
+
+.image {
+  width: 440px;
+  height: 247px;
+  border: 1px solid $gray-1;
+  border-radius: 16px;
+}
+
+.title {
+  margin: 0;
+  margin-top: 20px;
+  color: $purple-5;
+
+  &.selected {
+    color: $pink-4;
+  }
+}
+
+.content {
+  margin: 0;
+  font-size: calc($font-1 - 1px);
+  font-weight: 500;
+  padding-top: 10px;
+  letter-spacing: -1.5%;
+}

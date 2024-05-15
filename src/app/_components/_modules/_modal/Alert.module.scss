@@ -1,0 +1,29 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 580px;
+  height: 290px;
+  padding: 40px;
+  border-radius: 16px;
+  background: $white;
+}
+
+.message {
+  margin-top: 8px;
+  font-size: $font-1;
+}
+
+.action {
+  @include pure-button;
+  @include button_theme_default;
+
+  width: 230px;
+  height: 55px;
+  margin-top: 40px;
+  border-radius: 12px;
+}

@@ -1,0 +1,46 @@
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 12px;
+}
+
+.description {
+  margin: 0;
+  font-size: px-to-rem(22px);
+  font-weight: bolder;
+}
+
+.label {
+  font-size: px-to-rem(20px);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendarButton {
+  width: 148px;
+  height: 29px;
+  padding: 5px 12px;
+  border: none;
+  font-size: px-to-rem(20px);
+  border-radius: 4px;
+  background-color: $gray-0;
+
+  p {
+    margin: 0;
+
+    &.placeholder {
+      color: $gray-3;
+    }
+
+    &.selected {
+      color: black;
+    }
+  }
+}
