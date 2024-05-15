@@ -11,10 +11,9 @@ interface Props {
   };
 }
 const page = async ({ params }: Props) => {
-  // const id = Number(params.id);
-  // console.log(id);
-  // const res = await serverFeedbackApi.getFeedbackInfo(id);
-  // console.log(res);
+  const id = Number(params.id);
+  const res = await serverFeedbackApi.getFeedbackInfo(id);
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>

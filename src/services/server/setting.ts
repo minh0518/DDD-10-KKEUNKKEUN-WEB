@@ -1,4 +1,5 @@
 import { fetch_ServerAuth } from './fetchServer';
+import { SERVER_BASE_URL } from './serverApiBaseURL';
 
 export const serverSettingApi = {
   /**
@@ -7,7 +8,7 @@ export const serverSettingApi = {
    */
   getPresentationSettingData: async (presentationId: number) => {
     const response = await fetch_ServerAuth(
-      `${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/practices/presentation/${presentationId}`,
+      `${SERVER_BASE_URL}/api/practices/presentation/${presentationId}`,
       { method: 'GET', cache: 'no-store' },
     );
 

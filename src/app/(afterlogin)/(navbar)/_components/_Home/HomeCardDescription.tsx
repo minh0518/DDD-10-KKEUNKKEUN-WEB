@@ -1,20 +1,21 @@
 import React from 'react';
 import styles from './HomeCardDescription.module.scss';
-import { PresentationListType } from '@/types/service';
+import { CardListType } from '@/types/service';
+import { PresentationListTypeGuard } from '@/types/guards';
 
 interface Props {
-  presentation?: PresentationListType['page']['content'][0];
+  listInfo: CardListType;
 }
 
-const HomeCardDescription = ({ presentation }: Props) => {
-  return (
-    presentation && (
-      <span className={styles.desc}>
-        D{presentation.dday < 0 ? `+${Math.abs(presentation.dday)}` : `-${presentation.dday}`}
-        <em className={styles.division}></em>
-        발표 시간 {presentation.timeLimit.hours * 60 + presentation.timeLimit.minutes}분
-      </span>
-    )
+const HomeCardDescription = ({ listInfo }: Props) => {
+  return listInfo && PresentationListTypeGuard(listInfo) ? (
+    <span className={styles.desc}>
+      D{listInfo.dday < 0 ? `+${Math.abs(listInfo.dday)}` : `-${listInfo.dday}`}
+      <em className={styles.division}></em>
+      발표 시간 {listInfo.timeLimit.hours * 60 + listInfo.timeLimit.minutes}분
+    </span>
+  ) : (
+    <></>
   );
 };
 

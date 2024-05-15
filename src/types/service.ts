@@ -273,6 +273,9 @@ export interface FeedbackListType {
       practiceDate: Date;
       totalScore: number;
       status: 'IN_PROGRESS' | 'DONE';
+      thumbnailPath: string; // 임시
+      createdAt: Date; // 임시
+      modifiedAt: Date; // 임시
     }[];
     totalPages: number;
     totalElements: number;
@@ -345,3 +348,7 @@ export interface FeedbackInfoType {
     ];
   };
 }
+
+export type CardListType =
+  | PresentationListType['page']['content'][0]
+  | FeedbackListType['page']['content'][0];

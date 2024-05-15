@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { fetch_ServerAuth } from './fetchServer';
+import { SERVER_BASE_URL } from './serverApiBaseURL';
 
 export const serverUserApi = {
   /**
@@ -7,7 +8,7 @@ export const serverUserApi = {
    * @return 유저 정보 객체를 반환합니다
    */
   getUserInfo: async () => {
-    const res = await fetch_ServerAuth(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/accounts/me`, {
+    const res = await fetch_ServerAuth(`${SERVER_BASE_URL}/api/accounts/me`, {
       method: 'GET',
       headers: { Cookie: cookies().toString() },
       cache: 'no-store',

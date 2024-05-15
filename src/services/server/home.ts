@@ -1,9 +1,10 @@
 import { fetch_ServerAuth } from './fetchServer';
+import { SERVER_BASE_URL } from './serverApiBaseURL';
 
 export const serverHomeApi = {
   getPresentationList: async ({ pageParam }: { pageParam?: number }) => {
     const response = await fetch_ServerAuth(
-      `${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/presentations?page=${pageParam}&size=6`,
+      `${SERVER_BASE_URL}/api/presentations?page=${pageParam}&size=6`,
       { method: 'GET', cache: 'no-store' },
     );
 
@@ -12,16 +13,13 @@ export const serverHomeApi = {
   },
 
   getLatestPresentation: async () => {
-    const response = await fetch_ServerAuth(
-      `${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/presentations/latest`,
-      {
-        method: 'GET',
-        cache: 'no-store',
-        // headers: {
-        //   'Content-Type': 'application/json',
-        // },
-      },
-    );
+    const response = await fetch_ServerAuth(`${SERVER_BASE_URL}/api/presentations/latest`, {
+      method: 'GET',
+      cache: 'no-store',
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
+    });
 
     if (response.ok) return response;
     throw new Error('데이터를 불러오는 도중 문제가 발생했습니다');

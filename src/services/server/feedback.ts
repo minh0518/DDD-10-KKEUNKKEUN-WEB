@@ -1,13 +1,13 @@
 import { fetch_ServerAuth } from './fetchServer';
+import { SERVER_BASE_URL } from './serverApiBaseURL';
 
 export const serverFeedbackApi = {
   getFeedbackInfo: async (feedbackId: number) => {
-    const response = await fetch_ServerAuth(
-      `${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/feedbacks/${feedbackId}`,
-      {
-        method: 'GET',
-      },
-    );
+    const response = await fetch_ServerAuth(`${SERVER_BASE_URL}/api/feedbacks/${feedbackId}`, {
+      method: 'GET',
+    });
+    // console.log('response');
+    // console.log(response);
     if (response.ok) return response;
 
     const errorBody = await response.json();
@@ -15,7 +15,7 @@ export const serverFeedbackApi = {
   },
   getFeedbackList: async ({ pageParam }: { pageParam?: number }) => {
     const response = await fetch_ServerAuth(
-      `${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/feedbacks?page=${pageParam}&size=6`,
+      `${SERVER_BASE_URL}/api/feedbacks?page=${pageParam}&size=6`,
       {
         method: 'GET',
       },

@@ -4,10 +4,11 @@ import styles from './CardList.module.scss';
 import { clientHomeApi } from '@/services/client/home';
 import { useInView } from 'react-intersection-observer';
 import { Fragment, useEffect } from 'react';
-import { PresentationListType } from '@/types/service';
+import { CardListType, FeedbackListType, PresentationListType } from '@/types/service';
 import { useRouter } from 'next/navigation';
 import PlusIcon from '../home/_components/_svgs/PlusIcon';
 import CardItem from './CardItem';
+import { clientFeedbackApi } from '@/services/client/feedback';
 
 // 패칭 api
 // 최근 발표 사용 여부
@@ -28,6 +29,8 @@ const CardList = ({ usage }: Props) => {
         return await response.json();
       }
       if (usage === 'feedback') {
+        const response = await clientFeedbackApi.getFeedbackList({ pageParam });
+        return await response.json();
       }
     },
     initialPageParam: 0,
@@ -58,15 +61,15 @@ const CardList = ({ usage }: Props) => {
 
   return (
     <section className={styles.container}>
-      <h2>내 발표연습 목록</h2>
+      <h2>내 {usage === 'home' ? '발표연습' : '피드백'} 목록</h2>
 
       <ul className={styles.exercise__box}>
-        {data?.pages.map((eachPage: PresentationListType, index) => {
+        {data?.pages.map((eachPage: PresentationListType | FeedbackListType, index) => {
           return (
             <Fragment key={index}>
-              {eachPage.page.content.map((presentation, index) => (
+              {eachPage.page.content.map((listInfo: CardListType, index) => (
                 <li className={styles.exercise} key={index}>
-                  <CardItem presentation={presentation} usage={usage} />
+                  <CardItem listInfo={listInfo} usage={usage} />
                 </li>
               ))}
             </Fragment>

@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import styles from './SocialLoginButtons.module.scss';
 
 import { SOCIAL_ACCESS_URL } from '@/config/path';
-import Image from 'next/image';
 import GoogleIcon from '../_svgs/GoogleIcon';
 import NaverIcon from '../_svgs/NaverIcon';
 import KaKaoIcon from '../_svgs/KaKaoIcon';

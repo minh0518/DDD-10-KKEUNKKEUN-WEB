@@ -17,7 +17,7 @@ const GetToken = () => {
 
   useEffect(() => {
     const getLogin = async () => {
-      const nextServerUrl = `${process.env.NEXT_PUBLIC_ROUTE_HANDLER}/api/get/auth/kakao?code=${codeQuery}`;
+      // const nextServerUrl = `${process.env.NEXT_PUBLIC_ROUTE_HANDLER}/api/get/auth/kakao?code=${codeQuery}`;
       const clientUrl = `/api/accounts/login/process?code=${codeQuery}&provider=kakao`;
       try {
         const loginResponse = await fetch(`${clientUrl}`, {
