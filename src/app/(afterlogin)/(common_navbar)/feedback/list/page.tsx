@@ -14,6 +14,7 @@ export default async function Page() {
     },
     initialPageParam: 0,
   });
+  console.log(listResponse.pages[0].page);
 
   const isEmpty = listResponse.pages[0].page.empty;
 

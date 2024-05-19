@@ -1,9 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "https://server.pregen.co/api/:path*"
-    },
-    { "source": "/(.*)", "destination": "/" }
-  ]
-}
