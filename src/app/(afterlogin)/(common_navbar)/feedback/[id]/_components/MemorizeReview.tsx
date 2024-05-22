@@ -1,4 +1,8 @@
-const MemorizeReview = () => {
+interface Props {
+  id: number;
+}
+
+const MemorizeReview = ({ id }: Props) => {
   return <div></div>;
 };
 

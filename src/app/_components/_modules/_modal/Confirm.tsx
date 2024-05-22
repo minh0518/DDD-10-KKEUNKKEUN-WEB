@@ -20,7 +20,7 @@ interface Props {
   /** 오른쪽 취소 버튼 이벤트 (기본 값 : 창 닫음) */
   onCancelClick?: () => void;
 }
-
+const cx = classNames.bind(styles);
 const Confirm = ({
   context,
   title,
@@ -30,8 +30,6 @@ const Confirm = ({
   onOkayClick,
   onCancelClick,
 }: Props) => {
-  const cx = classNames.bind(styles);
-
   const handleOkay = () => {
     onOkayClick();
     context.onClose();

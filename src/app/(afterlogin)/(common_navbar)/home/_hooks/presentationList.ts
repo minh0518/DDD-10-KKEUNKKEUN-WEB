@@ -1,5 +1,7 @@
 import { clientHomeApi } from '@/services/client/home';
+import { clientPptApi } from '@/services/client/upload';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
 
 export const useGetLatestPresentation = () => {
   const response = useQuery({
@@ -18,7 +20,7 @@ export const useDeletePresentation = (id: number) => {
   const response = useMutation({
     mutationKey: ['delete', id],
     mutationFn: async () => {
-      const response = await clientHomeApi.deletePresentationList({ presentationIds: [id] });
+      await clientHomeApi.deletePresentationList({ presentationIds: [id] });
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['home', 'list'] });
@@ -26,6 +28,26 @@ export const useDeletePresentation = (id: number) => {
     onError: (error) => {
       alert(error.message);
     },
+  });
+  return response;
+};
+
+export const useStartPresentation = (presentationId: number, start: boolean) => {
+  const router = useRouter();
+  const response = useQuery({
+    queryKey: [presentationId, 'start'],
+    queryFn: async () => {
+      try {
+        const response = await clientPptApi.getPracticeStart(presentationId);
+        router.push(`/setting/${presentationId}`);
+        return await response.json();
+      } catch (e) {
+        if (e instanceof Error) alert(e.message);
+      }
+    },
+    staleTime: 0,
+    gcTime: 0,
+    enabled: !!start,
   });
   return response;
 };

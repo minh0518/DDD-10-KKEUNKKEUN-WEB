@@ -5,21 +5,16 @@ import { clientHomeApi } from '@/services/client/home';
 import { useInView } from 'react-intersection-observer';
 import { Fragment, useEffect } from 'react';
 import { CardListType, FeedbackListType, PresentationListType } from '@/types/service';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import PlusIcon from '../home/_components/_svgs/PlusIcon';
 import CardItem from './CardItem';
 import { clientFeedbackApi } from '@/services/client/feedback';
 
-// 패칭 api
-// 최근 발표 사용 여부
-// 이미지 아래 설명 컨텐츠
-// 이미지 아래 버튼
-interface Props {
-  usage: 'home' | 'feedback';
-}
-const CardList = ({ usage }: Props) => {
-  // 여기서 피드백의 경우, 완료가 안 된게 있으면 1초마다 fetch
+const CardList = () => {
+  // 피드백의 경우, 완료가 안 된게 있으면 1초마다 fetch
   const router = useRouter();
+  const pathname = usePathname();
+  const usage: 'feedback' | 'home' = pathname === `/feedback/list` ? 'feedback' : 'home';
 
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } = useInfiniteQuery({
     queryKey: [usage, 'list'],
@@ -33,6 +28,8 @@ const CardList = ({ usage }: Props) => {
         return await response.json();
       }
     },
+    staleTime: 0,
+    gcTime: 0,
     initialPageParam: 0,
     getNextPageParam: (lastPage, pages) => {
       if (lastPage && pages) {
@@ -69,7 +66,7 @@ const CardList = ({ usage }: Props) => {
             <Fragment key={index}>
               {eachPage.page.content.map((listInfo: CardListType, index) => (
                 <li className={styles.exercise} key={index}>
-                  <CardItem listInfo={listInfo} usage={usage} />
+                  <CardItem listInfo={listInfo} />
                 </li>
               ))}
             </Fragment>

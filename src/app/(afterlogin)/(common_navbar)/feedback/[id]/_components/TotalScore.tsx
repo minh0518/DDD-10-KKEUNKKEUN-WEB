@@ -1,12 +1,18 @@
 import styles from './TotalScore.module.scss';
-import GoodIcon from '../_svgs/GoodIcon';
-import GoalIcon from '../_svgs/GoalIcon';
-import ScoreIcon from '../_svgs/ScoreIcon';
 import Link from 'next/link';
-const TotalScore = () => {
+import { FeedbackInfoType } from '@/types/service';
+import { formatDate } from '../../_utils/date';
+import SpeedFeedback from './SpeedFeedback';
+
+interface Props {
+  feedbackData: FeedbackInfoType;
+}
+
+const TotalScore = ({ feedbackData }: Props) => {
+  // TODO: 외울 문장 가리기 사용 유무에 따른 분기처리(전체 피드백, 속도 피드백) 필요
   return (
     <div>
-      <h2>발표 제목 종합 피드백</h2>
+      {/* <h2>발표 제목 종합 피드백</h2>
       <div className={styles.content}>
         <div className={styles.total_result}>
           <GoodIcon />
@@ -22,13 +28,24 @@ const TotalScore = () => {
           <div className={styles.goal}>
             <GoalIcon />
           </div>
-          {/* <div className={styles.score}>
+          <div className={styles.score}>
             <ScoreIcon />
-          </div> */}
+          </div>
         </div>
+        <Link className={styles.practice_Link} href="#">
+          <h2>발표 연습 시작하기</h2>
+        </Link>
+      </div> */}
+
+      <div className={styles.title}>
+        <h2>발표 속도 피드백</h2>
+        <p className={styles.date}>평가 일시 : {formatDate(feedbackData.practiceDate)}</p>
+      </div>
+      <div className={styles.content}>
+        <SpeedFeedback speedData={feedbackData.speedFeedback} />
         <div>
-          <Link className={styles.practice_Link} href="#">
-            <h2>발표 연습 시작하기</h2>
+          <Link className={styles.practice_Link} href={`/home`}>
+            <h2>발표 연습 다시하기</h2>
           </Link>
         </div>
       </div>

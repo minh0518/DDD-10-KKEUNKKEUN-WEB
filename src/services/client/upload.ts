@@ -11,6 +11,10 @@ export const clientPptApi = {
       },
       body: JSON.stringify(data),
     });
+    if (!response.ok) {
+      const errorBody = await response.json();
+      throw new Error(errorBody.message || '데이터를 저장하는 도중 문제가 발생 했습니다');
+    }
     return response;
   },
 
@@ -20,6 +24,11 @@ export const clientPptApi = {
     });
     // const delay = (ms: any) => new Promise((resolve) => setTimeout(resolve, ms));
     // await delay(3000);
+
+    if (!response.ok) {
+      const errorBody = await response.json();
+      throw new Error(errorBody.message || '데이터를 가져오는 도중 문제가 발생 했습니다');
+    }
 
     return response;
   },
@@ -37,6 +46,19 @@ export const clientPptApi = {
     if (!response.ok) {
       const errorBody = await response.json();
       throw new Error(errorBody.message || '데이터를 저장하는 도중 문제가 발생 했습니다');
+    }
+
+    return response;
+  },
+
+  getPracticeStart: async (presentationId: number) => {
+    const response = await fetch_ClientAuth(`/api/practices/presentation/${presentationId}/start`, {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.json();
+      throw new Error(errorBody.message || '데이터를 저장하는 도중 문제가 발생 했습니다!');
     }
 
     return response;

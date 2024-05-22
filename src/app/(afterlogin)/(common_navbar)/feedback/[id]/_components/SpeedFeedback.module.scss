@@ -1,0 +1,21 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  h1 {
+    font-size: $h1;
+  }
+
+  p {
+    color: $gray-8;
+  }
+}

@@ -14,7 +14,7 @@ const GoalIcon = () => {
           r="16.9583"
           fill="white"
           stroke="#DDDDDD"
-          stroke-width="2.75"
+          strokeWidth="2.75"
         />
       </svg>
     </i>

@@ -37,7 +37,7 @@ export default async function Page() {
           <HydrationBoundary state={dehydratedState}>
             {latestResponse !== 'empty' && <HistoryBanner presentation={latestResponse} />}
             {/* <ExerciseList /> */}
-            <CardList usage="home" />
+            <CardList />
           </HydrationBoundary>
         </div>
       )}

@@ -14,7 +14,6 @@ export default async function Page() {
     },
     initialPageParam: 0,
   });
-  console.log(listResponse.pages[0].page);
 
   const isEmpty = listResponse.pages[0].page.empty;
 
@@ -27,7 +26,7 @@ export default async function Page() {
       ) : (
         <div className={styles.container}>
           <HydrationBoundary state={dehydratedState}>
-            <CardList usage="feedback" />
+            <CardList />
           </HydrationBoundary>
         </div>
       )}
