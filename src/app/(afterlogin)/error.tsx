@@ -29,10 +29,8 @@ export default function Error({
       // 미들웨어 기반 리다이렉션
       window.location.href = fullUrl;
     };
-    if (error.message === 'reIssue') reIssue();
+    reIssue();
   }, [error]);
-
-  alert(error.message);
 
   return (
     <>
