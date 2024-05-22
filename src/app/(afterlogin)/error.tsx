@@ -32,6 +32,8 @@ export default function Error({
     if (error.message === 'reIssue') reIssue();
   }, [error]);
 
+  alert(error.message);
+
   return (
     <>
       {error.message === 'reIssue' ? (
