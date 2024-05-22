@@ -1,0 +1,14 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &__title {
+    font-size: $h2;
+
+    @include line(2);
+  }
+}

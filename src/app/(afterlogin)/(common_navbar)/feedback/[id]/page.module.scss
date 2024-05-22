@@ -1,0 +1,14 @@
+.container {
+  min-width: 1320px;
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  margin-top: 70px;
+  margin-bottom: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 1320px;
+}

@@ -270,7 +270,7 @@ export interface FeedbackListType {
     content: {
       id: number;
       title: string;
-      practiceDate: Date;
+      practiceDate: string;
       totalScore: number;
       status: 'IN_PROGRESS' | 'DONE';
       thumbnailPath: string; // 임시
@@ -285,7 +285,7 @@ export interface FeedbackListType {
 export interface FeedbackInfoType {
   id: number;
   title: string;
-  practiceDate: Date;
+  practiceDate: string;
   practiceTimes: number;
   isFirstPractice: boolean;
   totalScore: number;
@@ -295,14 +295,18 @@ export interface FeedbackInfoType {
     description: string;
   };
   memorizationFeedback: {
+    title: string;
     score: number;
     grade: string;
     description: string;
+    subGrade: '미흡' | '완벽';
   };
   speedFeedback: {
+    title: string;
     score: string;
     grade: string;
     description: string;
+    subGrade: '미흡' | '완벽';
   };
   timeFeedback: {
     targetTime: {
