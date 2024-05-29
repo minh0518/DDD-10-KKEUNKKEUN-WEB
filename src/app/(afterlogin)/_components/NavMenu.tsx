@@ -109,8 +109,8 @@ const NavMenu = () => {
           confirmFeedback.onClose();
         }}
       />
-      <button onClick={tmpReIssueTest}>재발급</button>
-      <button onClick={tmpMyInfoTest}>내 정보</button>
+      {/* <button onClick={tmpReIssueTest}>토큰 재발급</button>
+      <button onClick={tmpMyInfoTest}>내 정보</button> */}
     </>
   );
 };

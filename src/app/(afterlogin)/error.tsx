@@ -29,12 +29,13 @@ export default function Error({
       // 미들웨어 기반 리다이렉션
       window.location.href = fullUrl;
     };
+    // if (error.message === 'reIssue') reIssue();
     reIssue();
   }, [error]);
 
   return (
     <>
-      {error.message === 'reIssue' ? (
+      {/* {error.message === 'reIssue' ? (
         <Spinner />
       ) : (
         <div>
@@ -48,7 +49,8 @@ export default function Error({
             Try again
           </button>
         </div>
-      )}
+      )} */}
+      <Spinner />
     </>
   );
 }
