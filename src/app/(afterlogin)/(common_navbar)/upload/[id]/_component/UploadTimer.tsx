@@ -1,8 +1,6 @@
 'use client';
 
-import { ChangeEventHandler, Dispatch, SetStateAction, forwardRef } from 'react';
-
-import Input from '@/app/_components/_elements/Input';
+import { ChangeEventHandler, Dispatch, SetStateAction, forwardRef, useState } from 'react';
 
 import { UploadDataType, ValidtaionType } from '@/types/service';
 
@@ -20,6 +18,7 @@ interface UploadTimerProps {
 
 const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
   ({ timeLimit, alertTime, setPresentationData, currentPageIndex, getValues }, ref) => {
+    const [warn, setWarn] = useState(false);
     const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
       let { name, value } = e.target;
       let changeValue = Number(value);
@@ -41,12 +40,31 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
 
         if (name === 'alertTime_hour') {
           if (changeValue > 12) changeValue = 12;
-          alertTimeShallow['hours'] = changeValue;
+          const alarmHour = changeValue;
+          const alarmMinute = alertTimeShallow['minutes'] ?? 0;
+          const limitHour = timeLimitShallow['hours'] ?? 0;
+          const limitMinute = timeLimitShallow['minutes'] ?? 0;
+          if (alarmHour * 60 + alarmMinute >= limitHour * 60 + limitMinute) {
+            setWarn(true);
+          } else {
+            setWarn(false);
+            alertTimeShallow['hours'] = changeValue;
+          }
         }
 
         if (name === 'alertTime_minute') {
           if (changeValue > 59) changeValue = 59;
-          alertTimeShallow['minutes'] = changeValue;
+
+          const alarmHour = alertTimeShallow['hours'] ?? 0;
+          const alarmMinute = changeValue;
+          const limitHour = timeLimitShallow['hours'] ?? 0;
+          const limitMinute = timeLimitShallow['minutes'] ?? 0;
+          if (alarmHour * 60 + alarmMinute >= limitHour * 60 + limitMinute) {
+            setWarn(true);
+          } else {
+            setWarn(false);
+            alertTimeShallow['minutes'] = changeValue;
+          }
         }
 
         shallow.title = getValues('title');
@@ -64,39 +82,6 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
           slides: shallowSlides,
         };
       });
-      // setPresentationData((prev) => {
-      //   let { name, value } = e.target;
-      //   let changeValue = Number(value);
-
-      //   const timeLimitShallow = { ...prev.timeLimit };
-      //   const alertTimeShallow = { ...prev.alertTime };
-
-      //   if (name === 'timeLimit_hour') {
-      //     if (changeValue > 12) changeValue = 12;
-      //     timeLimitShallow['hours'] = changeValue;
-      //   }
-
-      //   if (name === 'timeLimit_minute') {
-      //     if (changeValue > 59) changeValue = 59;
-      //     timeLimitShallow['minutes'] = changeValue;
-      //   }
-
-      //   if (name === 'alertTime_hour') {
-      //     if (changeValue > 12) changeValue = 12;
-      //     alertTimeShallow['hours'] = changeValue;
-      //   }
-
-      //   if (name === 'alertTime_minute') {
-      //     if (changeValue > 59) changeValue = 59;
-      //     alertTimeShallow['minutes'] = changeValue;
-      //   }
-
-      //   return {
-      //     ...prev,
-      //     timeLimit: timeLimitShallow,
-      //     alertTime: alertTimeShallow,
-      //   };
-      // });
     };
 
     return (
@@ -136,6 +121,9 @@ const UploadTimer = forwardRef<HTMLInputElement, UploadTimerProps>(
           </label>
 
           <div className={styles.timerInput}>
+            {warn && (
+              <p className={styles.alarmWaring}>알림 시간은 총 발표 시간보다 작아야 합니다.</p>
+            )}
             <input
               type="number"
               id="alarm"
