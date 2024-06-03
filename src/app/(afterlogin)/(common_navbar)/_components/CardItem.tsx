@@ -16,6 +16,7 @@ import CardInfo from './CardInfo';
 import PracticeButton from './_Home/PracticeButton';
 import FeedbackScoreButton from './_Feedback/FeedbackScoreButton';
 import { FeedbackListTypeGuard, PresentationListTypeGuard } from '@/types/guards';
+import { CDN_BASE_URL } from '@/config/path';
 
 interface Props {
   listInfo: CardListType;
@@ -46,7 +47,7 @@ const CardItem = ({ listInfo }: Props) => {
 
   const thumbnailImage = listInfo.thumbnailPath ? (
     <Image
-      src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${listInfo.thumbnailPath}`}
+      src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
       alt={`${listInfo.id} 썸네일`}
       width={440}
       height={250}

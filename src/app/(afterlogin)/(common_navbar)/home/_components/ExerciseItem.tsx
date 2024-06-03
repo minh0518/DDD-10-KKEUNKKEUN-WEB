@@ -12,6 +12,7 @@ import { PresentationListType } from '@/types/service';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useDeletePresentation } from '../_hooks/presentationList';
+import { CDN_BASE_URL } from '@/config/path';
 
 interface Props {
   presentation: PresentationListType['page']['content'][0];
@@ -43,7 +44,7 @@ const ExerciseItem = ({ presentation }: Props) => {
       <article className={styles.container}>
         <div className={styles.thumbnail}>
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${presentation.thumbnailPath}`}
+            src={`${CDN_BASE_URL}/${presentation.thumbnailPath}`}
             alt={`${presentation.id} 썸네일`}
             width={440}
             height={250}

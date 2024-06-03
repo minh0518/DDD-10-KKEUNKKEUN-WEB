@@ -1,6 +1,5 @@
-import { UploadDataType } from '@/types/service';
 import { fetch_ServerAuth } from './fetchServer';
-import { SERVER_BASE_URL } from './serverApiBaseURL';
+import { SERVER_BASE_URL } from '@/config/path';
 
 export const serverPptApi = {
   getPresentationData: async (presentationId: number) => {

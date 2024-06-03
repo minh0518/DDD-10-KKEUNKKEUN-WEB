@@ -1,9 +1,9 @@
-import { LatestPresentationType, PresentationListType } from '@/types/service';
+import { PresentationListType } from '@/types/service';
 import styles from './HistoryBanner.module.scss';
 import ExerciseInfo from './_elements/ExerciseInfo';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useGetLatestPresentation } from '../_hooks/presentationList';
+import { CDN_BASE_URL } from '@/config/path';
 
 interface Props {
   presentation: PresentationListType['page']['content'][0];
@@ -19,7 +19,7 @@ const HistoryBanner = ({ presentation }: Props) => {
         <div className={styles.history__contents}>
           <div className={styles.presentation__thumbnail}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${presentation.thumbnailPath}`}
+              src={`${CDN_BASE_URL}/${presentation.thumbnailPath}`}
               width={165}
               height={90}
               alt="최근 발표 이미지"

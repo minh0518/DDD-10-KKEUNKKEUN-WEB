@@ -6,3 +6,13 @@ export const SOCIAL_ACCESS_URL = {
   NAVER: '',
   GOOGLE: '',
 };
+
+export const SERVER_BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_BASE_URL_DEV
+    : process.env.NEXT_PUBLIC_BASE_URL_PROD;
+
+export const CDN_BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_CDN_BASE_URL_DEV
+    : process.env.NEXT_PUBLIC_CDN_BASE_URL_PROD;
