@@ -4,7 +4,8 @@ import { Dispatch, SetStateAction } from 'react';
 import Card from './Card';
 import styles from './SelectCardSection.module.scss';
 
-import { SettingDataType, SlidesSettingType } from '@/types/service';
+import { SlidesSettingType } from '@/types/service';
+import { CDN_BASE_URL } from '@/config/path';
 interface SelectCardSectionProps {
   settingInfo: SlidesSettingType;
   currentStep: number;
@@ -22,7 +23,7 @@ const SelectCardSection = ({
 }: SelectCardSectionProps) => {
   const firstStepCardInfo = [
     {
-      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/show.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/show.png`,
       title: '모든 문장 보기',
       content: [
         '발표문 암기를 못 했을 때 추천드려요!',
@@ -30,7 +31,7 @@ const SelectCardSection = ({
       ],
     },
     {
-      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/hide.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/hide.png`,
       title: '외울 문장 가리기',
       content: [
         '대본 암기를 잘 했는지 확인할 때 추천드려요!',
@@ -41,12 +42,12 @@ const SelectCardSection = ({
 
   const thirdStepCardInfo = [
     {
-      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/desktop.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/desktop.png`,
       title: '데스크탑',
       content: ['PPT 슬라이드, 타이머, 그리고 발표문을', ' 테스크탑에서 보실 수 있어요.'],
     },
     {
-      imageSrc: `${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/both.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/both.png`,
       title: '데스트탑과 모바일',
       content: [
         '모바일에서는 타이머와 발표문, 그리고 리모콘 기능을 제공해요.',

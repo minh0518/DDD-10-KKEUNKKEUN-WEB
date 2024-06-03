@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 import { fetch_ServerAuth } from './fetchServer';
-import { SERVER_BASE_URL } from './serverApiBaseURL';
+import { SERVER_BASE_URL } from '@/config/path';
 
 export const serverUserApi = {
   /**

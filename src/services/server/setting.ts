@@ -1,5 +1,5 @@
+import { SERVER_BASE_URL } from '@/config/path';
 import { fetch_ServerAuth } from './fetchServer';
-import { SERVER_BASE_URL } from './serverApiBaseURL';
 
 export const serverSettingApi = {
   /**

@@ -16,6 +16,7 @@ import { UploadDataType, ValidtaionType } from '@/types/service';
 
 import { MAX_LENGTH } from '@/config/const';
 import PptImageSvgs from '../_svgs/PptImgSvgs';
+import { CDN_BASE_URL } from '@/config/path';
 
 const cx = classNames.bind(styles);
 
@@ -158,7 +159,7 @@ const ControlButtons = ({
                           })}
                         >
                           <Image
-                            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${item.imageFilePath}`}
+                            src={`${CDN_BASE_URL}/${item.imageFilePath}`}
                             fill
                             alt="ppt이미지"
                             style={{ objectFit: 'contain', borderRadius: '8px' }}

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styles from './page.module.scss';
 import Image from 'next/image';
+import { CDN_BASE_URL } from '@/config/path';
 
 export default function Page() {
   return (
@@ -26,7 +27,7 @@ export default function Page() {
       <div className={styles.rightSectionWrapper}>
         <div className={styles.rightSection}>
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/data/etc/defaults/minho.gif`}
+            src={`${CDN_BASE_URL}/data/etc/defaults/minho.gif`}
             width={837}
             height={760}
             alt="gif"

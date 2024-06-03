@@ -9,6 +9,7 @@ import { FieldErrors, UseFormGetValues } from 'react-hook-form';
 import { MAX_LENGTH } from '@/config/const';
 import { FileService } from '@/services/client/file';
 import PptImageSvgs from '../_svgs/PptImgSvgs';
+import { CDN_BASE_URL } from '@/config/path';
 
 interface UploadPptProps {
   pptInfo: UploadDataType['slides'][0];
@@ -117,7 +118,7 @@ const UploadPpt = ({
           <div className={styles.pptImageSection}>
             <div className={styles.hoverSection}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${pptInfo.imageFilePath}`}
+                src={`${CDN_BASE_URL}/${pptInfo.imageFilePath}`}
                 alt={`${currentPageIndex + 1}페이지 ppt 이미지`}
                 width={503}
                 height={283}

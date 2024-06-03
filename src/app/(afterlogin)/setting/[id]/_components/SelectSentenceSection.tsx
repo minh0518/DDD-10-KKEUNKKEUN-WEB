@@ -4,6 +4,7 @@ import DragSection from './DragSection';
 import styles from './SelectSentenceSection.module.scss';
 import { useState } from 'react';
 import Image from 'next/image';
+import { CDN_BASE_URL } from '@/config/path';
 
 interface SelectSentenceSectionProps {
   totalInfo: SettingDataType;
@@ -55,7 +56,7 @@ const SelectSentenceSection = ({
       <div className={styles.pptImageSection}>
         <div className={styles.image}>
           <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${totalInfo.slides[currentPage].imageFilePath}`}
+            src={`${CDN_BASE_URL}/${totalInfo.slides[currentPage].imageFilePath}`}
             width={500}
             height={281}
             alt={`${currentPage + 1}페이지 이미지`}

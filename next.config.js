@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: false,
   images: {
-    remotePatterns: [{ protocol: 'http', hostname: '124.49.161.33' }],
+    remotePatterns: [
+      process.env.NODE_ENV === 'development'
+        ? { protocol: 'http', hostname: '124.49.161.33' }
+        : { protocol: 'https', hostname: 'file.pregen.co' },
+    ],
   },
   async rewrites() {
     return [

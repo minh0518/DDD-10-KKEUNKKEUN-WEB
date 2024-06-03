@@ -17,6 +17,7 @@ import NextSlideConfirm from '../_components/NextSlideConfirm';
 import { useRouter } from 'next/navigation';
 import { FileService } from '@/services/client/file';
 import { FieldValues, useForm } from 'react-hook-form';
+import { CDN_BASE_URL } from '@/config/path';
 
 export default function Page({ params }: { params: { id: string } }) {
   const id = Number(params.id);
@@ -221,7 +222,7 @@ export default function Page({ params }: { params: { id: string } }) {
           <section className={styles.presentation__box}>
             <article className={styles.presentation}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${data?.slides[slideSeq].imageFilePath}`}
+                src={`${CDN_BASE_URL}/${data?.slides[slideSeq].imageFilePath}`}
                 alt={`slide-${slideSeq}`}
                 width={900}
                 height={510}
@@ -241,8 +242,7 @@ export default function Page({ params }: { params: { id: string } }) {
                     <div>last ... </div>
                   ) : (
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_BASE_URL_CDN}/${data?.slides[slideSeq + 1]
-                        .imageFilePath}`}
+                      src={`${CDN_BASE_URL}/${data?.slides[slideSeq + 1].imageFilePath}`}
                       alt={`slide-${slideSeq + 1}`}
                       width={370}
                       height={200}
