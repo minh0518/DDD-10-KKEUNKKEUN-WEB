@@ -7,7 +7,7 @@ import CardList from '../../_components/CardList';
 export default async function Page() {
   const queryClient = new QueryClient();
   const listResponse = await queryClient.fetchInfiniteQuery({
-    queryKey: ['home', 'list'],
+    queryKey: ['feedback', 'list'],
     queryFn: async ({ pageParam = 0 }) => {
       const response = await serverFeedbackApi.getFeedbackList({ pageParam });
       return await response.json();

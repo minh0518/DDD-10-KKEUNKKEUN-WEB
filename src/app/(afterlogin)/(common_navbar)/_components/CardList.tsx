@@ -15,6 +15,8 @@ const CardList = () => {
   const router = useRouter();
   const pathname = usePathname();
   const usage: 'feedback' | 'home' = pathname === `/feedback/list` ? 'feedback' : 'home';
+  console.log(`pathname : ${pathname}`);
+  console.log(`usage : ${usage}`);
 
   const { data, fetchNextPage, hasNextPage, isFetching, refetch } = useInfiniteQuery({
     queryKey: [usage, 'list'],
