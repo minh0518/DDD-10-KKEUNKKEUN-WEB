@@ -59,13 +59,13 @@ const NavMenu = () => {
     }
 
     if (name === 'home') {
-      router.refresh();
       router.push('/home');
+      router.refresh();
       return;
     }
     if (name === 'feedback') {
-      router.refresh();
       router.push('/feedback/list');
+      router.refresh();
       return;
     }
   };
@@ -95,6 +95,7 @@ const NavMenu = () => {
         cancelText="계속 작성하기"
         onOkayClick={() => {
           router.push('/home');
+          router.refresh();
           confirmHome.onClose();
         }}
       />
@@ -106,6 +107,7 @@ const NavMenu = () => {
         cancelText="계속 작성하기"
         onOkayClick={() => {
           router.push('/feedback/list');
+          router.refresh();
           confirmFeedback.onClose();
         }}
       />

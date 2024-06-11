@@ -12,7 +12,7 @@ const CreatePresentation = () => {
     deadlineDate: null,
     timeLimit: {
       hours: null,
-      minutes: 1,
+      minutes: null,
     },
     alertTime: {
       hours: null,

@@ -5,6 +5,7 @@ export const serverFeedbackApi = {
   getFeedbackInfo: async (feedbackId: number) => {
     const response = await fetch_ServerAuth(`${SERVER_BASE_URL}/api/feedbacks/${feedbackId}`, {
       method: 'GET',
+      cache: 'no-store',
     });
     // console.log('response');
     // console.log(response);
@@ -18,6 +19,7 @@ export const serverFeedbackApi = {
       `${SERVER_BASE_URL}/api/feedbacks?page=${pageParam}&size=6`,
       {
         method: 'GET',
+        cache: 'no-store',
       },
     );
     if (response.ok) return response;

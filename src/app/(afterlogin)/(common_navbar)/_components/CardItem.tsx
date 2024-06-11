@@ -17,6 +17,8 @@ import PracticeButton from './_Home/PracticeButton';
 import FeedbackScoreButton from './_Feedback/FeedbackScoreButton';
 import { FeedbackListTypeGuard, PresentationListTypeGuard } from '@/types/guards';
 import { CDN_BASE_URL } from '@/config/path';
+import { ReactNode } from 'react';
+import FailFeedback from './_Feedback/FailFeedback';
 
 interface Props {
   listInfo: CardListType;
@@ -41,27 +43,48 @@ const CardItem = ({ listInfo }: Props) => {
     modal.onOpen();
   };
 
-  const deleteItem = () => {
-    presentationListMutate();
+  const getThumbnailImg = (): ReactNode => {
+    if (PresentationListTypeGuard(listInfo)) {
+      return listInfo.thumbnailPath ? (
+        <Image
+          src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
+          alt={`${listInfo.id} 썸네일`}
+          width={440}
+          height={250}
+          style={{ borderRadius: '16px' }}
+        />
+      ) : (
+        <div className={styles.dummyImg} />
+      );
+    }
+    if (FeedbackListTypeGuard(listInfo)) {
+      if (listInfo.status === 'FAIL') {
+        return <FailFeedback />;
+      }
+      if (
+        (listInfo.status === 'DONE' || listInfo.status === 'IN_PROGRESS') &&
+        listInfo.thumbnailPath
+      ) {
+        return (
+          <Image
+            src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
+            alt={`${listInfo.id} 썸네일`}
+            width={440}
+            height={250}
+            style={{ borderRadius: '16px' }}
+          />
+        );
+      } else {
+        return <div className={styles.dummyImg} />;
+      }
+    }
   };
-
-  const thumbnailImage = listInfo.thumbnailPath ? (
-    <Image
-      src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
-      alt={`${listInfo.id} 썸네일`}
-      width={440}
-      height={250}
-      style={{ borderRadius: '16px' }}
-    />
-  ) : (
-    <div className={styles.dummyImg} />
-  );
 
   return (
     <>
       <article className={styles.container}>
         <div className={styles.thumbnail}>
-          {thumbnailImage}
+          {getThumbnailImg()}
           <div className={styles.menu__box}>
             {usage === 'home' && (
               <FlyoutMenu context={flyout}>
@@ -110,7 +133,7 @@ const CardItem = ({ listInfo }: Props) => {
         okayText="삭제하기"
         cancelText="취소"
         onOkayClick={() => {
-          deleteItem();
+          presentationListMutate();
         }}
       />
     </>

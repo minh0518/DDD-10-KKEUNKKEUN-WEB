@@ -10,6 +10,8 @@ import PlusIcon from '../home/_components/_svgs/PlusIcon';
 import CardItem from './CardItem';
 import { clientFeedbackApi } from '@/services/client/feedback';
 
+type StatusArrType = FeedbackListType['page']['content'][0]['status'][];
+
 const CardList = () => {
   // 피드백의 경우, 완료가 안 된게 있으면 1초마다 fetch
   const router = useRouter();
@@ -51,10 +53,37 @@ const CardList = () => {
   });
 
   useEffect(() => {
-    if (inView) {
+    // if (inView) {
+    //   !isFetching && hasNextPage && fetchNextPage();
+    // }
+    if (usage === 'feedback') {
       !isFetching && hasNextPage && fetchNextPage();
     }
-  }, [inView, isFetching, hasNextPage, fetchNextPage]);
+    if (usage === 'home' && inView) {
+      !isFetching && hasNextPage && fetchNextPage();
+    }
+  }, [inView, isFetching, hasNextPage, fetchNextPage, usage]);
+
+  useEffect(() => {
+    let refetchInterval: NodeJS.Timeout | undefined;
+    if (data !== undefined && usage === 'feedback') {
+      const statusInfo: StatusArrType = [];
+      data?.pages.forEach((i) => {
+        const row = i.page.content.map((i: FeedbackListType['page']['content'][0]) => i.status);
+        statusInfo.push(...row);
+      });
+
+      const shouldRefetch = statusInfo.some((status) => status === 'IN_PROGRESS');
+      if (shouldRefetch) {
+        refetchInterval = setInterval(() => {
+          refetch();
+        }, 1000);
+      }
+    }
+    return () => {
+      if (refetchInterval) clearInterval(refetchInterval);
+    };
+  }, [data, refetch, usage]);
 
   return (
     <section className={styles.container}>
@@ -82,8 +111,7 @@ const CardList = () => {
           <span>새 발표 추가하기</span>
         </button>
       </ul>
-
-      <div ref={ref} style={{ height: '30px' }} />
+      {usage === 'home' && <div ref={ref} style={{ height: '30px' }} />}
     </section>
   );
 };

@@ -11,7 +11,7 @@
   @include flex-center;
 
   position: relative;
-  width: 100%;
+  width: 100%; // .leftSection 전체 너비 사용
   height: 285px;
   border: 1px solid $gray-3;
   border-radius: 16px;
@@ -57,6 +57,10 @@
 }
 
 .hoverSection {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
   &:hover {
     .changePptImageButton {
       display: block;

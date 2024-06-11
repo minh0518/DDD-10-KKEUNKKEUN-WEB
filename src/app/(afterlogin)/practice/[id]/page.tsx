@@ -18,6 +18,7 @@ import { useRouter } from 'next/navigation';
 import { FileService } from '@/services/client/file';
 import { FieldValues, useForm } from 'react-hook-form';
 import { CDN_BASE_URL } from '@/config/path';
+import LastSlide from '../_components/LastSlide';
 
 export default function Page({ params }: { params: { id: string } }) {
   const id = Number(params.id);
@@ -203,7 +204,7 @@ export default function Page({ params }: { params: { id: string } }) {
   const content = watch('content') || '';
 
   const onSubmit = (data: FieldValues) => {
-    console.log('??????', data);
+    // console.log('??????', data);
   };
 
   return (
@@ -239,13 +240,15 @@ export default function Page({ params }: { params: { id: string } }) {
                 </h4>
                 <div className={styles.helper__item}>
                   {isLastSlide ? (
-                    <div>last ... </div>
+                    <div className={styles.lastSlide}>
+                      <LastSlide />
+                    </div>
                   ) : (
                     <Image
                       src={`${CDN_BASE_URL}/${data?.slides[slideSeq + 1].imageFilePath}`}
                       alt={`slide-${slideSeq + 1}`}
-                      width={370}
-                      height={200}
+                      width={375}
+                      height={210}
                       style={{ objectFit: 'contain', borderRadius: '16px' }}
                     />
                   )}

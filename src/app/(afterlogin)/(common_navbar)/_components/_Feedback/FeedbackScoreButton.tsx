@@ -9,16 +9,26 @@ interface Props {
 }
 
 const FeedbackScoreButton = ({ status, score, onClick }: Props) => {
+  const getFeedBackScore = () => {
+    if (status === 'DONE') {
+      return `${score}점`;
+    }
+    if (status === 'IN_PROGRESS') {
+      return `채점중`;
+    }
+  };
   return (
     <div className={styles.action__box}>
-      <button
-        className={styles.action}
-        onClick={() => {
-          status === 'DONE' && onClick();
-        }}
-      >
-        {status === 'DONE' ? `${score}점` : '채점중'}
-      </button>
+      {status !== 'FAIL' && (
+        <button
+          className={styles.action}
+          onClick={() => {
+            status === 'DONE' && onClick();
+          }}
+        >
+          {getFeedBackScore()}
+        </button>
+      )}
     </div>
   );
 };

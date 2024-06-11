@@ -80,6 +80,10 @@ const InputSection = ({
         script: presentationData.slides[currentPageIndex].script || '',
         memo: presentationData.slides[currentPageIndex].memo || '',
         deadlineDate: presentationData.deadlineDate,
+        timeLimit_hour: presentationData.timeLimit.hours || 0,
+        timeLimit_minute: presentationData.timeLimit.minutes || 0,
+        alertTime_hour: presentationData.alertTime.hours || 0,
+        alertTime_minute: presentationData.alertTime.minutes || 0,
       });
     };
     resetFormData();
@@ -177,29 +181,45 @@ const InputSection = ({
           <form
             onSubmit={handleSubmit(async (data) => {
               // 1. 마지막 더미 페이지 제거
-              const shallow = { ...presentationData };
-              const shallowSlides = [...presentationData.slides.slice(0, -1)];
 
-              // 2. 현재페이지의 title,script,memo를 getValue로 가져온 뒤 상태에 추가
+              const shallow = { ...presentationData };
+
+              const shallowSlides = [...shallow.slides.slice(0, -1)];
+
               shallow.title = data.title;
-              shallowSlides[currentPageIndex] = {
-                ...shallowSlides[currentPageIndex],
-                script: data.script,
-                memo: data.memo,
-              };
-              const result = {
-                ...shallow,
-                slides: shallowSlides,
-              };
+              shallow.timeLimit.hours = data.timeLimit_hour;
+              shallow.timeLimit.minutes = data.timeLimit_minute;
+              shallow.alertTime.hours = data.alertTime_hour;
+              shallow.alertTime.minutes = data.alertTime_minute;
+
+              let presentationUploadInfo;
+
+              if (currentPageIndex !== presentationData.slides.length - 1) {
+                // 2. 현재페이지의 title,script,memo를 getValue로 가져온 뒤 상태에 추가
+                shallowSlides[currentPageIndex] = {
+                  ...shallowSlides[currentPageIndex],
+                  script: data.script,
+                  memo: data.memo,
+                };
+                presentationUploadInfo = {
+                  ...shallow,
+                  slides: shallowSlides,
+                };
+              } else {
+                presentationUploadInfo = {
+                  ...shallow,
+                  slides: shallowSlides,
+                };
+              }
 
               // 3. post, patch + mutation의 onSuccess로 모달 띄우기
               if (slug === 'new') {
                 // post
-                postMutation.mutate(result);
+                postMutation.mutate(presentationUploadInfo);
               }
               if (slug !== 'new') {
                 // patch
-                patchMutation.mutate(result);
+                patchMutation.mutate(presentationUploadInfo);
               }
             })}
           >
@@ -238,11 +258,10 @@ const InputSection = ({
               getValues={getValues}
             />
             <UploadTimer
-              timeLimit={presentationData.timeLimit}
-              alertTime={presentationData.alertTime}
-              setPresentationData={setPresentationData}
-              currentPageIndex={currentPageIndex}
               getValues={getValues}
+              setValue={setValue}
+              register={register}
+              errors={errors}
             />
             <div className={styles.saveButtons}>
               <button
