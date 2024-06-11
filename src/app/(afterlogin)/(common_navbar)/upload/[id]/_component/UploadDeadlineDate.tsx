@@ -43,6 +43,11 @@ const UploadDeadlineDate = forwardRef<HTMLInputElement, UploadDeadlineDateProps>
       setPresentationData((prev) => {
         const shallow = { ...prev };
         shallow.title = getValues('title');
+        shallow.timeLimit.hours = Number(getValues('timeLimit_hour'));
+        shallow.timeLimit.minutes = Number(getValues('timeLimit_minute'));
+        shallow.alertTime.hours = Number(getValues('alertTime_hour'));
+        shallow.alertTime.minutes = Number(getValues('alertTime_minute'));
+
         shallow.deadlineDate = newValue instanceof Function ? newValue(prev.deadlineDate) : utcDate;
         const shallowSlides = [...shallow.slides];
         shallowSlides[currentPageIndex] = {

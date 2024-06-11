@@ -3,6 +3,7 @@ import { HydrationBoundary, QueryClient, dehydrate } from '@tanstack/react-query
 import React from 'react';
 import styles from './page.module.scss';
 import CardList from '../../_components/CardList';
+import EmptyFeedback from '../../_components/_Feedback/EmptyFeedback';
 
 export default async function Page() {
   const queryClient = new QueryClient();
@@ -22,7 +23,7 @@ export default async function Page() {
   return (
     <>
       {isEmpty ? (
-        <>empty</>
+        <EmptyFeedback />
       ) : (
         <div className={styles.container}>
           <HydrationBoundary state={dehydratedState}>

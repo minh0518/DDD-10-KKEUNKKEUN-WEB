@@ -81,7 +81,7 @@ const useRecorder = (): ReturnType => {
 
   /** 녹음 시작하는 함수 */
   const startRecording = () => {
-    console.log('start ~');
+    // console.log('start ~');
     if (!stream) return;
 
     const mediaRecorder = new MediaRecorder(stream);
@@ -94,7 +94,7 @@ const useRecorder = (): ReturnType => {
 
     mediaRecorder.onstop = () => {
       const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' });
-      console.log('on stop!...', audioBlob);
+      // console.log('on stop!...', audioBlob);
       setAudioBlob(audioBlob);
     };
 
@@ -107,7 +107,7 @@ const useRecorder = (): ReturnType => {
   /** 녹음 일시정지 함수 */
   const pauseRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
-      console.log('pause ...');
+      // console.log('pause ...');
       mediaRecorderRef.current.pause();
       setIsRecording(false);
     }
@@ -116,7 +116,7 @@ const useRecorder = (): ReturnType => {
   /** 녹음 재개 함수 */
   const resumeRecording = () => {
     if (mediaRecorderRef.current && !isRecording) {
-      console.log('resume ...!');
+      // console.log('resume ...!');
       mediaRecorderRef.current.resume();
       setIsRecording(true);
     }
@@ -124,7 +124,7 @@ const useRecorder = (): ReturnType => {
 
   /** 녹음 멈추는 함수 */
   const stopRecording = async () => {
-    console.log('stop!');
+    // console.log('stop!');
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
       setIsRecording(false);

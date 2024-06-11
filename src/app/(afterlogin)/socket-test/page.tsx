@@ -25,7 +25,7 @@ const Page = () => {
       const stomp = new Client({
         brokerURL: process.env.NEXT_PUBLIC_BASE_URL_SOCKET,
         debug: (str: string) => {
-          console.log(str);
+          // console.log(str);
         },
         reconnectDelay: 5000, //자동 재 연결
         heartbeatIncoming: 4000,
@@ -39,13 +39,13 @@ const Page = () => {
 
       // stomp client 연결 됐을 때 동작
       stomp.onConnect = () => {
-        console.log('WebSocket 연결이 열렸습니다.');
+        // console.log('WebSocket 연결이 열렸습니다.');
 
         stomp.subscribe(`/sub/practice/${sessionId}`, (frame) => {
           try {
             const message = JSON.parse(frame.body);
 
-            console.log(message);
+            // console.log(message);
           } catch (error) {
             console.error('오류가 발생했습니다:', error);
           }
@@ -82,7 +82,7 @@ const Page = () => {
     if (stompClient && stompClient.connected) {
       stompClient.deactivate();
     }
-    console.log('close...');
+    // console.log('close...');
   };
 
   return (

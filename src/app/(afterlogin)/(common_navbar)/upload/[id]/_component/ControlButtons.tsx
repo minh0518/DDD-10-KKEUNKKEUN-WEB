@@ -97,6 +97,11 @@ const ControlButtons = ({
     setPresentationData((prev) => {
       const shallow = { ...prev };
       shallow.title = getValues('title');
+      shallow.timeLimit.hours = Number(getValues('timeLimit_hour'));
+      shallow.timeLimit.minutes = Number(getValues('timeLimit_minute'));
+      shallow.alertTime.hours = Number(getValues('alertTime_hour'));
+      shallow.alertTime.minutes = Number(getValues('alertTime_minute'));
+
       const shallowSlides = [...shallow.slides];
       shallowSlides[currentPageIndex] = {
         ...shallowSlides[currentPageIndex],
@@ -122,6 +127,11 @@ const ControlButtons = ({
     setPresentationData((prev) => {
       const shallow = { ...prev };
       shallow.title = getValues('title');
+      shallow.timeLimit.hours = Number(getValues('timeLimit_hour'));
+      shallow.timeLimit.minutes = Number(getValues('timeLimit_minute'));
+      shallow.alertTime.hours = Number(getValues('alertTime_hour'));
+      shallow.alertTime.minutes = Number(getValues('alertTime_minute'));
+
       const shallowSlides = [...shallow.slides];
       shallowSlides[currentPageIndex] = {
         ...shallowSlides[currentPageIndex],
@@ -162,7 +172,7 @@ const ControlButtons = ({
                             src={`${CDN_BASE_URL}/${item.imageFilePath}`}
                             fill
                             alt="ppt이미지"
-                            style={{ objectFit: 'contain', borderRadius: '8px' }}
+                            style={{ borderRadius: '8px' }}
                           />
                           <button onClick={(e) => remove(e, index)} className={styles.closeButton}>
                             <PptImageSvgs>

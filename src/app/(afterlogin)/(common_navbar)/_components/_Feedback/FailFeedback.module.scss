@@ -1,0 +1,14 @@
+@import '@/styles/globals';
+@import '@/styles/mixins';
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $gray-0;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  border-radius: 16px;
+}

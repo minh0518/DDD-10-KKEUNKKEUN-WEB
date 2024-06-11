@@ -16,6 +16,7 @@ export const useGetLatestPresentation = () => {
 
 export const useDeletePresentation = (id: number) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const response = useMutation({
     mutationKey: ['delete', id],
@@ -24,6 +25,8 @@ export const useDeletePresentation = (id: number) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['home', 'list'] });
+      queryClient.invalidateQueries({ queryKey: ['home', 'latest'] });
+      router.refresh();
     },
     onError: (error) => {
       alert(error.message);

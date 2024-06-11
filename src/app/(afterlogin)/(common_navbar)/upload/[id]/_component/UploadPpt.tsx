@@ -45,6 +45,11 @@ const UploadPpt = ({
         setPresentationData((prev) => {
           const shallow = { ...prev };
           shallow.title = getValues('title');
+          shallow.timeLimit.hours = Number(getValues('timeLimit_hour'));
+          shallow.timeLimit.minutes = Number(getValues('timeLimit_minute'));
+          shallow.alertTime.hours = Number(getValues('alertTime_hour'));
+          shallow.alertTime.minutes = Number(getValues('alertTime_minute'));
+
           const shallowSlides = [...shallow.slides];
           shallowSlides[currentPageIndex] = {
             ...shallowSlides[currentPageIndex],
@@ -80,6 +85,11 @@ const UploadPpt = ({
     setPresentationData((prev) => {
       const shallow = { ...prev };
       shallow.title = getValues('title');
+      shallow.timeLimit.hours = Number(getValues('timeLimit_hour'));
+      shallow.timeLimit.minutes = Number(getValues('timeLimit_minute'));
+      shallow.alertTime.hours = Number(getValues('alertTime_hour'));
+      shallow.alertTime.minutes = Number(getValues('alertTime_minute'));
+
       const shallowSlides = [...shallow.slides];
       shallowSlides[currentPageIndex] = {
         ...shallowSlides[currentPageIndex],
@@ -120,10 +130,8 @@ const UploadPpt = ({
               <Image
                 src={`${CDN_BASE_URL}/${pptInfo.imageFilePath}`}
                 alt={`${currentPageIndex + 1}페이지 ppt 이미지`}
-                width={503}
-                height={283}
-                // fill
-                style={{ objectFit: 'contain', borderRadius: '16px' }}
+                fill
+                style={{ borderRadius: '16px' }}
                 className={styles.pptImage}
               />
               <button className={styles.changePptImageButton} onClick={onClickButton}>

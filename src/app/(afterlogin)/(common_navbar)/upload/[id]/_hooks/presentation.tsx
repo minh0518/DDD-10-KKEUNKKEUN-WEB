@@ -35,6 +35,10 @@ export const usePostPresentationData = (submitAction: 'save' | 'start') => {
     },
     onSuccess: async (response) => {
       const { presentationId } = await response.json();
+
+      queryClient.invalidateQueries({ queryKey: ['upload'] });
+      queryClient.invalidateQueries({ queryKey: ['practice'] });
+
       if (submitAction === 'start') {
         try {
           await queryClient.fetchQuery({
@@ -78,6 +82,8 @@ export const usePatchPresentationData = (submitAction: 'save' | 'start', slug: n
     },
     onSuccess: async (response) => {
       const { presentationId } = await response.json();
+      queryClient.invalidateQueries({ queryKey: ['upload'] });
+      queryClient.invalidateQueries({ queryKey: ['practice'] });
 
       if (submitAction === 'start') {
         try {

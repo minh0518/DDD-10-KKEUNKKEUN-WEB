@@ -45,7 +45,7 @@ export default function Page() {
   };
 
   const handleAlertModal = () => {
-    console.log('alert...');
+    // console.log('alert...');
     // modal.onClose();
     alert2.onOpen();
   };
@@ -140,7 +140,7 @@ export default function Page() {
           okayText="okay"
           cancelText="cancel"
           onOkayClick={() => {
-            console.log('okay okay ~');
+            // console.log('okay okay ~');
             confirm.onClose();
           }}
         />

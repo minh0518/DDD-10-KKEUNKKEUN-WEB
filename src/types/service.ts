@@ -10,6 +10,10 @@ export interface ValidtaionType {
   script: string;
   memo: string;
   deadlineDate: Value;
+  timeLimit_hour: number;
+  timeLimit_minute: number;
+  alertTime_hour: number;
+  alertTime_minute: number;
 }
 export interface MockUploadDataType {
   id?: number;
@@ -272,7 +276,7 @@ export interface FeedbackListType {
       title: string;
       practiceDate: string;
       totalScore: number;
-      status: 'IN_PROGRESS' | 'DONE';
+      status: 'IN_PROGRESS' | 'DONE' | 'FAIL';
       thumbnailPath: string; // 임시
       createdAt: Date; // 임시
       modifiedAt: Date; // 임시
