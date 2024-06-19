@@ -23,7 +23,7 @@ const SelectCardSection = ({
 }: SelectCardSectionProps) => {
   const firstStepCardInfo = [
     {
-      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/show.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/d52a1e6a920ca3a3.jpg`,
       title: '모든 문장 보기',
       content: [
         '발표문 암기를 못 했을 때 추천드려요!',
@@ -31,7 +31,7 @@ const SelectCardSection = ({
       ],
     },
     {
-      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/hide.png`,
+      imageSrc: `${CDN_BASE_URL}/data/etc/defaults/8f266994d911f0af.jpg`,
       title: '외울 문장 가리기',
       content: [
         '대본 암기를 잘 했는지 확인할 때 추천드려요!',

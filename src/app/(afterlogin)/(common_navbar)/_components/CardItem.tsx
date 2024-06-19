@@ -47,7 +47,7 @@ const CardItem = ({ listInfo }: Props) => {
     if (PresentationListTypeGuard(listInfo)) {
       return listInfo.thumbnailPath ? (
         <Image
-          src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
+          src={`${CDN_BASE_URL}${listInfo.thumbnailPath}`}
           alt={`${listInfo.id} 썸네일`}
           width={440}
           height={250}
@@ -67,7 +67,7 @@ const CardItem = ({ listInfo }: Props) => {
       ) {
         return (
           <Image
-            src={`${CDN_BASE_URL}/${listInfo.thumbnailPath}`}
+            src={`${CDN_BASE_URL}${listInfo.thumbnailPath}`}
             alt={`${listInfo.id} 썸네일`}
             width={440}
             height={250}

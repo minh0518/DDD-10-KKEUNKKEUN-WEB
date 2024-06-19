@@ -6,8 +6,19 @@ export const config = {
 
 export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
+
   const accessToken = request.cookies.get('accessToken')?.value;
   const refreshToken = request.cookies.get('refreshToken')?.value;
+
+  if (currentPath === `/logout`) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/login';
+    const response = NextResponse.redirect(url);
+    response.cookies.delete('refreshToken');
+    response.cookies.delete('accessToken');
+
+    return response;
+  }
 
   if (
     !refreshToken &&
