@@ -19,7 +19,7 @@ const HistoryBanner = ({ presentation }: Props) => {
         <div className={styles.history__contents}>
           <div className={styles.presentation__thumbnail}>
             <Image
-              src={`${CDN_BASE_URL}/${presentation.thumbnailPath}`}
+              src={`${CDN_BASE_URL}${presentation.thumbnailPath}`}
               width={165}
               height={90}
               alt="최근 발표 이미지"

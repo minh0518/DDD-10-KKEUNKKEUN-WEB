@@ -1,10 +1,11 @@
 import NavMenu from './NavMenu';
 import styles from './Navbar.module.scss';
 import LogoIcon from '@/app/_svgs/LogoIcon';
-import UserIcon from '../_svgs/UserIcon';
 
 import { serverUserApi } from '@/services/server/user';
 import { fetch_ServerAuth } from '@/services/server/fetchServer';
+import LogoutIcon from './LogoutIcon';
+import UserIcon from '../_svgs/UserIcon';
 
 const Navbar = async () => {
   // const res = await fetch_ServerAuth(`${process.env.NEXT_PUBLIC_BASE_URL_DEV}/api/accounts/me`, {
@@ -25,7 +26,8 @@ const Navbar = async () => {
         </div>
 
         <div className={styles.right}>
-          <UserIcon />
+          <LogoutIcon />
+          {/* <UserIcon /> */}
         </div>
       </div>
     </nav>

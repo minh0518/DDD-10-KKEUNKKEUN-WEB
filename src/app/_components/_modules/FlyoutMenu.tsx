@@ -3,6 +3,9 @@ import styles from './FlyoutMenu.module.scss';
 import { ReactNode, useEffect, useRef } from 'react';
 import { ToggleType } from '@/app/_hooks/useToggle';
 import useToggleContext, { ToggleContext } from '@/app/_hooks/useToggleContext';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(styles);
 
 interface Props {
   /** 컨텍스트 (부모에서 전달이 필요한 경우를 위해) */
@@ -54,13 +57,14 @@ const ToggleButton = ({ children }: ReactChildrenProps) => {
   );
 };
 
-const MenuList = ({ children }: ReactChildrenProps) => {
+const MenuList = ({ children, className }: ReactChildrenProps & { className?: string }) => {
   const context = useToggleContext();
 
   // ToggleButton은 계속 유지한 체, flyout의 메뉴들만 보여주거나 없애거나
   if (!context.isOpen) return null;
 
-  return <ul className={styles.flyout__list}>{children}</ul>;
+  // 로그아웃의 flyout버튼은 위치가 조금 다르므로, 이에 대한 className을 조건부로 사용
+  return <ul className={cx([className ? `${className}` : 'flyout__list'])}>{children}</ul>;
 };
 
 const MenuItem = ({ children }: ReactChildrenProps) => {

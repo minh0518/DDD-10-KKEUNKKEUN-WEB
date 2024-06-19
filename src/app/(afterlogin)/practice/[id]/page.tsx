@@ -208,124 +208,129 @@ export default function Page({ params }: { params: { id: string } }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <PracticeNav
-        title={title}
-        isRecording={recorder.isRecording}
-        isLastSlide={isLastSlide}
-        practiceTime={timeLimit}
-        goToNext={onClickNextPage}
-        handleRecording={handleRecordingPause}
-        onCloseClick={onCloseClick}
-      />
-      <div className={styles.container}>
-        <div className={styles.contents}>
-          <section className={styles.presentation__box}>
-            <article className={styles.presentation}>
-              <Image
-                src={`${CDN_BASE_URL}/${data?.slides[slideSeq].imageFilePath}`}
-                alt={`slide-${slideSeq}`}
-                width={900}
-                height={510}
-                style={{ objectFit: 'contain', borderRadius: '16px' }}
-              />
-            </article>
-            <section className={styles.helper__box}>
-              <article className={styles.helper}>
-                <h4 className={styles.helper__title}>
-                  다음 슬라이드
-                  <span className={cx(['helper__subtitle', 'helper__subtitle--next'])}>
-                    {slidePaging}
-                  </span>
-                </h4>
-                <div className={styles.helper__item}>
-                  {isLastSlide ? (
-                    <div className={styles.lastSlide}>
-                      <LastSlide />
-                    </div>
-                  ) : (
-                    <Image
-                      src={`${CDN_BASE_URL}/${data?.slides[slideSeq + 1].imageFilePath}`}
-                      alt={`slide-${slideSeq + 1}`}
-                      width={375}
-                      height={210}
-                      style={{ objectFit: 'contain', borderRadius: '16px' }}
-                    />
-                  )}
-                </div>
-              </article>
-              <article className={styles.helper}>
-                <h4 className={styles.helper__title}>
-                  메모하기
-                  {recorder.isRecording ? (
-                    <span
-                      className={cx(['helper__subtitle', 'helper__subtitle--memo', 'recording'])}
-                    >
-                      발표 연습 중 메모를 입력하면 녹음이 일시정지돼요.
-                    </span>
-                  ) : (
-                    <span className={cx(['helper__subtitle', 'helper__subtitle--memo', 'pausing'])}>
-                      녹음을 이어서 하시려면 녹음 버튼을 눌러주세요.
-                    </span>
-                  )}
-                </h4>
-                <button
-                  className={styles.helper__recorder}
-                  disabled={recorder.isRecording}
-                  onClick={handleRecordingPause}
-                >
-                  녹음 재개
-                </button>
-                <textarea
-                  {...register('content', {
-                    required: true,
-                    maxLength: 10,
-                    onChange: () => {
-                      recorder.pauseRecording();
-                    },
-                  })}
-                  className={styles.helper__item}
-                  placeholder="ex. 발표문 수정 사항, 목소리 크기 등에 대한 메모를 작성해 주세요."
-                />
-                {errors.content && errors.content.type === 'maxLength' ? (
-                  <span className={cx(['memo-validation', 'memo-validation--error'])}>
-                    {content.length} / 500
-                  </span>
-                ) : (
-                  <span className={cx(['memo-validation'])}>{content.length} / 500</span>
-                )}
-              </article>
-            </section>
-          </section>
-          <article className={styles.script__box}>
-            <p className={styles.script}>{data?.slides[slideSeq].script ?? ''}</p>
-          </article>
-        </div>
-      </div>
-      <Alert
-        context={alert}
-        title="마이크 권한을 허용해주세요."
-        message="권한을 허용해야 발표 연습을 하실 수 있어요!"
-        actionText="연습 시작하기"
-        isDisabled={!recorder.isPermitted}
-        onActionClick={handleAlertAction}
-      />
-      <Confirm
-        context={confirm}
-        title="연습을 중단하시겠어요?"
-        message={`연습을 중단하시면\n이번 연습에 대한 피드백을 받을 수 없어요.`}
-        okayText="중단하기"
-        cancelText="계속 연습하기"
-        onOkayClick={goToPresentationsPage}
-      />
-      <div className={styles.bubble}>
-        <SpeechBubble
-          context={bubble}
-          message="녹음 버튼을 누르면 일시정지할 수 있어요."
-          hasCloseBtn
+    // CDN주소(src={`${CDN_BASE_URL}...})에 undefined포함 방지
+    data && (
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <PracticeNav
+          title={title}
+          isRecording={recorder.isRecording}
+          isLastSlide={isLastSlide}
+          practiceTime={timeLimit}
+          goToNext={onClickNextPage}
+          handleRecording={handleRecordingPause}
+          onCloseClick={onCloseClick}
         />
-      </div>
-      <NextSlideConfirm context={modal} handleOkay={handleConfirmOkay} />
-    </form>
+        <div className={styles.container}>
+          <div className={styles.contents}>
+            <section className={styles.presentation__box}>
+              <article className={styles.presentation}>
+                <Image
+                  src={`${CDN_BASE_URL}${data?.slides[slideSeq].imageFilePath}`}
+                  alt={`slide-${slideSeq}`}
+                  width={900}
+                  height={510}
+                  style={{ objectFit: 'contain', borderRadius: '16px' }}
+                />
+              </article>
+              <section className={styles.helper__box}>
+                <article className={styles.helper}>
+                  <h4 className={styles.helper__title}>
+                    다음 슬라이드
+                    <span className={cx(['helper__subtitle', 'helper__subtitle--next'])}>
+                      {slidePaging}
+                    </span>
+                  </h4>
+                  <div className={styles.helper__item}>
+                    {isLastSlide ? (
+                      <div className={styles.lastSlide}>
+                        <LastSlide />
+                      </div>
+                    ) : (
+                      <Image
+                        src={`${CDN_BASE_URL}${data?.slides[slideSeq + 1].imageFilePath}`}
+                        alt={`slide-${slideSeq + 1}`}
+                        width={375}
+                        height={210}
+                        style={{ objectFit: 'contain', borderRadius: '16px' }}
+                      />
+                    )}
+                  </div>
+                </article>
+                <article className={styles.helper}>
+                  <h4 className={styles.helper__title}>
+                    메모하기
+                    {recorder.isRecording ? (
+                      <span
+                        className={cx(['helper__subtitle', 'helper__subtitle--memo', 'recording'])}
+                      >
+                        발표 연습 중 메모를 입력하면 녹음이 일시정지돼요.
+                      </span>
+                    ) : (
+                      <span
+                        className={cx(['helper__subtitle', 'helper__subtitle--memo', 'pausing'])}
+                      >
+                        녹음을 이어서 하시려면 녹음 버튼을 눌러주세요.
+                      </span>
+                    )}
+                  </h4>
+                  <button
+                    className={styles.helper__recorder}
+                    disabled={recorder.isRecording}
+                    onClick={handleRecordingPause}
+                  >
+                    녹음 재개
+                  </button>
+                  <textarea
+                    {...register('content', {
+                      required: true,
+                      maxLength: 10,
+                      onChange: () => {
+                        recorder.pauseRecording();
+                      },
+                    })}
+                    className={styles.helper__item}
+                    placeholder="ex. 발표문 수정 사항, 목소리 크기 등에 대한 메모를 작성해 주세요."
+                  />
+                  {errors.content && errors.content.type === 'maxLength' ? (
+                    <span className={cx(['memo-validation', 'memo-validation--error'])}>
+                      {content.length} / 500
+                    </span>
+                  ) : (
+                    <span className={cx(['memo-validation'])}>{content.length} / 500</span>
+                  )}
+                </article>
+              </section>
+            </section>
+            <article className={styles.script__box}>
+              <p className={styles.script}>{data?.slides[slideSeq].script ?? ''}</p>
+            </article>
+          </div>
+        </div>
+        <Alert
+          context={alert}
+          title="마이크 권한을 허용해주세요."
+          message="권한을 허용해야 발표 연습을 하실 수 있어요!"
+          actionText="연습 시작하기"
+          isDisabled={!recorder.isPermitted}
+          onActionClick={handleAlertAction}
+        />
+        <Confirm
+          context={confirm}
+          title="연습을 중단하시겠어요?"
+          message={`연습을 중단하시면\n이번 연습에 대한 피드백을 받을 수 없어요.`}
+          okayText="중단하기"
+          cancelText="계속 연습하기"
+          onOkayClick={goToPresentationsPage}
+        />
+        <div className={styles.bubble}>
+          <SpeechBubble
+            context={bubble}
+            message="녹음 버튼을 누르면 일시정지할 수 있어요."
+            hasCloseBtn
+          />
+        </div>
+        <NextSlideConfirm context={modal} handleOkay={handleConfirmOkay} />
+      </form>
+    )
   );
 }

@@ -16,3 +16,8 @@ export const CDN_BASE_URL =
   process.env.NODE_ENV === 'development'
     ? process.env.NEXT_PUBLIC_CDN_BASE_URL_DEV
     : process.env.NEXT_PUBLIC_CDN_BASE_URL_PROD;
+
+export const ROUTE_HANDLER_BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? process.env.NEXT_PUBLIC_ROUTE_HANDLER
+    : process.env.NEXT_PUBLIC_CLIENT_PROD_URL;

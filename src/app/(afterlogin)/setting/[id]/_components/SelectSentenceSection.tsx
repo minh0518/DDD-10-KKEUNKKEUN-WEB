@@ -56,7 +56,7 @@ const SelectSentenceSection = ({
       <div className={styles.pptImageSection}>
         <div className={styles.image}>
           <Image
-            src={`${CDN_BASE_URL}/${totalInfo.slides[currentPage].imageFilePath}`}
+            src={`${CDN_BASE_URL}${totalInfo.slides[currentPage].imageFilePath}`}
             width={500}
             height={281}
             alt={`${currentPage + 1}페이지 이미지`}

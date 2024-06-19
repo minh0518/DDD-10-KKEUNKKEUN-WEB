@@ -128,7 +128,7 @@ const UploadPpt = ({
           <div className={styles.pptImageSection}>
             <div className={styles.hoverSection}>
               <Image
-                src={`${CDN_BASE_URL}/${pptInfo.imageFilePath}`}
+                src={`${CDN_BASE_URL}${pptInfo.imageFilePath}`}
                 alt={`${currentPageIndex + 1}페이지 ppt 이미지`}
                 fill
                 style={{ borderRadius: '16px' }}
