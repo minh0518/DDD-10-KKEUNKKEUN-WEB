@@ -40,7 +40,7 @@ export default function Page() {
 
     <div className={styles.container} style={{ backgroundImage: `url(${imageUrl})` }}>
       <Link className={styles.startButton} href={`/login`}>
-        발표 시작하기
+        발표 시작하기!
       </Link>
     </div>
   );
