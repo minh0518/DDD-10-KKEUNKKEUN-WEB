@@ -15,16 +15,9 @@ export interface ToggleType {
 const useToggle = (): ToggleType => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const onOpen = useCallback(() => {
-  //   setIsOpen(true);
-  // }, []);
   const onOpen = () => {
     setIsOpen(true);
   };
-
-  // const onClose = useCallback(() => {
-  //   setIsOpen(false);
-  // }, []);
 
   const onClose = () => {
     setIsOpen(false);
