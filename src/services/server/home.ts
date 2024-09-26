@@ -3,6 +3,7 @@ import { fetch_ServerAuth } from './fetchServer';
 
 export const serverHomeApi = {
   getPresentationList: async ({ pageParam }: { pageParam?: number }) => {
+    console.log(SERVER_BASE_URL);
     const response = await fetch_ServerAuth(
       `${SERVER_BASE_URL}/api/presentations?page=${pageParam}&size=6`,
       { method: 'GET', cache: 'no-store' },
@@ -13,6 +14,7 @@ export const serverHomeApi = {
   },
 
   getLatestPresentation: async () => {
+    console.log(SERVER_BASE_URL);
     const response = await fetch_ServerAuth(`${SERVER_BASE_URL}/api/presentations/latest`, {
       method: 'GET',
       cache: 'no-store',
